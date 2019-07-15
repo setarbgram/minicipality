@@ -54,6 +54,66 @@
 
 
 
+            <li class="documents">
+                <a href="#">
+                    <i class="fa fa-folder-open" aria-hidden="true"></i>
+                    <span class="nav-label">مراحل تشکیل پرونده</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse users_sub">
+                    <li class="contractor">
+                        <a href="{{route('contractor')}}"><span class="nav-label">شناسنامه پیمان</span></a>
+                    </li>
+
+                    <li class="work-order">
+                        <a href="{{--{{route('work.order')}}--}}">
+                            <span class="nav-label">دستور کار</span>
+                        </a>
+                    </li>
+
+                    <li class="navbar_loginLogs">
+                        <a>
+                            <i class="fa fa-history" aria-hidden="true"></i>
+                            <span class="nav-label">گزارش ورود</span></a>
+                    </li>
+                    <li class="session">
+                        <a href="{{--{{route('session.letter')}}--}}"><span class="nav-label">صورت جلسه</span></a>
+                    </li>
+
+                    <li class="practical.property">
+                        <a href="{{--{{route('practical.property')}}--}}">
+                            <span class="nav-label">مشخصات فنی</span>
+                        </a>
+                    </li>
+
+                    <li class="letters">
+                        <a href="{{--{{route('letters')}}--}}"><span class="nav-label">مکاتبات</span></a>
+                    </li>
+
+                    <li class="work-status">
+                        <a href="{{--{{route('work.status')}}--}}">
+                            <span class="nav-label">صورت وضعیت</span>
+                        </a>
+                    </li>
+
+                    <li class="delivery-info">
+                        <a href="{{--{{route('delivery.info')}}--}}">
+                            <i class="fa fa-history" aria-hidden="true"></i>
+                            <span class="nav-label">مشخصات تحویل</span></a>
+                    </li>
+
+                    <li class="announcement-info">
+                        <a href="{{--{{route('announcement.info')}}--}}">
+                            <i class="fa fa-history" aria-hidden="true"></i>
+                            <span class="nav-label">ابلاغیه</span></a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+
+
         </ul>
 
     </div>

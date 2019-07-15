@@ -34,6 +34,9 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     /*----------------------login logs-----------------------*/
 
     Route::get('/login-logs', ['middleware' => 'admin', 'uses' => 'LoginLogController@index'])->name('login-logs');
+
+    /*----------------------مراحل تشکیل پرونده-----------------------*/
+    Route::get('/documents-filing-processes', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@index'])->name('contractor');
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {
