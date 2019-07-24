@@ -36,7 +36,12 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::get('/login-logs', ['middleware' => 'admin', 'uses' => 'LoginLogController@index'])->name('login-logs');
 
     /*----------------------مراحل تشکیل پرونده-----------------------*/
-    Route::get('/documents-filing-processes', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@index'])->name('contractor');
+    Route::get('/documents-filing-processes/list', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@index'])->name('contractor-list');
+    Route::delete('/documents-filing-processes/list', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@destroy'])->name('contractor-remove');
+    Route::get('/documents-filing-processes', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@show'])->name('contractor');
+    Route::post('/documents-filing-processes', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@createShenasnamePeiman'])->name('contractor-create');
+    Route::get('/documents-filing-processes/edit/{id}', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@editShenasnamePeiman'])->name('shenase.edit');
+    Route::post('/documents-filing-processes/edit/{id}', ['middleware' => 'admin', 'uses' => 'DocumentProcessController@updateShenasnamePeiman'])->name('shenase.edit');
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {

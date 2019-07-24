@@ -62,7 +62,7 @@
                 </a>
                 <ul class="nav nav-second-level collapse users_sub">
                     <li class="contractor">
-                        <a href="{{route('contractor')}}"><span class="nav-label">شناسنامه پیمان</span></a>
+                        <a href="{{route('contractor-list')}}"><span class="nav-label">شناسنامه پیمان</span></a>
                     </li>
 
                     <li class="work-order">
