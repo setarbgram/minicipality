@@ -47,6 +47,7 @@
 <script src="/js/app/base_js/base_admin_js.js"></script>
 <script src="/js/app/plugin/metisMenu/jquery.metisMenu.js"></script>
 <script src="/js/app/plugin/validate/jquery.validate.min.js"></script>
+
 <script src="/js/app/plugin/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/js/app/plugin/select2/select2.full.min.js"></script>
 
@@ -60,12 +61,13 @@
     $(document).ready(function(){
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
+            radioClass: 'iradio_square-green'
         });
 
         toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
+            "hideDuration": "1000"
+            // "closeButton": true,
+            // "progressBar": true,
         };
 
 
