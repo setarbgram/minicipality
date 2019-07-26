@@ -66,13 +66,13 @@
                 </a>
                 <ul class="nav nav-second-level collapse document_sub">
                     <li class="contractor">
-                        <a href="{{route('contractor')}}">
+                        <a href="{{route('contractor-list')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">شناسنامه پیمان</span></a>
                     </li>
 
                     <li class="work-order">
-                        <a href="{{--{{route('work.order')}}--}}">
+                        <a href="{{route('workOrder-list')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">دستور کار</span>
                         </a>

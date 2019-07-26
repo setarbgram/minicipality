@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="/css/app/plugin/toastr/toastr.min.css">
     <link rel="stylesheet" href="/css/app/plugin/select2/select2.min.css">
 
+    <style>
+        .paginate{
+            display: flex;align-self: center;justify-content: center
+        }
+    </style>
     @yield('styles')
+
+
     {{--<style>--}}
         {{--.metismenu .fa.arrow:before {--}}
             {{--content: "\f105";--}}
@@ -59,6 +66,10 @@
 
 <script>
     $(document).ready(function(){
+
+        // document.querySelectorAll('[rel="prev"]')[0].innerHTML = "»";
+        // document.querySelectorAll('[rel="next"]')[0].innerHTML = "«";
+
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green'
