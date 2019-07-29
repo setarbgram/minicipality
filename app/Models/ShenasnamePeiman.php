@@ -18,7 +18,7 @@ class ShenasnamePeiman extends Model
 
     public function getAllShenase()
     {
-        $shenase = self::orderBy('created_at', 'DECS')->paginate(1);
+        $shenase = self::orderBy('created_at', 'DECS')->paginate(12);
         return $shenase;
     }
 

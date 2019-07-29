@@ -17,4 +17,17 @@ class Release extends Model
         'file',
     ];
 
+    public function getAllReleases()
+    {
+        $Releases = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Releases;
+
+    }
+
+    public function findRelease($releaseId)
+    {
+        $release = self::where('id', $releaseId)->first();
+        return $release;
+    }
+
 }

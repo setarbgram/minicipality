@@ -16,4 +16,18 @@ class Others extends Model
         'subject',
         'file'
     ];
+
+
+    public function getAllOthers()
+    {
+        $Others = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Others;
+
+    }
+
+    public function findOthers($otherId)
+    {
+        $other = self::where('id', $otherId)->first();
+        return $other;
+    }
 }

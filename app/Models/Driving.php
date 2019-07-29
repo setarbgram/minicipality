@@ -15,5 +15,16 @@ class Driving extends Model
         'communicationDate',
         'file'
     ];
+    public function getAllDrivings()
+    {
+        $Drivings = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Drivings;
 
+    }
+
+    public function findDrivings($drivingsId)
+    {
+        $driving = self::where('id', $drivingsId)->first();
+        return $driving;
+    }
 }

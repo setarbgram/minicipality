@@ -16,4 +16,10 @@ class Contractextension extends Model
         'file'
     ];
 
+    public function getAllContractextension()
+    {
+        $Contractextensiones = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Contractextensiones;
+    }
+
 }

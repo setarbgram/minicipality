@@ -20,4 +20,10 @@ class Definitestate extends Model
         'file'
     ];
 
+    public function getAllDefinitestate()
+    {
+        $definitestates = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $definitestates;
+    }
+
 }

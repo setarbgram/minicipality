@@ -21,4 +21,11 @@ class Predefinitestate extends Model
         'file'
     ];
 
+    public function getAllPredefinitestate()
+    {
+        $predefinitestate = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $predefinitestate;
+
+    }
+
 }

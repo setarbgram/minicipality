@@ -55,6 +55,63 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::post('/work-order', ['middleware' => 'admin', 'uses' => 'WorkOrderController@createWorkOrder'])->name('workOrder-create');
     Route::get('/work-order/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkOrderController@editWorkOrder'])->name('workOrder-edit');
     Route::post('/work-order/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkOrderController@updateShenasnamePeiman'])->name('workOrder-update');
+
+
+    /*----------------------صورت جلسه-----------------------*/
+    Route::get('/session-letter/list', ['middleware' => 'admin', 'uses' => 'SessionLetterController@index'])->name('sessionLetter-List');
+    Route::delete('/session-letter/list', ['middleware' => 'admin', 'uses' => 'SessionLetterController@destroy'])->name('sessionLetter-remove');
+    Route::get('/session-letter', ['middleware' => 'admin', 'uses' => 'SessionLetterController@show'])->name('sessionLetter');
+    Route::post('/session-letter', ['middleware' => 'admin', 'uses' => 'SessionLetterController@createSessionLetter'])->name('sessionLetter-create');
+    Route::get('/session-letter/edit/{id}', ['middleware' => 'admin', 'uses' => 'SessionLetterController@editSessionLetter'])->name('sessionLetter-edit');
+    Route::post('/session-letter/edit/{id}', ['middleware' => 'admin', 'uses' => 'SessionLetterController@updateSessionLetter'])->name('sessionLetter-update');
+
+
+    /*----------------------ابلاغیه-----------------------*/
+    Route::get('/communication/list', ['middleware' => 'admin', 'uses' => 'CommunicationController@index'])->name('communication-List');
+    Route::delete('/communication/list', ['middleware' => 'admin', 'uses' => 'CommunicationController@destroy'])->name('communication-remove');
+    Route::get('/communication', ['middleware' => 'admin', 'uses' => 'CommunicationController@show'])->name('communication');
+    Route::post('/communication', ['middleware' => 'admin', 'uses' => 'CommunicationController@createcommunication'])->name('communication-create');
+    Route::get('/communication/edit/{id}', ['middleware' => 'admin', 'uses' => 'CommunicationController@editcommunication'])->name('communication-edit');
+    Route::post('/communication/edit/{id}', ['middleware' => 'admin', 'uses' => 'CommunicationController@updatecommunication'])->name('communication-update');
+
+    /*----------------------مشخصات فنی-----------------------*/
+    Route::get('/practical-property/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@index'])->name('practicalProperty-List');
+    /*----------------------مشخصات فنی - رسته-----------------------*/
+    Route::delete('/raste/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('raste-remove');
+    Route::get('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@showRaste'])->name('raste');
+    Route::post('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@createRaste'])->name('raste-create');
+    Route::get('/raste/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@editRaste'])->name('raste-edit');
+    Route::post('/raste/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@updateRaste'])->name('raste-update');
+
+
+
+    /*----------------------مشخصات فنی - ضرایب متعلقه-----------------------*/
+    Route::delete('/zarayeb/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('zarayeb-remove');
+    Route::get('/zarayeb', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@showZarayeb'])->name('zarayeb');
+    Route::post('/zarayeb', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@createZarayeb'])->name('zarayeb-create');
+    Route::get('/zarayeb/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@editZarayeb'])->name('zarayeb-edit');
+    Route::post('/zarayeb/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@updateZarayeb'])->name('zarayeb-update');
+
+
+    /*----------------------مشخصات فنی - شیت-----------------------*/
+    Route::delete('/sheet/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('sheet-remove');
+    Route::get('/sheet', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@showSheet'])->name('sheet');
+    Route::post('/sheet', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@createSheet'])->name('sheet-create');
+    Route::get('/sheet/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@editSheet'])->name('sheet-edit');
+    Route::post('/sheet/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@updateSheet'])->name('sheet-update');
+
+
+    /*---------------------- مکاتبات-----------------------*/
+    Route::get('/letters/list', ['middleware' => 'admin', 'uses' => 'LettersController@index'])->name('letters');
+
+    /*---------------------- صورت وضعیت-----------------------*/
+    Route::get('/workStatus/list', ['middleware' => 'admin', 'uses' => 'WorkStatusController@index'])->name('workStatus');
+
+
+    /*---------------------- مشخصات تحویل-----------------------*/
+    Route::get('/deliveryInfo/list', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@index'])->name('deliveryInfo');
+
+
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {

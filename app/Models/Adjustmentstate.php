@@ -21,4 +21,11 @@ class Adjustmentstate extends Model
         'secretariatID',
         'file'
     ];
+
+    public function getAllAdjustmentstate()
+    {
+        $adjustmentstates = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $adjustmentstates;
+
+    }
 }

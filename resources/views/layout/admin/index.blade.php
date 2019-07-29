@@ -15,6 +15,10 @@
         .paginate{
             display: flex;align-self: center;justify-content: center
         }
+
+
+
+
     </style>
     @yield('styles')
 
@@ -50,8 +54,8 @@
     </div>
 </div>
 
-
 <script src="/js/app/base_js/base_admin_js.js"></script>
+
 <script src="/js/app/plugin/metisMenu/jquery.metisMenu.js"></script>
 <script src="/js/app/plugin/validate/jquery.validate.min.js"></script>
 

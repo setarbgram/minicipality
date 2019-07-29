@@ -23,4 +23,12 @@ class Temporarystate extends Model
         'finalAmount',
         'file'
     ];
+
+    public function getAllTemporarystate()
+    {
+        $Temporarystates = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Temporarystates;
+
+    }
+
 }

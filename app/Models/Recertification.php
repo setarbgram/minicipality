@@ -16,4 +16,17 @@ class Recertification extends Model
         'file'
     ];
 
+    public function getAllRecertifications()
+    {
+        $Recertifications = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Recertifications;
+
+    }
+
+    public function findRecertification($recertificationId)
+    {
+        $recertification = self::where('id', $recertificationId)->first();
+        return $recertification;
+    }
+
 }

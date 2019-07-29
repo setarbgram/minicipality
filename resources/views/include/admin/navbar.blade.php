@@ -80,41 +80,41 @@
 
 
                     <li class="session">
-                        <a href="{{--{{route('session.letter')}}--}}">
+                        <a href="{{route('sessionLetter-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">صورت جلسه</span>
                         </a>
                     </li>
 
                     <li class="practical.property">
-                        <a href="{{--{{route('practical.property')}}--}}">
+                        <a href="{{route('practicalProperty-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات فنی</span>
                         </a>
                     </li>
 
                     <li class="letters">
-                        <a href="{{--{{route('letters')}}--}}">
+                        <a href="{{route('letters')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مکاتبات</span>
                         </a>
                     </li>
 
                     <li class="work-status">
-                        <a href="{{--{{route('work.status')}}--}}">
+                        <a href="{{route('workStatus')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">صورت وضعیت</span>
                         </a>
                     </li>
 
                     <li class="delivery-info">
-                        <a href="{{--{{route('delivery.info')}}--}}">
+                        <a href="{{route('deliveryInfo')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات تحویل</span></a>
                     </li>
 
                     <li class="announcement-info">
-                        <a href="{{--{{route('announcement.info')}}--}}">
+                        <a href="{{route('communication-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">ابلاغیه</span></a>
                     </li>

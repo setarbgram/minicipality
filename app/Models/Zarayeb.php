@@ -22,4 +22,16 @@ class Zarayeb extends Model
         'file'
     ];
 
+    public function getAllZarayeb()
+    {
+        $zarayebs = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $zarayebs;
+    }
+
+    public function findZarayeb($zarayebId)
+    {
+        $zarayeb = self::where('id', $zarayebId)->first();
+        return $zarayeb;
+    }
+
 }
