@@ -8,7 +8,6 @@
     </style>
 @endsection
 @section('contents')
-    'temporaryDeliveries','definiteDeliveries'
     <div class="row wrapper border-bottom white-bg page-heading">
 
         <div class="col-lg-10">
@@ -61,18 +60,22 @@
                             <form id="temporaryDeliveryForm" method="post" action="">
                                 {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
                                             <th>شماره قرارداد </th>
+                                            <th>تاریخ درخواست پیمانکار</th>
+                                            <th>تاریخ تاریخ دعوتنامه</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($temporaryDeliveries as $temporaryDelivery)
                                             <tr>
                                                 <td><input type="checkbox" class="i-checks shenase_check" name="temporaryDelivery_check[]" value="{{$temporaryDelivery['id']}}">  <a {{--href="{{$temporaryDelivery('temporaryDelivery-edit',$temporaryDelivery['id'])}}"--}}>{{$temporaryDelivery['contractID']}}</a></td>
-
+                                                <td>{{$temporaryDelivery['requestDate']}}</td>
+                                                <td>{{$temporaryDelivery['invitationDate']}}</td>
                                             </tr>
 
                                         @endforeach
@@ -82,7 +85,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('temporaryDeliveryShow')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف تحویل موقت</a>
@@ -107,17 +110,23 @@
                             <form id="definiteDeliveryForm" method="post" action="">
                                 {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
                                             <th>شماره قرارداد </th>
+                                            <th>تاریخ درخواست پیمانکار</th>
+                                            <th>تاریخ تاریخ دعوتنامه</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($definiteDeliveries as $definiteDelivery)
                                             <tr>
                                                 <td><input type="checkbox" class="i-checks shenase_check" name="definiteDelivery_check[]" value="{{$definiteDelivery['id']}}">  <a {{--href="{{$definiteDelivery('definiteDelivery-edit',$definiteDelivery['id'])}}"--}}>{{$definiteDelivery['contractID']}}</a></td>
+                                                <td>{{$definiteDelivery['requestDate']}}</td>
+                                                <td>{{$definiteDelivery['invitationDate']}}</td>
+
 
                                             </tr>
 
@@ -128,7 +137,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('definiteDeliveryShow')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف تحویل قطعی</a>

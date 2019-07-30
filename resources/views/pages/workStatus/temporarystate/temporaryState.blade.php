@@ -1,10 +1,11 @@
 @extends('layout.admin.index')
 @section('title')
-    تحویل
+    رصورت وضعیت موقت
 @endsection
 @section('styles')
     <style>
         @media (min-width: 1200px) {
+
             .contract-title-input {
                 width: 79.333333%;
             }
@@ -14,19 +15,15 @@
     </style>
 @endsection
 @section('contents')
-    @php
-        $deliveryType=($dType==0)?'تحویل موقت':'تحویل قطعی'
-    @endphp
-{{$dType}}
-    <form role="form" id="form" method="post" action="{{route('deliveryInfo-create')}}" enctype="multipart/form-data">
+
+    <form role="form" id="form" method="post" action="{{route('temporarystate-create')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
-            <input type="hidden" id="dtype" name="dtype" value="{{$dType}}">
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>{{$deliveryType}} جدید</h5>
+                        <h5>رصورت وضعیت موقت جدید</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -35,7 +32,9 @@
                     </div>
                     <div class="ibox-content">
 
+
                         <div class="row">
+
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4  form-txt-align "><label
@@ -56,19 +55,138 @@
                             </div>
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="statementID">
+                                            شماره ی صورت وضعیت: </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="statementID"
+                                               id="statementID">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
                                     <div class="col-lg-4 col-sm-4  form-txt-align "><label
                                                 class="control-label label-position"
-                                                for="deliveryType">نوع تحویل :</label>
+                                                for="secretariatID">شماره دبیرخانه :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="secretariatID"
+                                               id="secretariatID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="secretariatDate">
+                                            تاریخ دبیرخانه : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="secretariatDate"
+                                               id="secretariatDate">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="contractorAmount">مبلغ ارسالی توسط پیمانکار :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="contractorAmount"
+                                               id="contractorAmount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="supervisorAmount">
+                                            مبلغ ارسالی توسط ناظر : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="supervisorAmount"
+                                               id="supervisorAmount">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="technicalAmount">مبلغ رسیدگی فنی :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="technicalAmount"
+                                               id="technicalAmount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="netAmount">
+                                            مبلغ خالص صورت وضعیت  : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="netAmount"
+                                               id="netAmount">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="prepayment">پیش پرداخت :</label>
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <select class="form-control" type="text" name="deliveryType" id="deliveryType">
-                                            @foreach($types as $type)
-                                                <option value="{{$type['typeNO']}}">{{$type['type']}}</option>
-                                            @endforeach
+                                        <select class="form-control" type="text" name="prepayment" id="prepayment" onChange="displayItem(this.value)">
+                                                <option value="1">دارد</option>
+                                                <option value="0">ندارد</option>
                                         </select>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label id="prepaymentPercentLabel" class="control-label label-position" for="prepaymentPercent">
+                                            درصد پیش پرداخت: </label>
+                                    </div>
 
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="prepaymentPercent"
+                                               id="prepaymentPercent">
                                     </div>
                                 </div>
                             </div>
@@ -76,172 +194,31 @@
                         </div>
 
 
-                        <div class="row">
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="requestID">
-                                            شماره درخواست پیمانکار :</label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="requestID"
-                                               id="requestID">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="requestDate">
-                                            تاریخ درخواست پیمانکار : </label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="requestDate"
-                                               id="requestDate">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row">
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="invitationID">
-                                            شماره دعوتنامه :</label>
+                                        <label class="control-label label-position" for="finalAmount">
+                                            مبلغ تایید شده نهایی : </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="invitationID"
-                                               id="invitationID">
+                                        <input class="form-control" type="text" name="finalAmount"
+                                               id="finalAmount">
                                     </div>
                                 </div>
                             </div>
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="invitationDate">
-                                            تاریخ دعوتنامه : </label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="invitationDate"
-                                               id="invitationDate">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="communicationID">
-                                            شماره ابلاغ صورت مجلس :</label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationID"
-                                               id="communicationID">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="communicationDate">
-                                            تاریخ ابلاغ صورت مجلس :</label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="commissionDate">
-                                            تاریخ جلسه کمیسیون:</label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="commissionDate"
-                                               id="commissionDate">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div id="hasEstimateDiv" class=" col-lg-6 col-sm-12 col-xs-12 ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="hasEstimate">
-                                            ارزیابی شیت :</label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-                                        <select class="form-control" type="text" name="hasEstimate" id="hasEstimate">
-                                            <option value="0">دارد</option>
-                                            <option value="1">ندارد</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="tFile1" class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="file1">فایل اسکن
+                                        <label class="control-label label-position" for="file">فایل اسکن
                                             شده: </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="file" name="file1" id="file1"
-                                               accept="application/pdf">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div id="dFile1" class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="file1">فایل اسکن
-                                            شده: </label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-
-                                        <input class="form-control" type="file" name="file1" id="file1"
-                                               accept="application/pdf">
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="file2">
-                                            اظهار نظر مشاور : </label>
-                                    </div>
-
-                                    <div class="col-lg-7 col-sm-8 form-group">
-
-                                        <input class="form-control" type="file" name="file2" id="file2"
+                                        <input class="form-control" type="file" name="file" id="file"
                                                accept="application/pdf">
 
                                     </div>
@@ -284,39 +261,30 @@
 
     <script>
         $(document).ready(function () {
-            var type='{{$dType}}';
-            if(type==0){
-                document.getElementById('hasEstimateDiv').style.display='none';
-                document.getElementById('dFile1').style.display='none';
-                document.getElementById('tFile1').style.display='block';
-
-            }else{
-                document.getElementById('hasEstimateDiv').style.display='block';
-                document.getElementById('dFile1').style.display='block';
-                document.getElementById('tFile1').style.display='none';
-            }
-
+                document.getElementById("prepaymentPercent").disabled = false;
+                document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
 
 
             $("#form").validate({
                 rules: {
                     contractID: {
                         required: true
-                    },
-                    requestDate: {
-                        required: true
-                    },
-                    invitationDate: {
-                        required: true
-                    },
-                    commissionDate: {
-                        required: true
-                    },
-                    communicationDate: {
-                        required: true
                     }
                 }
             })
         });
+
+        function displayItem(value) {
+            if (value == 0) {
+                document.getElementById("prepaymentPercent").disabled = true;
+                document.getElementById("prepaymentPercentLabel").style.color = '#d4d4d4';
+
+
+            } else {
+                document.getElementById("prepaymentPercent").disabled = false;
+                document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
+
+            }
+        }
     </script>
 @endsection

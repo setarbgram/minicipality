@@ -61,8 +61,8 @@
                     <div class="tab-content">
                         <div id="raste" class="container tab-pane active" style="min-height: 200px"><br>
 
-                            <form id="rasteForm" method="post" action="">
-                                {{method_field('DELETE')}}
+                            <form id="rasteForm" name="rasteForm" method="post" action="">
+                                {{--{{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -83,12 +83,12 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('raste')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('raste-create')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف رسته نوع برآورد</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -108,7 +108,7 @@
 
 
                             <form id="zarayebForm" method="post" action="">
-                                {{method_field('DELETE')}}
+{{--                                {{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -129,12 +129,12 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('raste')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('zarayeb-create')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف ضرایب متعلقه</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -152,7 +152,7 @@
 
 
                             <form id="sheetForm" method="post" action="">
-                                {{method_field('DELETE')}}
+                                {{--{{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -175,12 +175,12 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('sheet')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('sheet-create')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف شیت آزمایشگاهی</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>

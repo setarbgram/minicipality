@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Patternagetype;
 use App\Models\Raste;
 use App\Models\Rastetype;
 use App\Models\Sheet;
+use App\Models\Sheettype;
 use App\Models\ShenasnamePeiman;
 use App\Models\Zarayeb;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+
 
 class PracticalPropertyController extends Controller
 {
@@ -28,14 +32,82 @@ class PracticalPropertyController extends Controller
 
 
 //    ---------------------------raste----------------------------
-    public function show()
+    public function showRaste()
     {
         $shenaseObj = new ShenasnamePeiman();
         $rasteTypeObj=new Rastetype();
         $types=$rasteTypeObj->getAllTypes();
         $cotractNum = $shenaseObj->getAllContractID();
-        return view('pages.communication.communication',compact('cotractNum','types'));
+        return view('pages.practicalProperty.raste.raste',compact('cotractNum','types'));
     }
 
+
+    
+
+    public function createRaste(Request $request)
+    {
+        $rasteObj = new Raste();
+        $raste = $rasteObj->createRaste($request);
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'رسته ی نوع برآورد با موفقیت ثبت شد!'));
+
+    }
+
+    public function destroyRaste(Request $request)
+    {
+        if ($request['raste_check']) {
+            $rasteObj = new raste();
+            $rasteObj->removeRaste($request);
+
+            return redirect('/panel/practical-property/list')->with(Session::flash('flash_message', 'رسته ی نوع برآورد با موفقیت حذف شد!'));
+        } else {
+            return redirect('/panel/practical-property/list')->with(Session::flash('flash_d_message', 'انتخاب یک رسته ی نوع برآورد الزامی است!'));
+        }
+
+    }
+
+    //    ---------------------------zarayeb----------------------------
+
+    public function showZarayeb()
+    {
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.practicalProperty.zarayeb.zarayeb',compact('cotractNum'));
+    }
+
+
+
+
+    public function createZarayeb(Request $request)
+    {
+        $zarayebObj = new Zarayeb();
+        $zarayeb = $zarayebObj->createZarayeb($request);
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'ضرایب متعلقه با موفقیت ثبت شد!'));
+
+    }
+
+
+    //    ---------------------------sheet----------------------------
+
+    public function showSheet()
+    {
+        $shenaseObj = new ShenasnamePeiman();
+        $sheetTypeObj=new Sheettype();
+        $types=$sheetTypeObj->getAllTypes();
+        $patternObj=new Patternagetype();
+        $patterns=$patternObj->getAllTypes();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.practicalProperty.sheet.sheet',compact('cotractNum','types','patterns'));
+    }
+
+
+
+
+    public function createsheet(Request $request)
+    {
+        $sheetObj = new Sheet();
+        $sheet = $sheetObj->createSheet($request);
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'شیت آزمایشگاهی با موفقیت ثبت شد!'));
+
+    }
 
 }

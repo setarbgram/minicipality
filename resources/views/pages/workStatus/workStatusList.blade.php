@@ -94,7 +94,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('temporarystate')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف صورت وضعیت موقت</a>
@@ -139,7 +139,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('adjustmentstate')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف صورت وضعیت تعدیل</a>
@@ -181,7 +181,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('predefinitestate')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف صورت وضعیت ماقبل قطعی</a>
@@ -224,7 +224,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('definitestate')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف صورت وضعیت قطعی</a>
@@ -267,7 +267,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}" --}}
+                                        <a href="{{route('contractextension')}}"
                                            class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف تمدید قرارداد</a>
