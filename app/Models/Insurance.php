@@ -18,4 +18,17 @@ class Insurance extends Model
         'file'
     ];
 
+    public function getAllInsurances()
+    {
+        $Insurances = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Insurances;
+
+    }
+
+    public function findInsurance($insuranceId)
+    {
+        $insurance = self::where('id', $insuranceId)->first();
+        return $insurance;
+    }
+
 }

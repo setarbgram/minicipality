@@ -14,4 +14,17 @@ class Cementfactory extends Model
         'communicationDate',
         'file'
     ];
+
+    public function getAllCementfactory()
+    {
+        $cementfactorys = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $cementfactorys;
+
+    }
+
+    public function findCementfactory($cementfactoryId)
+    {
+        $cementfactory = self::where('id', $cementfactoryId)->first();
+        return $cementfactory;
+    }
 }

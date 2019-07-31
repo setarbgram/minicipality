@@ -48,7 +48,7 @@
                                 <thead>
                                 <tr>
 
-                                    <th>موضوع قرارداد</th>
+                                    <th>شماره قرارداد</th>
                                     <th>شماره ی پرونده:</th>
                                     <th>نام شرکت</th>
                                 </tr>
@@ -58,9 +58,9 @@
                                     <tr>
                                         <td><input type="checkbox" class="i-checks shenase_check" name="shenase_check[]"
                                                    value="{{$shenase['id']}}"> <a
-                                                    href="{{route('shenase.edit',$shenase['id'])}}">{{$shenase['contractTitle']}}</a>
+                                                    href="{{route('shenase.edit',$shenase['id'])}}">{{$shenase['contractNumber']}}</a>
                                         </td>
-                                        <td>{{$shenase['contractNumber']}}</td>
+                                        <td>{{$shenase['docNumber']}}</td>
                                         <td>{{$shenase['companyName']}}</td>
                                     </tr>
                                 @endforeach

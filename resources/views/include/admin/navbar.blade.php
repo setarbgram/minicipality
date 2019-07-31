@@ -94,21 +94,21 @@
                     </li>
 
                     <li class="letters">
-                        <a href="{{--{{route('letters')}}--}}">
+                        <a href="{{route('letters')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مکاتبات</span>
                         </a>
                     </li>
 
                     <li class="work-status">
-                        <a href="{{--{{route('work.status')}}--}}">
+                        <a href="{{route('workStatus')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">صورت وضعیت</span>
                         </a>
                     </li>
 
                     <li class="delivery-info">
-                        <a href="{{--{{route('delivery.info')}}--}}">
+                        <a href="{{route('deliveryInfo')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات تحویل</span></a>
                     </li>

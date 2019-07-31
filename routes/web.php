@@ -77,7 +77,11 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     /*----------------------مشخصات فنی-----------------------*/
     Route::get('/practical-property/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@index'])->name('practicalProperty-List');
     /*----------------------مشخصات فنی - رسته-----------------------*/
+<<<<<<< HEAD
     Route::delete('/raste/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('raste-remove');
+=======
+//    Route::delete('/practical-property/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('raste-remove');
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     Route::get('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@showRaste'])->name('raste');
     Route::post('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@createRaste'])->name('raste-create');
     Route::get('/raste/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@editRaste'])->name('raste-edit');
@@ -101,8 +105,56 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::post('/sheet/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@updateSheet'])->name('sheet-update');
 
 
+<<<<<<< HEAD
 
 
+=======
+    /*---------------------- مکاتبات-----------------------*/
+    Route::get('/letters/list', ['middleware' => 'admin', 'uses' => 'LettersController@index'])->name('letters');
+
+
+
+
+
+    /*---------------------- صورت وضعیت-----------------------*/
+    Route::get('/workStatus/list', ['middleware' => 'admin', 'uses' => 'WorkStatusController@index'])->name('workStatus');
+
+    /*----------------------صورت وضعیت - صورت وضعیت موقت-----------------------*/
+    Route::get('/temporarystate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showTemporarystate'])->name('temporarystate');
+    Route::post('/temporarystate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createTemporarystate'])->name('temporarystate-create');
+
+    /*----------------------صورت وضعیت - صورت وضعیت تعدیل-----------------------*/
+    Route::get('/adjustmentstate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showAdjustmentstate'])->name('adjustmentstate');
+    Route::post('/adjustmentstate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createAdjustmentstate'])->name('adjustmentstate-create');
+
+
+    /*----------------------صورت وضعیت - صورت وضعیت ماقبل قطعی-----------------------*/
+    Route::get('/predefinitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showPredefinitestate'])->name('predefinitestate');
+    Route::post('/predefinitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createPredefinitestate'])->name('predefinitestate-create');
+
+
+    /*----------------------صورت وضعیت - صورت وضعیت قطعی-----------------------*/
+    Route::get('/definitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showDefinitestate'])->name('definitestate');
+    Route::post('/definitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createDefinitestate'])->name('definitestate-create');
+
+
+    /*----------------------صورت وضعیت - تمدید قرارداد-----------------------*/
+    Route::get('/contractextension', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showContractextension'])->name('contractextension');
+    Route::post('/contractextension', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createContractextension'])->name('contractextension-create');
+
+
+
+
+
+
+
+    /*---------------------- مشخصات تحویل-----------------------*/
+    Route::get('/deliveryInfo/list', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@index'])->name('deliveryInfo');
+    Route::get('/deliveryInfo/temporaryDelivery', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@temporaryDeliveryShow'])->name('temporaryDeliveryShow');
+    Route::get('/deliveryInfo/definiteDelivery', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@definiteDeliveryShow'])->name('definiteDeliveryShow');
+    Route::post('/deliveryInfo', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@createDelivery'])->name('deliveryInfo-create');
+
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {

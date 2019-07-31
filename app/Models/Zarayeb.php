@@ -34,4 +34,62 @@ class Zarayeb extends Model
         return $zarayeb;
     }
 
+<<<<<<< HEAD
+=======
+
+    public function createZarayeb($request)
+    {
+        $zarayeb = self::create([
+            "contractID" => $request['contractID'],
+            "balasari" => $request['balasari'],
+            "tajhiz" => $request['tajhiz'],
+            "recommended" => $request['recommended'],
+            "shabkari" => $request['shabkari'],
+            "traffic" => $request['traffic'],
+            "floors" => $request['floors'],
+            "height" => $request['height'],
+            "zaribk" => $request['zaribk'],
+            "zaribt" => $request['zaribt'],
+
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/zarayeb"), $fileName);
+
+            $zarayeb->file = $fileName;
+        }
+
+        $zarayeb->save();
+        return $zarayeb;
+    }
+
+    public function removeZarayeb($request)
+    {
+        foreach ($request['zarayeb_check'] as $zarayebId) {
+            $zarayeb = self::where('id', $zarayebId)->first();
+            $file = $zarayeb['file'];
+
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/zarayeb") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+            
+        }
+        zarayeb::destroy($request['zarayeb_check']); //users:name of checkbox
+    }
+
+
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }

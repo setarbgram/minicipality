@@ -14,4 +14,17 @@ class Fuel extends Model
         'communicationDate',
         'file'
     ];
+
+    public function getAllFuels()
+    {
+        $Fuels = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Fuels;
+
+    }
+
+    public function findFuels($fuelId)
+    {
+        $fuel = self::where('id', $fuelId)->first();
+        return $fuel;
+    }
 }
