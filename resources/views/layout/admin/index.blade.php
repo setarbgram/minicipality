@@ -10,11 +10,20 @@
     <link rel="stylesheet" href="/css/app/plugin/iCheck/custom.css">
     <link rel="stylesheet" href="/css/app/plugin/toastr/toastr.min.css">
     <link rel="stylesheet" href="/css/app/plugin/select2/select2.min.css">
+    <link rel="stylesheet" href="/css/app/plugin/calendar/persianDatepicker-default.css">
 
     <style>
         .paginate{
             display: flex;align-self: center;justify-content: center
         }
+
+
+         /*.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {*/
+             /*color: #495057;*/
+             /*background-color: #fff;*/
+             /*border-color: #dee2e6 #dee2e6 #fff;*/
+         /*}*/
+
     </style>
     @yield('styles')
 
@@ -63,6 +72,7 @@
 <!-- iCheck -->
 <script src="/js/app/plugin/iCheck/icheck.min.js"></script>
 <script src="/js/app/plugin/toastr/toastr.min.js"></script>
+<script src="/js/app/plugin/calendar/persianDatepicker.min.js"></script>
 
 <script>
     $(document).ready(function(){

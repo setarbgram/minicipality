@@ -29,7 +29,7 @@ class WorkOrderController extends Controller
     {
         $workOrderObj = new Instructions();
         $order = $workOrderObj->createWorkOrder($request);
-        return Redirect(route('workOrder-list'))->with(Session::flash('flash_message', 'دستور با موفقیت ثبت شد!'));
+        return Redirect(route('workOrder-list'))->with(Session::flash('flash_message', 'دستور کار با موفقیت ثبت شد!'));
     }
 
     public function editWorkOrder($orderId)

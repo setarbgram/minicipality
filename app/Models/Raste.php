@@ -13,4 +13,17 @@ class Raste extends Model
         'rasteNO',
         'file'
     ];
+
+    public function getAllRaste()
+    {
+        $rastes = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $rastes;
+
+    }
+
+    public function findRaste($rasteId)
+    {
+        $raste = self::where('id', $rasteId)->first();
+        return $raste;
+    }
 }

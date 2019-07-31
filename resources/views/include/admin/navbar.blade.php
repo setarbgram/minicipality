@@ -80,14 +80,14 @@
 
 
                     <li class="session">
-                        <a href="{{--{{route('session.letter')}}--}}">
+                        <a href="{{route('sessionLetter-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">صورت جلسه</span>
                         </a>
                     </li>
 
                     <li class="practical.property">
-                        <a href="{{--{{route('practical.property')}}--}}">
+                        <a href="{{route('practicalProperty-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات فنی</span>
                         </a>
@@ -114,7 +114,7 @@
                     </li>
 
                     <li class="announcement-info">
-                        <a href="{{--{{route('announcement.info')}}--}}">
+                        <a href="{{route('communication-List')}}">
                             <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">ابلاغیه</span></a>
                     </li>

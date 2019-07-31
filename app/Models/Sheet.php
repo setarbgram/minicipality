@@ -18,4 +18,17 @@ class Sheet extends Model
         'file'
     ];
 
+    public function getAllSheet()
+    {
+        $Sheets = self::orderBy('created_at', 'DECS')->paginate(12);
+        return $Sheets;
+
+    }
+
+    public function findSheet($SheetId)
+    {
+        $Sheet = self::where('id', $SheetId)->first();
+        return $Sheet;
+    }
+
 }

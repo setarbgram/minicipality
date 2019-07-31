@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-   لیست دستور کار
+   لیست صورت جلسه
 @endsection
 @section('styles')
     <style>
@@ -11,7 +11,7 @@
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>  لیست دستور کار </h2>
+            <h2>  لیست صورت جلسه </h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="/panel">خانه</a>
@@ -20,7 +20,7 @@
                 {{--<a>client</a>--}}
                 {{--</li>--}}
                 <li class="active">
-                    <strong>لیست دستور کار</strong>
+                    <strong>لیست صورت جلسه</strong>
                 </li>
             </ol>
         </div>
@@ -34,7 +34,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>
-                        لیست دستور کار
+                        لیست صورت جلسه
                     </h5>
 
                 </div>
@@ -47,16 +47,15 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-
                                     <th>شماره قرارداد </th>
-                                    <th>شماره ی دستور کار</th>
+                                    <th>شماره ی صورت جلسه</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $order)
+                                @foreach($sessionLetters as $session)
                                     <tr>
-                                        <td><input type="checkbox" class="i-checks shenase_check" name="order_check[]" value="{{$order['id']}}">  <a href="{{route('workOrder-edit',$order['id'])}}">{{$order['contractID']}}</a></td>
-                                        <td>{{$order['instructionID']}}</td>
+                                        <td><input type="checkbox" class="i-checks shenase_check" name="sessionLetter_check[]" value="{{$session['id']}}">  <a href="{{route('sessionLetter-edit',$session['id'])}}">{{$session['contractID']}}</a></td>
+                                        <td>{{$session['recordID']}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -65,9 +64,9 @@
                         <div class="row">
 
                             <div style="margin: 0 24px;float: right;">
-                                <a href="{{route('workOrder')}}" class="btn btn-primary">
+                                <a href="{{route('sessionLetter')}}" class="btn btn-primary">
                                     <i class="fa fa-plus"></i>
-                                    تعریف دستور کار</a>
+                                    تعریف صورت جلسه</a>
                             </div>
                             <div style="float: right">
                                 <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
@@ -76,7 +75,7 @@
                             </div>
                         </div>
                         <div class="col-12 paginate" >
-                            {{$orders->links()}}
+                            {{$sessionLetters->links()}}
                         </div>
 
                     </form>
