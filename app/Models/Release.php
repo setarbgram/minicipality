@@ -30,4 +30,35 @@ class Release extends Model
         return $release;
     }
 
+    public function createRelease($request)
+    {
+        $release = self::create([
+            "contractID" => $request['contractID'],
+            "releaseType" => $request['releaseType'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $request['communicationDate'],
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/letters"), $fileName);
+            $release->file = $fileName;
+
+        }
+
+        $release->save();
+        return $release;
+
+    }
+
+
 }

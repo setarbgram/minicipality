@@ -11,7 +11,6 @@
             }
         }
 
-
     </style>
 @endsection
 @section('contents')

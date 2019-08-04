@@ -29,6 +29,12 @@ class Adjustmentstate extends Model
 
     }
 
+    public function findAdjustmentstate($adjustmentstateId)
+    {
+        $adjustmentstate = self::where('id', $adjustmentstateId)->first();
+        return $adjustmentstate;
+    }
+
     public function createAdjustmentstate($request)
     {
         $adjustmentstate = self::create([

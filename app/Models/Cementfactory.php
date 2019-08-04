@@ -27,4 +27,34 @@ class Cementfactory extends Model
         $cementfactory = self::where('id', $cementfactoryId)->first();
         return $cementfactory;
     }
+
+    public function createCementfactory($request)
+    {
+        $cementfactory = self::create([
+            "contractID" => $request['contractID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $request['communicationDate'],
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/letters"), $fileName);
+            $cementfactory->file = $fileName;
+
+        }
+
+        $cementfactory->save();
+        return $cementfactory;
+
+    }
+
 }

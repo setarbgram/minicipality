@@ -48,8 +48,19 @@ class DeliveryInfoController extends Controller
         return Redirect(route('deliveryInfo'))->with(Session::flash('flash_message', 'تحویل با موفقیت ثبت شد!'));
     }
 
+    public function editDelivery($deliveryId)
+    {
+        $deliveryObj = new Delivery();
+        $delivery = $deliveryObj->findDelivery($deliveryId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        $deliveryTypeObj= new Deliverytype();
+        $types=$deliveryTypeObj->getAllTypes();
+        return view('pages.deliveryInfo.deliveryInfoEdit', compact('delivery','cotractNum','types'));
+    } 
+    
 
-
+   
 
 
 }

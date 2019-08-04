@@ -91,7 +91,7 @@
                                         <tbody>
                                         @foreach($notifications as $notification)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="notification_check[]" value="{{$notification['id']}}">  <a {{--href="{{$notification('notification-edit',$notification['id'])}}"--}}>{{$notification['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="notification_check[]" value="{{$notification['id']}}">  <a  href="{{route('notifications-edit',$notification['id'])}}">{{$notification['contractID']}}</a></td>
 
                                             </tr>
 
@@ -102,7 +102,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('notifications')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف اخطار</a>
                                     </div>
@@ -136,7 +136,7 @@
                                         <tbody>
                                         @foreach($cementfactories as $cementfactory)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="cementfactory_check[]" value="{{$cementfactory['id']}}">  <a {{--href="{{$cementfactory('cementfactory-edit',$cementfactory['id'])}}"--}}>{{$cementfactory['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="cementfactory_check[]" value="{{$cementfactory['id']}}">  <a href="{{route('cementfactory-edit',$cementfactory['id'])}}">{{$cementfactory['contractID']}}</a></td>
 
                                             </tr>
 
@@ -147,7 +147,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('cementfactory')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف سیمان</a>
                                     </div>
@@ -180,7 +180,7 @@
                                         <tbody>
                                         @foreach($drivings as $driving)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="driving_check[]" value="{{$driving['id']}}">  <a {{--href="{{$driving('driving-edit',$driving['id'])}}"--}}>{{$driving['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="driving_check[]" value="{{$driving['id']}}">  <a href="{{route('driving-edit',$driving['id'])}}">{{$driving['contractID']}}</a></td>
 
                                             </tr>
 
@@ -191,7 +191,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('driving')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف راهنمایی و رانندگی</a>
                                     </div>
@@ -226,7 +226,7 @@
                                             <tbody>
                                             @foreach($fuels as $fuel)
                                                 <tr>
-                                                    <td><input type="checkbox" class="i-checks shenase_check" name="fuel_check[]" value="{{$fuel['id']}}">  <a {{--href="{{$fuel('fuel-edit',$fuel['id'])}}"--}}>{{$fuel['contractID']}}</a></td>
+                                                    <td><input type="checkbox" class="i-checks shenase_check" name="fuel_check[]" value="{{$fuel['id']}}">  <a href="{{route('fuel-edit',$fuel['id'])}}">{{$fuel['contractID']}}</a></td>
 
                                                 </tr>
 
@@ -237,7 +237,7 @@
                                     <div class="row">
 
                                         <div style="margin: 0 24px;float: right;">
-                                            <a {{--href="{{route('notifications')}}"--}} class="btn btn-primary">
+                                            <a href="{{route('fuel')}}" class="btn btn-primary">
                                                 <i class="fa fa-plus"></i>
                                                 تعریف سوخت </a>
                                         </div>
@@ -271,7 +271,7 @@
                                         <tbody>
                                         @foreach($releases as $release)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="release_check[]" value="{{$release['id']}}">  <a {{--href="{{$release('release-edit',$release['id'])}}"--}}>{{$release['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="release_check[]" value="{{$release['id']}}">  <a href="{{route('release-edit',$release['id'])}}">{{$release['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -280,7 +280,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('release')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('release')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف آزادسازی </a>
                                     </div>
@@ -313,7 +313,7 @@
                                         <tbody>
                                         @foreach($insurances as $insurance)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="insurance_check[]" value="{{$insurance['id']}}">  <a {{--href="{{$insurance('insurance-edit',$insurance['id'])}}"--}}>{{$insurance['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="insurance_check[]" value="{{$insurance['id']}}">  <a href="{{route('insurance-edit',$insurance['id'])}}">{{$insurance['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -322,7 +322,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('notifications')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('insurance')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف بیمه </a>
                                     </div>
@@ -354,7 +354,7 @@
                                         <tbody>
                                         @foreach($recertifications as $recertification)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="recertification_check[]" value="{{$recertification['id']}}">  <a {{--href="{{$recertification('recertification-edit',$recertification['id'])}}"--}}>{{$recertification['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="recertification_check[]" value="{{$recertification['id']}}">  <a href="{{route('recertification-edit',$recertification['id'])}}">{{$recertification['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -363,7 +363,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('recertification')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('recertification')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف اصلاحیه </a>
                                     </div>
@@ -394,7 +394,7 @@
                                         <tbody>
                                         @foreach($others as $other)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="other_check[]" value="{{$other['id']}}">  <a {{--href="{{$fuel('other-edit',$other['id'])}}"--}}>{{$other['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="other_check[]" value="{{$other['id']}}">  <a href="{{route('others-edit',$other['id'])}}">{{$other['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -403,7 +403,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('$other')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('others')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف متفرقه </a>
                                     </div>
@@ -435,7 +435,7 @@
                                         <tbody>
                                         @foreach($laboratories as $laboratory)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="laboratory_check[]" value="{{$laboratory['id']}}">  <a {{--href="{{$laboratory('laboratory-edit',$laboratory['id'])}}"--}}>{{$laboratory['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="laboratory_check[]" value="{{$laboratory['id']}}">  <a href="{{route('laboratory-edit',$laboratory['id'])}}">{{$laboratory['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -444,7 +444,7 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
-                                        <a {{--href="{{route('$other')}}"--}} class="btn btn-primary">
+                                        <a href="{{route('laboratory')}}" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                             تعریف آزمایشگاه </a>
                                     </div>

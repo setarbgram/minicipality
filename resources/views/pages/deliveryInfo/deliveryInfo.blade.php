@@ -17,7 +17,6 @@
     @php
         $deliveryType=($dType==0)?'تحویل موقت':'تحویل قطعی'
     @endphp
-{{$dType}}
     <form role="form" id="form" method="post" action="{{route('deliveryInfo-create')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">

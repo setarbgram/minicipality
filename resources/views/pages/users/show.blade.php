@@ -260,18 +260,18 @@
                                 },
                                 userId: function () {
                                     return $("#userId").val();
-                                },
+                                }
 
                             },
-                            dataType: 'json',
+                            dataType: 'json'
 
 
                         }
 
                         },password: {
-                        required: true,
+                        required: true
                         //   maxlength:254,
-                    },
+                    }
 
 
 

@@ -29,4 +29,34 @@ class Recertification extends Model
         return $recertification;
     }
 
+    public function createRecertification($request)
+    {
+        $recertification = self::create([
+            "contractID" => $request['contractID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $request['communicationDate'],
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/letters"), $fileName);
+            $recertification->file = $fileName;
+
+        }
+
+        $recertification->save();
+        return $recertification;
+
+    }
+
+
 }

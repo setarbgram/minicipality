@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-    رصورت وضعیت موقت
+    صورت وضعیت موقت
 @endsection
 @section('styles')
     <style>
@@ -23,7 +23,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>رصورت وضعیت موقت جدید</h5>
+                        <h5>صورت وضعیت موقت جدید</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -268,6 +268,9 @@
             $("#form").validate({
                 rules: {
                     contractID: {
+                        required: true
+                    },
+                    technicalAmount:{
                         required: true
                     }
                 }

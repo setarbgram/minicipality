@@ -79,7 +79,7 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="patternAgeNO">
+                                        <label id="patternAgeNOLabel"  class="control-label label-position" for="patternAgeNO">
                                             سن نمونه : </label>
                                     </div>
 
@@ -197,19 +197,20 @@
 
     <script>
         $(document).ready(function () {
-            document.getElementById("patternID").disabled = false;
-            document.getElementById("patternIDLabel").style.color = '#676a6c';
+
+            document.getElementById("patternAgeNO").disabled = true;
+            document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';
         });
 
         function displayItem(value) {
             if (value == 2) {
-                document.getElementById("patternID").disabled = true;
-                document.getElementById("patternIDLabel").style.color = '#d4d4d4';
+                document.getElementById("patternAgeNO").disabled = false;
+                document.getElementById("patternAgeNOLabel").style.color = '#676a6c';
 
 
             } else {
-                document.getElementById("patternID").disabled = false;
-                document.getElementById("patternIDLabel").style.color = '#676a6c';
+                document.getElementById("patternAgeNO").disabled = true;
+                document.getElementById("patternAgeNOLabel  ").style.color = '#d4d4d4';
 
             }
         }

@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-    رسته نوع برآورد
+    تمدید قرارداد
 @endsection
 @section('styles')
     <style>
@@ -16,14 +16,14 @@
 @endsection
 @section('contents')
 
-    <form role="form" id="form" method="post" action="{{route('raste-create')}}" enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('contractextension-create')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>رسته نوع برآورد جدید</h5>
+                        <h5>تمدید قرارداد جدید</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -56,20 +56,44 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="rasteNO">
-                                            رسته نوع برآورد: </label>
+                                        <label class="control-label label-position" for="extensionContractTime">
+                                            تمدید مدت پیمان: </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <select class="form-control" type="text" name="rasteNO" id="rasteNO">
-                                            @foreach($types as $type)
-                                                <option value="{{$type['typeNO']}}">{{$type['type']}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="extensionContractTime"
+                                               id="extensionContractTime">
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row">
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="communicationID">
+                                            شماره ابلاغ :</label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="communicationID"
+                                               id="communicationID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="communicationDate">
+                                            تاریخ ابلاغ :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="communicationDate"
+                                               id="communicationDate">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -131,6 +155,9 @@
             $("#form").validate({
                 rules: {
                     contractID: {
+                        required: true
+                    },
+                    extensionContractTime:{
                         required: true
                     }
                 }

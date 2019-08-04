@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-    دستور کار
+    شیت آزمایشگاهی
 @endsection
 @section('styles')
     <style>
@@ -16,14 +16,14 @@
 @endsection
 @section('contents')
 
-    <form role="form" id="form" method="post" {{--action="{{route('workOrder-create')}}"--}} enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('sheet-update',$sheet['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5> ویرایش دستور کار </h5>
+                        <h5>ویرایش شیت آزمایشگاهی</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -45,7 +45,7 @@
 
                                         <select class="form-control" type="text" name="contractID" id="contractID">
                                             @foreach($cotractNum as $num)
-                                                <option value="{{$num}}" {{($order['contractID']==$num)?"Selected":""}}>{{$num}}</option>
+                                                <option value="{{$num}}" {{($sheet['contractID']==$num)?"Selected":""}}>{{$num}}</option>
                                             @endforeach
                                         </select>
 
@@ -56,45 +56,88 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="instructionID">شماره ی
-                                            دستور کار: </label>
+                                        <label class="control-label label-position" for="typeNO">
+                                            نوع شیت : </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="instructionID" id="instructionID" value="{{$order['instructionID']}}">
+                                        <select class="form-control" type="text" name="typeNO" id="typeNO"
+                                                onChange="displayItem(this.value)">
+                                            @foreach($types as $type)
+                                                <option value="{{$type['typeNO']}}" {{($sheet['typeNO']==$type['typeNO'])?"Selected":""}}>{{$type['type']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
+
                         <div class="row">
+
+
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="communicationID">شماره ی
-                                            ابلاغ: </label>
+                                        <label id="patternAgeNOLabel"  class="control-label label-position" for="patternAgeNO">
+                                            سن نمونه : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <select class="form-control" type="text" name="patternAgeNO" id="patternAgeNO">
+                                            @foreach($patterns as $pattern)
+                                                <option value="{{$pattern['patternAgeNO']}}" {{($sheet['patternAgeNO']==$pattern['patternAgeNO'])?"Selected":""}}>{{$pattern['patternAge']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div id="patternIDLabel" class="col-lg-4 col-sm-4 form-txt-align " >
+                                        <label class="control-label label-position" for="patternID">
+                                            شماره نمونه: </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+
+                                        <input class="form-control" type="text" name="patternID"
+                                               id="patternID" value="{{$sheet['patternID']}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="communicationID">
+                                            شماره ابلاغ : </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="communicationID"
-                                               id="communicationID" value="{{$order['communicationID']}}">
-
+                                               id="communicationID" value="{{$sheet['communicationID']}}">
                                     </div>
                                 </div>
                             </div>
+
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
-                                                class="control-label label-position"
-                                                for="communicationDate">تاریخ ابلاغ:</label>
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="communicationDate">
+                                            تاریخ ابلاغ: </label>
                                     </div>
-                                    <div class="col-lg-7 col-sm-8 form-group ">
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$order['communicationDate']}}">
-
+                                               id="communicationDate" value="{{$sheet['communicationDate']}}">
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +145,7 @@
 
 
                         <div class="row">
+
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
@@ -133,7 +177,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="{{--form-group col-sm-offset-0--}}">
-                                    <button class="btn btn-primary main-btn" onclick="edit(this)"  type="button" id="submitBtn">
+                                    <button class="btn btn-primary main-btn" type="submit" id="submitBtn">
                                         ویرایش اطلاعات
                                     </button>
                                 </div>
@@ -154,17 +198,33 @@
 
     <script>
         $(document).ready(function () {
-            function edit (inp) {
-                event.preventDefault();
-            }
 
-            $("#form").validate({
-                rules: {
-                    contractID: {
-                        required: true
-                    }
-                }
-            })
+
+
+            document.getElementById("patternAgeNO").disabled = true;
+            document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';
+            displayItem('{{$sheet['typeNO']}}');
         });
+
+        function displayItem(value) {
+            if (value == 2) {
+                document.getElementById("patternAgeNO").disabled = false;
+                document.getElementById("patternAgeNOLabel").style.color = '#676a6c';
+
+
+            } else {
+                document.getElementById("patternAgeNO").disabled = true;
+                document.getElementById("patternAgeNOLabel  ").style.color = '#d4d4d4';
+
+            }
+        }
+        $("#form").validate({
+            rules: {
+                contractID: {
+                    required: true
+                }
+            }
+        })
+
     </script>
 @endsection

@@ -32,6 +32,12 @@ class Temporarystate extends Model
         return $Temporarystates;
 
     }
+
+    public function findTemporarystate($temporarystateId)
+    {
+        $temporarystate = self::where('id', $temporarystateId)->first();
+        return $temporarystate;
+    }
     public function createTemporarystate($request)
     {
         $temporarystate = self::create([

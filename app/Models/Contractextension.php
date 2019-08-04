@@ -21,6 +21,13 @@ class Contractextension extends Model
         $Contractextensiones = self::orderBy('created_at', 'DECS')->paginate(12);
         return $Contractextensiones;
     }
+
+    public function findContractextension($contractextensionId)
+    {
+        $contractextension = self::where('id', $contractextensionId)->first();
+        return $contractextension;
+    }
+
     public function createContractextension($request)
     {
         $contractextension = self::create([

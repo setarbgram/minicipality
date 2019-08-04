@@ -53,11 +53,18 @@ class WorkStatusController extends Controller
     {
         $temporarystateObj = new Temporarystate();
         $temporarystate = $temporarystateObj->createTemporarystate($request);
-        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت موقت با موفقیت ثبت شد!'));
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت موقت با موفقیت ثبت شد.'));
 
     }
 
-
+    public function editTemporarystate($temporarystateId)
+    {
+        $temporarystateObj = new Temporarystate();
+        $temporarystate = $temporarystateObj->findTemporarystate($temporarystateId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.workStatus.temporarystate.temporaryStateEdit', compact('temporarystate','cotractNum'));
+    }
 
     //    ---------------------------Adjustmentstate----------------------------
 
@@ -72,12 +79,23 @@ class WorkStatusController extends Controller
     }
 
 
-    public function createTAdjustmentstate(Request $request)
+    public function createAdjustmentstate(Request $request)
     {
         $adjustmentstateObj = new Adjustmentstate();
         $adjustmentstate = $adjustmentstateObj->createAdjustmentstate($request);
-        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت تعدیل با موفقیت ثبت شد!'));
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت تعدیل با موفقیت ثبت شد.'));
 
+    }
+
+    public function editAdjustmentstate($adjustmentstateId)
+    {
+        $adjustmentstateObj = new Adjustmentstate();
+        $adjustmentstate = $adjustmentstateObj->findAdjustmentstate($adjustmentstateId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        $typeObj=new Adjustmenttype();
+        $types=$typeObj->getAllTypes();
+        return view('pages.workStatus.adjustmentstate.adjustmentStateEdit', compact('adjustmentstate','cotractNum','types'));
     }
 
 
@@ -94,11 +112,19 @@ class WorkStatusController extends Controller
 
     public function createPredefinitestate(Request $request)
     {
-        $predefinitestateObj = new Adjustmentstate();
-        $predefinitestate = $predefinitestateObj->createAdjustmentstate($request);
-        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت ماقبل قطعی با موفقیت ثبت شد!'));
+        $predefinitestateObj = new Predefinitestate();
+        $predefinitestate = $predefinitestateObj->createPredefinitestate($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت ماقبل قطعی با موفقیت ثبت شد.'));
     }
 
+    public function editPredefinitestate($predefinitestateId)
+    {
+        $predefinitestateObj = new Predefinitestate();
+        $predefinitestate = $predefinitestateObj->findPredefinitestate($predefinitestateId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.workStatus.predefinitestate.predefiniteStateEdit', compact('predefinitestate','cotractNum'));
+    }
 
     //    ---------------------------Definitestate----------------------------
 
@@ -114,7 +140,16 @@ class WorkStatusController extends Controller
     {
         $definitestateObj = new Definitestate();
         $definitestate = $definitestateObj->createDefinitestate($request);
-        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت قطعی با موفقیت ثبت شد!'));
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت قطعی با موفقیت ثبت شد.'));
+    }
+
+    public function editDefinitestate($definitestateId)
+    {
+        $definitestateObj = new Definitestate();
+        $definitestate = $definitestateObj->findDefinitestate($definitestateId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.workStatus.definitestate.definiteStateEdit', compact('definitestate','cotractNum'));
     }
 
 
@@ -131,7 +166,17 @@ class WorkStatusController extends Controller
     {
         $contractextensionObj = new Contractextension();
         $contractextension = $contractextensionObj->createContractextension($request);
-        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'تمدید قرارداد با موفقیت ثبت شد!'));
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'تمدید قرارداد با موفقیت ثبت شد.'));
+    }
+
+
+    public function editContractextension($contractextensionId)
+    {
+        $contractextensionObj = new Contractextension();
+        $contractextension = $contractextensionObj->findContractextension($contractextensionId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.workStatus.contractextension.contractextensionEdit', compact('contractextension','cotractNum'));
     }
 
 

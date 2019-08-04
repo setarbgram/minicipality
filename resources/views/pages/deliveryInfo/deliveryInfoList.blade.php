@@ -73,7 +73,7 @@
                                         <tbody>
                                         @foreach($temporaryDeliveries as $temporaryDelivery)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="temporaryDelivery_check[]" value="{{$temporaryDelivery['id']}}">  <a {{--href="{{$temporaryDelivery('temporaryDelivery-edit',$temporaryDelivery['id'])}}"--}}>{{$temporaryDelivery['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="temporaryDelivery_check[]" value="{{$temporaryDelivery['id']}}">  <a href="{{route('deliveryInfo-edit',$temporaryDelivery['id'])}}">{{$temporaryDelivery['contractID']}}</a></td>
                                                 <td>{{$temporaryDelivery['requestDate']}}</td>
                                                 <td>{{$temporaryDelivery['invitationDate']}}</td>
                                             </tr>
@@ -123,7 +123,7 @@
                                         <tbody>
                                         @foreach($definiteDeliveries as $definiteDelivery)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="definiteDelivery_check[]" value="{{$definiteDelivery['id']}}">  <a {{--href="{{$definiteDelivery('definiteDelivery-edit',$definiteDelivery['id'])}}"--}}>{{$definiteDelivery['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="definiteDelivery_check[]" value="{{$definiteDelivery['id']}}">  <a href="{{route('deliveryInfo-edit',$definiteDelivery['id'])}}">{{$definiteDelivery['contractID']}}</a></td>
                                                 <td>{{$definiteDelivery['requestDate']}}</td>
                                                 <td>{{$definiteDelivery['invitationDate']}}</td>
 

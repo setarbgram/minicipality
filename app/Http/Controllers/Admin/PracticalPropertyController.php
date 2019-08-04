@@ -52,6 +52,18 @@ class PracticalPropertyController extends Controller
 
     }
 
+    public function editRaste($rasteId)
+    {
+        $rasteObj = new Raste();
+        $raste = $rasteObj->findRaste($rasteId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        $rasteTypeObj=new Rastetype();
+        $types=$rasteTypeObj->getAllTypes();
+
+        return view('pages.practicalProperty.raste.rasteEdit', compact('raste','cotractNum','types'));
+    }
+
     public function destroyRaste(Request $request)
     {
         if ($request['raste_check']) {
@@ -86,6 +98,15 @@ class PracticalPropertyController extends Controller
     }
 
 
+    public function editZarayeb($zarayebId)
+    {
+        $zarayebObj = new Zarayeb();
+        $zarayeb = $zarayebObj->findZarayeb($zarayebId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        return view('pages.practicalProperty.zarayeb.zarayebEdit', compact('zarayeb','cotractNum'));
+    }
+
     //    ---------------------------sheet----------------------------
 
     public function showSheet()
@@ -108,6 +129,20 @@ class PracticalPropertyController extends Controller
         $sheet = $sheetObj->createSheet($request);
         return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'شیت آزمایشگاهی با موفقیت ثبت شد!'));
 
+    }
+
+
+    public function editSheet($sheetId)
+    {
+        $sheetObj = new Sheet();
+        $sheet = $sheetObj->findSheet($sheetId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        $sheetTypeObj=new Sheettype();
+        $types=$sheetTypeObj->getAllTypes();
+        $patternObj=new Patternagetype();
+        $patterns=$patternObj->getAllTypes();
+        return view('pages.practicalProperty.sheet.sheetEdit', compact('sheet','cotractNum','types','patterns'));
     }
 
 }

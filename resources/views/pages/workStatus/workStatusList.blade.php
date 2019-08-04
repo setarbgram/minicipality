@@ -83,7 +83,7 @@
                                         <tbody>
                                         @foreach($temporaryStates as $temporaryState)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="temporaryState_check[]" value="{{$temporaryState['id']}}">  <a {{--href="{{$temporaryState('temporaryState-edit',$temporaryState['id'])}}"--}}>{{$temporaryState['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="temporaryState_check[]" value="{{$temporaryState['id']}}"> <a href="{{route('temporarystate-edit',$temporaryState['id'])}}">{{$temporaryState['contractID']}}</a></td>
 
                                             </tr>
 
@@ -130,7 +130,7 @@
                                         <tbody>
                                         @foreach($adjustmentstates as $adjustmentState)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="adjustmentState_check[]" value="{{$adjustmentState['id']}}">  <a {{--href="{{$adjustmentState('adjustmentState-edit',$adjustmentState['id'])}}"--}}>{{$adjustmentState['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="adjustmentState_check[]" value="{{$adjustmentState['id']}}">  <a href="{{route('adjustmentstate-edit',$adjustmentState['id'])}}">{{$adjustmentState['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -172,7 +172,7 @@
                                         <tbody>
                                         @foreach($predefinitestates as $predefiniteState)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="predefiniteState_check[]" value="{{$predefiniteState['id']}}">  <a {{--href="{{$predefiniteState('predefiniteState-edit',$predefiniteState['id'])}}"--}}>{{$predefiniteState['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="predefiniteState_check[]" value="{{$predefiniteState['id']}}">  <a href="{{route('predefinitestate-edit',$predefiniteState['id'])}}">{{$predefiniteState['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -215,7 +215,7 @@
                                         <tbody>
                                         @foreach($definiteStates as $definiteState)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="definiteState_check[]" value="{{$definiteState['id']}}">  <a {{--href="{{$definiteState('definiteState-edit',$definiteState['id'])}}"--}}>{{$definiteState['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="definiteState_check[]" value="{{$definiteState['id']}}">  <a href="{{route('definitestate-edit',$definiteState['id'])}}">{{$definiteState['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -258,7 +258,7 @@
                                         <tbody>
                                         @foreach($contractextensions as $contractextension)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="contractextension_check[]" value="{{$contractextension['id']}}">  <a {{--href="{{$contractextension('contractextension-edit',$contractextension['id'])}}"--}}>{{$contractextension['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="contractextension_check[]" value="{{$contractextension['id']}}">  <a href="{{route('contractextension-edit',$contractextension['id'])}}">{{$contractextension['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>

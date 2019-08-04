@@ -36,6 +36,11 @@ class Delivery extends Model
         $Deliveries = self::where('type',1)->orderBy('created_at', 'DECS')->paginate(12);
         return $Deliveries;
     }
+    public function findDelivery($deliveryId)
+    {
+        $delivery = self::where('id', $deliveryId)->first();
+        return $delivery;
+    }
 
 
     public function createdelivery($request)

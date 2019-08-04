@@ -74,7 +74,7 @@
                                         <tbody>
                                         @foreach($rastes as $raste)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="raste_check[]" value="{{$raste['id']}}">  <a {{--href="{{route('raste-edit',$raste['id'])}}"--}}>{{$raste['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="raste_check[]" value="{{$raste['id']}}">  <a href="{{route('raste-edit',$raste['id'])}}">{{$raste['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -120,7 +120,7 @@
                                         <tbody>
                                         @foreach($zarayebs as $zarayeb)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="zarayeb_check[]" value="{{$zarayeb['id']}}">  <a {{--href="{{route('zarayeb-edit',$zarayeb['id'])}}"--}}>{{$zarayeb['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="zarayeb_check[]" value="{{$zarayeb['id']}}">  <a href="{{route('zarayeb-edit',$zarayeb['id'])}}">{{$zarayeb['contractID']}}</a></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -164,7 +164,7 @@
                                         <tbody>
                                         @foreach($sheets as $sheet)
                                             <tr>
-                                                <td><input type="checkbox" class="i-checks shenase_check" name="sheet_check[]" value="{{$sheet['id']}}">  <a {{--href="{{route('sheet-edit',$sheet['id'])}}"--}}>{{$sheet['contractID']}}</a></td>
+                                                <td><input type="checkbox" class="i-checks shenase_check" name="sheet_check[]" value="{{$sheet['id']}}">  <a href="{{route('sheet-edit',$sheet['id'])}}">{{$sheet['contractID']}}</a></td>
 
                                             </tr>
 

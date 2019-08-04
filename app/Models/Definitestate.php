@@ -26,6 +26,12 @@ class Definitestate extends Model
         return $definitestates;
     }
 
+    public function findDefinitestate($DefinitestateId)
+    {
+        $definitestate = self::where('id', $DefinitestateId)->first();
+        return $definitestate;
+    }
+
     public function createDefinitestate($request)
     {
         $definitestate = self::create([

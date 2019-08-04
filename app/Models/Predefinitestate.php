@@ -28,6 +28,12 @@ class Predefinitestate extends Model
 
     }
 
+    public function findPredefinitestate($predefinitestateId)
+    {
+        $predefinitestate = self::where('id', $predefinitestateId)->first();
+        return $predefinitestate;
+    }
+
     public function createPredefinitestate($request)
     {
         $predefinitestate = self::create([

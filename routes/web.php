@@ -105,38 +105,107 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::get('/letters/list', ['middleware' => 'admin', 'uses' => 'LettersController@index'])->name('letters');
 
 
+    /*----------------------مکاتبات - اخطار-----------------------*/
+    Route::delete('/notifications/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyNotifications'])->name('notifications-remove');
+    Route::get('/notifications', ['middleware' => 'admin', 'uses' => 'LettersController@showNotifications'])->name('notifications');
+    Route::post('/notifications', ['middleware' => 'admin', 'uses' => 'LettersController@createNotifications'])->name('notifications-create');
+    Route::get('/notifications/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editNotifications'])->name('notifications-edit');
+    Route::post('/notifications/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateNotifications'])->name('notifications-update');
+
+    /*----------------------مکاتبات - سیمان-----------------------*/
+    Route::delete('/cementfactory/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyCementfactory'])->name('cementfactory-remove');
+    Route::get('/cementfactory', ['middleware' => 'admin', 'uses' => 'LettersController@showCementfactory'])->name('cementfactory');
+    Route::post('/cementfactory', ['middleware' => 'admin', 'uses' => 'LettersController@createCementfactory'])->name('cementfactory-create');
+    Route::get('/cementfactory/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editCementfactory'])->name('cementfactory-edit');
+    Route::post('/cementfactory/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateCementfactory'])->name('cementfactory-update');
+
+    /*----------------------مکاتبات - راهنمایی و رانندگی-----------------------*/
+    Route::delete('/driving/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyDriving'])->name('driving-remove');
+    Route::get('/driving', ['middleware' => 'admin', 'uses' => 'LettersController@showDriving'])->name('driving');
+    Route::post('/driving', ['middleware' => 'admin', 'uses' => 'LettersController@createDriving'])->name('driving-create');
+    Route::get('/driving/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editDriving'])->name('driving-edit');
+    Route::post('/driving/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateDriving'])->name('driving-update');
+
+
+    /*----------------------مکاتبات - سوخت-----------------------*/
+    Route::delete('/fuel/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyFuel'])->name('fuel-remove');
+    Route::get('/fuel', ['middleware' => 'admin', 'uses' => 'LettersController@showFuel'])->name('fuel');
+    Route::post('/fuel', ['middleware' => 'admin', 'uses' => 'LettersController@createFuel'])->name('fuel-create');
+    Route::get('/fuel/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editFuel'])->name('fuel-edit');
+    Route::post('/fuel/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateFuel'])->name('fuel-update');
+
+    /*----------------------مکاتبات - آزادسازی-----------------------*/
+    Route::delete('/release/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyRelease'])->name('release-remove');
+    Route::get('/release', ['middleware' => 'admin', 'uses' => 'LettersController@showRelease'])->name('release');
+    Route::post('/release', ['middleware' => 'admin', 'uses' => 'LettersController@createRelease'])->name('release-create');
+    Route::get('/release/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editRelease'])->name('release-edit');
+    Route::post('/release/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateRelease'])->name('release-update');
+
+    /*----------------------مکاتبات - بیمه-----------------------*/
+    Route::delete('/insurance/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyInsurance'])->name('insurance-remove');
+    Route::get('/insurance', ['middleware' => 'admin', 'uses' => 'LettersController@showInsurance'])->name('insurance');
+    Route::post('/insurance', ['middleware' => 'admin', 'uses' => 'LettersController@createInsurance'])->name('insurance-create');
+    Route::get('/insurance/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editInsurance'])->name('insurance-edit');
+    Route::post('/insurance/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateInsurance'])->name('insurance-update');
+
+    /*----------------------مکاتبات - اصلاحیه-----------------------*/
+    Route::delete('/recertification/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyRecertification'])->name('recertification-remove');
+    Route::get('/recertification', ['middleware' => 'admin', 'uses' => 'LettersController@showRecertification'])->name('recertification');
+    Route::post('/recertification', ['middleware' => 'admin', 'uses' => 'LettersController@createRecertification'])->name('recertification-create');
+    Route::get('/recertification/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editRecertification'])->name('recertification-edit');
+    Route::post('/recertification/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateRecertification'])->name('recertification-update');
+
+    /*----------------------مکاتبات - متفرقه-----------------------*/
+    Route::delete('/others/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyOthers'])->name('others-remove');
+    Route::get('/others', ['middleware' => 'admin', 'uses' => 'LettersController@showOthers'])->name('others');
+    Route::post('/others', ['middleware' => 'admin', 'uses' => 'LettersController@createOthers'])->name('others-create');
+    Route::get('/others/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editOthers'])->name('others-edit');
+    Route::post('/others/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateOthers'])->name('others-update');
+
+    /*----------------------مکاتبات - آزمایشگاه-----------------------*/
+    Route::delete('/laboratory/list', ['middleware' => 'admin', 'uses' => 'LettersController@destroyLaboratory'])->name('laboratory-remove');
+    Route::get('/laboratory', ['middleware' => 'admin', 'uses' => 'LettersController@showLaboratory'])->name('laboratory');
+    Route::post('/laboratory', ['middleware' => 'admin', 'uses' => 'LettersController@createLaboratory'])->name('laboratory-create');
+    Route::get('/laboratory/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@editLaboratory'])->name('laboratory-edit');
+    Route::post('/laboratory/edit/{id}', ['middleware' => 'admin', 'uses' => 'LettersController@updateLaboratory'])->name('laboratory-update');
 
 
 
-    /*---------------------- صورت وضعیت-----------------------*/
+    /*------------------------------------------------------ صورت وضعیت----------------------------------------*/
     Route::get('/workStatus/list', ['middleware' => 'admin', 'uses' => 'WorkStatusController@index'])->name('workStatus');
 
     /*----------------------صورت وضعیت - صورت وضعیت موقت-----------------------*/
     Route::get('/temporarystate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showTemporarystate'])->name('temporarystate');
     Route::post('/temporarystate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createTemporarystate'])->name('temporarystate-create');
+    Route::get('/temporarystate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@editTemporarystate'])->name('temporarystate-edit');
+    Route::post('/temporarystate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@updateTemporarystate'])->name('temporarystate-update');
 
     /*----------------------صورت وضعیت - صورت وضعیت تعدیل-----------------------*/
     Route::get('/adjustmentstate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showAdjustmentstate'])->name('adjustmentstate');
     Route::post('/adjustmentstate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createAdjustmentstate'])->name('adjustmentstate-create');
+    Route::get('/adjustmentstate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@editAdjustmentstate'])->name('adjustmentstate-edit');
+    Route::post('/adjustmentstate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@updateAdjustmentstate'])->name('adjustmentstate-update');
 
 
     /*----------------------صورت وضعیت - صورت وضعیت ماقبل قطعی-----------------------*/
     Route::get('/predefinitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showPredefinitestate'])->name('predefinitestate');
     Route::post('/predefinitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createPredefinitestate'])->name('predefinitestate-create');
+    Route::get('/predefinitestate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@editPredefinitestate'])->name('predefinitestate-edit');
+    Route::post('/predefinitestate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@updatePredefinitestate'])->name('predefinitestate-update');
 
 
     /*----------------------صورت وضعیت - صورت وضعیت قطعی-----------------------*/
     Route::get('/definitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showDefinitestate'])->name('definitestate');
     Route::post('/definitestate', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createDefinitestate'])->name('definitestate-create');
+    Route::get('/definitestate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@editDefinitestate'])->name('definitestate-edit');
+    Route::post('/definitestate/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@updateDefinitestate'])->name('definitestate-update');
 
 
     /*----------------------صورت وضعیت - تمدید قرارداد-----------------------*/
     Route::get('/contractextension', ['middleware' => 'admin', 'uses' => 'WorkStatusController@showContractextension'])->name('contractextension');
     Route::post('/contractextension', ['middleware' => 'admin', 'uses' => 'WorkStatusController@createContractextension'])->name('contractextension-create');
-
-
-
-
+    Route::get('/contractextension/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@editContractextension'])->name('contractextension-edit');
+    Route::post('/contractextension/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkStatusController@updateContractextension'])->name('contractextension-update');
 
 
 
@@ -145,7 +214,8 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::get('/deliveryInfo/temporaryDelivery', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@temporaryDeliveryShow'])->name('temporaryDeliveryShow');
     Route::get('/deliveryInfo/definiteDelivery', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@definiteDeliveryShow'])->name('definiteDeliveryShow');
     Route::post('/deliveryInfo', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@createDelivery'])->name('deliveryInfo-create');
-
+    Route::get('/deliveryInfo/edit/{id}', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@editDelivery'])->name('deliveryInfo-edit');
+    Route::post('/deliveryInfo/edit/{id}', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@updateDelivery'])->name('deliveryInfo-update');
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {

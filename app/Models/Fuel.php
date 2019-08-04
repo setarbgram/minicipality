@@ -27,4 +27,34 @@ class Fuel extends Model
         $fuel = self::where('id', $fuelId)->first();
         return $fuel;
     }
+
+    public function createFuels($request)
+    {
+        $fuel = self::create([
+            "contractID" => $request['contractID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $request['communicationDate'],
+        ]);
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/letters"), $fileName);
+            $fuel->file = $fileName;
+
+        }
+
+        $fuel->save();
+        return $fuel;
+
+    }
+
 }

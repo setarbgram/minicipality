@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-    رسته نوع برآورد
+    صورت وضعیت تعدیل
 @endsection
 @section('styles')
     <style>
@@ -16,14 +16,14 @@
 @endsection
 @section('contents')
 
-    <form role="form" id="form" method="post" action="{{route('raste-create')}}" enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('adjustmentstate-create')}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>رسته نوع برآورد جدید</h5>
+                        <h5>صورت وضعیت تعدیل جدید</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -56,12 +56,133 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="rasteNO">
-                                            رسته نوع برآورد: </label>
+                                        <label class="control-label label-position" for="statementID">
+                                            شماره ی صورت وضعیت: </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <select class="form-control" type="text" name="rasteNO" id="rasteNO">
+                                        <input class="form-control" type="text" name="statementID"
+                                               id="statementID">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="secretariatID">شماره دبیرخانه :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="secretariatID"
+                                               id="secretariatID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="secretariatDate">
+                                            تاریخ دبیرخانه : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="secretariatDate"
+                                               id="secretariatDate">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="contractorAmount">مبلغ ارسالی توسط پیمانکار :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="contractorAmount"
+                                               id="contractorAmount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="supervisorAmount">
+                                            مبلغ ارسالی توسط ناظر : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="supervisorAmount"
+                                               id="supervisorAmount">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4  form-txt-align "><label
+                                                class="control-label label-position"
+                                                for="technicalAmount">مبلغ رسیدگی فنی :</label>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-8 form-group ">
+                                        <input class="form-control" type="text" name="technicalAmount"
+                                               id="technicalAmount">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="netAmount">
+                                            مبلغ خالص صورت وضعیت  : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="netAmount"
+                                               id="netAmount">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label class="control-label label-position" for="finalAmount">
+                                            مبلغ تایید شده نهایی : </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <input class="form-control" type="text" name="finalAmount"
+                                               id="finalAmount">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div  class=" col-lg-6 col-sm-12 col-xs-12  ">
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-4 form-txt-align ">
+                                        <label  class="control-label label-position" for="typeNO">
+                                            نوع تعدیل: </label>
+                                    </div>
+
+                                    <div class="col-lg-7 col-sm-8 form-group">
+                                        <select class="form-control" type="text" name="typeNO" id="typeNO">
                                             @foreach($types as $type)
                                                 <option value="{{$type['typeNO']}}">{{$type['type']}}</option>
                                             @endforeach
@@ -73,7 +194,9 @@
                         </div>
 
 
+
                         <div class="row">
+
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
@@ -127,7 +250,6 @@
     <script>
         $(document).ready(function () {
 
-
             $("#form").validate({
                 rules: {
                     contractID: {
@@ -136,5 +258,7 @@
                 }
             })
         });
+
+
     </script>
 @endsection
