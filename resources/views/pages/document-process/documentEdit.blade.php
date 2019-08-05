@@ -17,8 +17,10 @@
 
 @section('contents')
 
-    <form role="form" id="form" method="post" {{--action="{{route('contractor-create')}}"--}} enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('shenase.update',$shenase['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
+
+        <input type="hidden" name="shenaseId" value="{{$shenase['id']}}" >
         <div class="row" style="margin-top: 30px;">
 
             <div class="col-lg-12">
@@ -111,7 +113,7 @@
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="contractDate" id="contractDate"
-                                               value="{{$shenase['contractDate']}}">
+                                               readonly value="{{\App\Helper\miladiToShamsi($shenase['contractDate'])}}">
 
                                     </div>
                                 </div>
@@ -143,7 +145,7 @@
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="requestDate" id="requestDate"
-                                               value="{{$shenase['requestDate']}}">
+                                               readonly value="{{\App\Helper\miladiToShamsi($shenase['requestDate'])}}">
 
                                     </div>
                                 </div>
@@ -479,8 +481,8 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="tavafohnameDate"
-                                               id="tavafohnameDate" value="{{$shenase['tavafohnameDate']}}">
+                                        <input class="form-control" type="text" name="tavafohnameDate" readonly
+                                               id="tavafohnameDate" value="{{\App\Helper\miladiToShamsi($shenase['tavafohnameDate'])}}">
 
                                     </div>
                                 </div>
@@ -512,8 +514,8 @@
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
                                         <input class="form-control" type="text" name="komesionMoamelatNumDate"
-                                               id="komesionMoamelatNumDate"
-                                               value="{{$shenase['komesionMoamelatNumDate']}}">
+                                               id="komesionMoamelatNumDate" readonly
+                                               value="{{\App\Helper\miladiToShamsi($shenase['komesionMoamelatNumDate'])}}">
 
                                     </div>
                                 </div>
@@ -546,8 +548,8 @@
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
                                         <input class="form-control" type="text" name="monagheseSessionNumberDate"
-                                               id="monagheseSessionNumberDate"
-                                               value="{{$shenase['monagheseSessionNumberDate']}}">
+                                               id="monagheseSessionNumberDate" readonly
+                                               value="{{\App\Helper\miladiToShamsi($shenase['monagheseSessionNumberDate'])}}">
 
                                     </div>
                                 </div>
@@ -578,7 +580,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="permissionNumberDate"
+                                        <input class="form-control" type="text" name="permissionNumberDate" readonly
                                                id="permissionNumberDate" value="{{$shenase['permissionNumberDate']}}">
 
                                     </div>
@@ -659,7 +661,8 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="{{--form-group col-sm-offset-0--}}">
-                                    <button class="btn btn-primary main-btn" onclick="edit(this)"  type="button" id="submitBtn">
+                                   {{-- <button class="btn btn-primary main-btn" onclick="edit(this)"  type="button" id="submitBtn">--}}
+                                    <button class="btn btn-primary main-btn"  type="submit" id="submitBtn">
                                         ویرایش اطلاعات
                                     </button>
                                 </div>
@@ -679,7 +682,18 @@
 @section('scripts')
 
     <script>
-
+        $( document ).ready(function() {
+            $(function () {
+                $('#permissionNumberDate').persianDatepicker(/*{
+                    selectedBefore: !0
+                }*/);
+                $('#monagheseSessionNumberDate').persianDatepicker();
+                $('#komesionMoamelatNumDate').persianDatepicker();
+                $('#tavafohnameDate').persianDatepicker();
+                $('#contractDate').persianDatepicker();
+                $('#requestDate').persianDatepicker();
+            });
+        })
 
         function edit (inp) {
             event.preventDefault();
@@ -694,7 +708,27 @@
                     required: true
                 },
                 contractNumber: {
-                    required: true
+                    required: true,
+                    remote: {
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "/validation/contractNumber",
+                        type: "post",
+                        data: {
+                            contractNumber: function () {
+                                return $("#contractNumber").val();
+                            },
+                            shenaseId: function () {
+                                return $('#shenaseId').val();
+                            }
+
+
+                        },
+                        dataType: 'json',
+
+
+                    }
                 },
                 companyName: {
                     required: true

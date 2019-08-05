@@ -34,6 +34,8 @@ class Zarayeb extends Model
         return $zarayeb;
     }
 
+<<<<<<< HEAD
+=======
 
     public function createZarayeb($request)
     {
@@ -89,4 +91,5 @@ class Zarayeb extends Model
     }
 
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }

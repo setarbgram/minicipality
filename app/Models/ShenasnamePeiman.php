@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class ShenasnamePeiman extends Model
 {
     protected $table = 'shenasname_peimens';
@@ -35,13 +36,21 @@ class ShenasnamePeiman extends Model
 
     public function createShenase($request)
     {
+        $contractDate = \App\Helper\shamsiToMiladi($request['contractDate']);
+        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
+        $tavafohnameDate = \App\Helper\shamsiToMiladi($request['tavafohnameDate']);
+        $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
+        $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
+        $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+
+
         $shenase = self::create([
             "contractTitle" => $request['contractTitle'],
             "docNumber" => $request['docNumber'],
             "contractNumber" => $request['contractNumber'],
-            "contractDate" => $request['contractDate'],
+            "contractDate" => $contractDate,
             "requestNumber" => $request['requestNumber'],
-            "requestDate" => $request['requestDate'],
+            "requestDate" => $requestDate,
             "commitmentNumber" => $request['commitmentNumber'],
             "projectId" => $request['projectId'],
             "insuranceId" => $request['insuranceId'],
@@ -62,13 +71,13 @@ class ShenasnamePeiman extends Model
             "peinmankarChoice" => $request['peinmankarChoice'],
             "kargozarName" => $request['kargozarName'],
             "tavafohname" => $request['tavafohname'],
-            "tavafohnameDate" => $request['tavafohnameDate'],
+            "tavafohnameDate" => $tavafohnameDate,
             "komesionMoamelatNum" => $request['komesionMoamelatNum'],
-            "komesionMoamelatNumDate" => $request['komesionMoamelatNumDate'],
+            "komesionMoamelatNumDate" =>   $komesionMoamelatNumDate,
             "monagheseSessionNumber" => $request['monagheseSessionNumber'],
-            "monagheseSessionNumberDate" => $request['monagheseSessionNumberDate'],
+            "monagheseSessionNumberDate" => $monagheseSessionNumberDate,
             "permissionNumber" => $request['permissionNumber'],
-            "permissionNumberDate" => $request['permissionNumberDate'],
+            "permissionNumberDate" => $permissionNumberDate,
             "contractTaraf" => $request['contractTaraf'],
 
         ]);
@@ -121,6 +130,88 @@ class ShenasnamePeiman extends Model
         return $shenase;
     }
 
+    public function updateShenase($request)
+    {
+        $contractDate = \App\Helper\shamsiToMiladi($request['contractDate']);
+        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
+        $tavafohnameDate = \App\Helper\shamsiToMiladi($request['tavafohnameDate']);
+        $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
+        $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
+        $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+
+        $stationId = $request['shenaseId'];
+        $shenase = self::where('id', $stationId)->first();
+        $shenase->update(array(
+            "contractTitle" => $request['contractTitle'],
+            "docNumber" => $request['docNumber'],
+            "contractNumber" => $request['contractNumber'],
+            "contractDate" => $contractDate,
+            "requestNumber" => $request['requestNumber'],
+            "requestDate" =>  $requestDate,
+            "commitmentNumber" => $request['commitmentNumber'],
+            "projectId" => $request['projectId'],
+            "insuranceId" => $request['insuranceId'],
+            "rotbe" => $request['rotbe'],
+            "managerName" => $request['managerName'],
+            "companyName" => $request['companyName'],
+            "companyPhone" => $request['companyPhone'],
+            "companyAdd" => $request['companyAdd'],
+            "workType" => $request['workType'],
+            "observer" => $request['observer'],
+            "projectManager" => $request['projectManager'],
+            "firstPrice" => $request['firstPrice'],
+            "tazminPeriod" => $request['tazminPeriod'],
+            "contractPeriod" => $request['contractPeriod'],
+            "paymentType" => $request['paymentType'],
+            "gheireNaghdi" => $request['gheireNaghdi'],
+            "naghdi" => $request['naghdi'],
+            "peinmankarChoice" => $request['peinmankarChoice'],
+            "kargozarName" => $request['kargozarName'],
+            "tavafohname" => $request['tavafohname'],
+            "tavafohnameDate" => $tavafohnameDate,
+            "komesionMoamelatNum" => $request['komesionMoamelatNum'],
+            "komesionMoamelatNumDate" =>   $komesionMoamelatNumDate ,
+            "monagheseSessionNumber" => $request['monagheseSessionNumber'],
+            "monagheseSessionNumberDate" => $monagheseSessionNumberDate,
+            "permissionNumber" => $request['permissionNumber'],
+            "permissionNumberDate" => $permissionNumberDate,
+            "contractTaraf" => $request['contractTaraf'],
+        ));
+
+
+        if ($request->hasfile('scannedFile')) {
+
+            $file = $request->file('scannedFile');
+            $path = $file->store('/uploads/shenaseh', 'public');
+            $fileName = File::basename($path);
+
+            $oldName = self::where('id',$stationId )->value('scannedFile');
+            File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
+
+            $shenase->update(array(
+                "scannedFile" => $fileName,
+            ));
+
+        }
+
+        if ($request->hasfile('privacyFile')) {
+
+            $file = $request->file('privacyFile');
+            $path = $file->store('/uploads/shenaseh', 'public');
+            $fileName = File::basename($path);
+
+            $oldName = self::where('id', $stationId)->value('privacyFile');
+            File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
+
+            $shenase->update(array(
+                "privacyFile" => $fileName,
+            ));
+
+        }
+
+        return $shenase;
+
+    }
 
     public function removeShenase($request)
     {
@@ -148,5 +239,33 @@ class ShenasnamePeiman extends Model
         ShenasnamePeiman::destroy($request['shenase_check']); //users:name of checkbox
 
     }
+
+    public function checkUniqueShenaseId($request)
+    {
+        $contractNumber = $request['contractNumber'];
+        $shenaseId = $request['shenaseId'];
+        if ($shenaseId) {
+            $duplicateUsername = self::where('contractNumber', $contractNumber)->first();
+            if ($duplicateUsername) {
+                $currentuser = self::where('id', $shenaseId)->
+                where('contractNumber', $contractNumber)->first();
+                if ($currentuser) {
+                    return true;
+                } else {
+                    return 'این شماره قرارداد قبلا وارد شده است . لطفا نام کاربری دیگری وارد کنید.';
+                }
+            } else {
+                return true;
+            }
+        } else {
+            $duplicateUserName = User::where('contractNumber', $contractNumber)->first();
+            if ($duplicateUserName) {
+                return 'این شماره قرارداد قبلا وارد شده است . لطفا نام کاربری دیگری وارد کنید.';
+            } else {
+                return 'true';
+            }
+        }
+    }
+
 
 }

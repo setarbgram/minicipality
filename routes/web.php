@@ -77,7 +77,11 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     /*----------------------مشخصات فنی-----------------------*/
     Route::get('/practical-property/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@index'])->name('practicalProperty-List');
     /*----------------------مشخصات فنی - رسته-----------------------*/
+<<<<<<< HEAD
+    Route::delete('/raste/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('raste-remove');
+=======
 //    Route::delete('/practical-property/list', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@destroy'])->name('raste-remove');
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     Route::get('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@showRaste'])->name('raste');
     Route::post('/raste', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@createRaste'])->name('raste-create');
     Route::get('/raste/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@editRaste'])->name('raste-edit');
@@ -101,6 +105,10 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::post('/sheet/edit/{id}', ['middleware' => 'admin', 'uses' => 'PracticalPropertyController@updateSheet'])->name('sheet-update');
 
 
+<<<<<<< HEAD
+
+
+=======
     /*---------------------- مکاتبات-----------------------*/
     Route::get('/letters/list', ['middleware' => 'admin', 'uses' => 'LettersController@index'])->name('letters');
 
@@ -146,6 +154,7 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::get('/deliveryInfo/definiteDelivery', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@definiteDeliveryShow'])->name('definiteDeliveryShow');
     Route::post('/deliveryInfo', ['middleware' => 'admin', 'uses' => 'DeliveryInfoController@createDelivery'])->name('deliveryInfo-create');
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 });
 
 Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function () {
@@ -158,6 +167,7 @@ Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function ()
 
 /*___________________VALIDATION___________________*/
 Route::post('/validation/username', 'validationController@validateUserName');
+Route::post('/validation/contractNumber', 'validationController@contractNumber');
 
 
 
