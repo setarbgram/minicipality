@@ -228,6 +228,7 @@ Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function ()
 
 /*___________________VALIDATION___________________*/
 Route::post('/validation/username', 'validationController@validateUserName');
+Route::post('/validation/contractNumber', 'validationController@contractNumber');
 
 
 

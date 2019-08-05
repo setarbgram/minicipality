@@ -699,7 +699,23 @@
                     required: true
                 },
                 contractNumber: {
-                    required: true
+                    required: true,
+                    remote: {
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: "/validation/contractNumber",
+                        type: "post",
+                        data: {
+                            contractNumber: function () {
+                                return $("#contractNumber").val();
+                            }
+
+                        },
+                        dataType: 'json'
+
+
+                    }
                 },
                 companyName: {
                     required: true

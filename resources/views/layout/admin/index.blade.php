@@ -85,15 +85,19 @@
             // "progressBar": true,
         };
 
-
-        @if(session()->has('flash_message'))
-                       toastr.success("{{ @session('flash_message') }}");
-
+        @if((session()->has('flash_message')))
+            toastr.success("{{ @session('flash_message') }}");
+           i=0;
         @endif
+
         @if(session()->has('flash_d_message'))
-                toastr.warning("{{ @session('flash_d_message') }}");
-
+            toastr.warning("{{ @session('flash_d_message') }}");
         @endif
+
+
+
+
+
 
     });
 </script>
