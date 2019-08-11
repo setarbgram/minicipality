@@ -31,6 +31,8 @@ class Sheet extends Model
         return $Sheet;
     }
 
+<<<<<<< HEAD
+=======
 
     public function createSheet($request)
     {
@@ -82,4 +84,5 @@ class Sheet extends Model
         sheet::destroy($request['sheet_check']); //users:name of checkbox
     }
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }

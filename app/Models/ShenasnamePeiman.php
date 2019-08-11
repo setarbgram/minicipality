@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class ShenasnamePeiman extends Model
 {
     protected $table = 'shenasname_peimens';
@@ -131,6 +132,8 @@ class ShenasnamePeiman extends Model
         $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
         $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
         $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+
+
         $shenase = self::create([
             "contractTitle" => $request['contractTitle'],
             "docNumber" => $request['docNumber'],
@@ -169,29 +172,47 @@ class ShenasnamePeiman extends Model
         ]);
         if ($request->hasFile('scannedFile')) {
             $file = $request->file('scannedFile');
+
             $date = date("h_i_sa");
             $fileNameHash = $file->hashName();
             $format = strtolower(strrchr($fileNameHash, '.'));
+
             $info = pathinfo($fileNameHash);
             $file_name = basename($fileNameHash, '.' . $info['extension']);
             $fileName = "$file_name" . "_" . "$date" . "$format";
+
             $file->move(public_path("/uploads/shenaseh"), $fileName);
+
+
             $shenase->scannedFile = $fileName;
+
         }
+
         if ($request->hasFile('privacyFile')) {
             $file = $request->file('privacyFile');
+
             $date = date("h_i_sa");
             $fileNameHash = $file->hashName();
             $format = strtolower(strrchr($fileNameHash, '.'));
+
             $info = pathinfo($fileNameHash);
             $file_name = basename($fileNameHash, '.' . $info['extension']);
             $fileName = "$file_name" . "_" . "$date" . "$format";
+
             $file->move(public_path("/uploads/shenaseh"), $fileName);
+
+
             $shenase->privacyFile = $fileName;
+
         }
+
+
         $shenase->save();
         return $shenase;
+
     }
+
+
 
     public function updateShenase($request)
     {
@@ -201,6 +222,7 @@ class ShenasnamePeiman extends Model
         $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
         $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
         $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+
         $stationId = $request['shenaseId'];
         $shenase = self::where('id', $stationId)->first();
         $shenase->update(array(
@@ -239,29 +261,41 @@ class ShenasnamePeiman extends Model
             "permissionNumberDate" => $permissionNumberDate,
             "contractTaraf" => $request['contractTaraf'],
         ));
+
+
         if ($request->hasfile('scannedFile')) {
+
             $file = $request->file('scannedFile');
             $path = $file->store('/uploads/shenaseh', 'public');
             $fileName = File::basename($path);
+
             $oldName = self::where('id',$stationId )->value('scannedFile');
             File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
+
             $shenase->update(array(
                 "scannedFile" => $fileName,
             ));
+
         }
+
         if ($request->hasfile('privacyFile')) {
+
             $file = $request->file('privacyFile');
             $path = $file->store('/uploads/shenaseh', 'public');
             $fileName = File::basename($path);
+
             $oldName = self::where('id', $stationId)->value('privacyFile');
             File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
+
             $shenase->update(array(
                 "privacyFile" => $fileName,
             ));
-        }
-        return $shenase;
-    }
 
+        }
+
+        return $shenase;
+
+    }
 
     public function removeShenase($request)
     {
@@ -317,5 +351,7 @@ class ShenasnamePeiman extends Model
             }
         }
     }
+
+
 
 }

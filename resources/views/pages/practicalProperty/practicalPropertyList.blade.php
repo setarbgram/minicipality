@@ -3,14 +3,21 @@
     لیست
 @endsection
 @section('styles')
+<<<<<<< HEAD
+
+=======
     <style>
 
     </style>
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 @endsection
 @section('contents')
 
     <div class="row wrapper border-bottom white-bg page-heading">
+<<<<<<< HEAD
+=======
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
         <div class="col-lg-10">
             <h2> لیست مشخصات فنی </h2>
             <ol class="breadcrumb">
@@ -41,11 +48,17 @@
                 </div>
 
                 <div class="ibox-content">
+<<<<<<< HEAD
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#raste">رسته نوع برآورد</a>
+=======
 
 
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <a id="rasteTab" class="nav-link active" data-toggle="tab" href="#raste" >رسته نوع برآورد</a>
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#zarayeb">ضرایب متعلقه</a>
@@ -55,14 +68,22 @@
                         </li>
                     </ul>
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div id="raste" class="container tab-pane active" style="min-height: 200px"><br>
 
+<<<<<<< HEAD
+                            <form id="rasteForm" method="post" action="">
+                                {{method_field('DELETE')}}
+=======
                             <form id="rasteForm" name="rasteForm" method="post" action="">
                                 {{--{{method_field('DELETE')}}--}}
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -83,12 +104,20 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
+<<<<<<< HEAD
+                                        <a {{--href="{{route('raste')}}"--}} class="btn btn-primary">
+=======
                                         <a href="{{route('raste-create')}}" class="btn btn-primary">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-plus"></i>
                                             تعریف رسته نوع برآورد</a>
                                     </div>
                                     <div style="float: right">
+<<<<<<< HEAD
+                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+=======
                                         <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -108,7 +137,11 @@
 
 
                             <form id="zarayebForm" method="post" action="">
+<<<<<<< HEAD
+                                {{method_field('DELETE')}}
+=======
 {{--                                {{method_field('DELETE')}}--}}
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -129,12 +162,20 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
+<<<<<<< HEAD
+                                        <a {{--href="{{route('raste')}}"--}} class="btn btn-primary">
+=======
                                         <a href="{{route('zarayeb-create')}}" class="btn btn-primary">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-plus"></i>
                                             تعریف ضرایب متعلقه</a>
                                     </div>
                                     <div style="float: right">
+<<<<<<< HEAD
+                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+=======
                                         <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -152,7 +193,11 @@
 
 
                             <form id="sheetForm" method="post" action="">
+<<<<<<< HEAD
+                                {{method_field('DELETE')}}
+=======
                                 {{--{{method_field('DELETE')}}--}}
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                 {{ csrf_field() }}
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -175,12 +220,20 @@
                                 <div class="row">
 
                                     <div style="margin: 0 24px;float: right;">
+<<<<<<< HEAD
+                                        <a {{--href="{{route('sheet')}}"--}} class="btn btn-primary">
+=======
                                         <a href="{{route('sheet-create')}}" class="btn btn-primary">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-plus"></i>
                                             تعریف شیت آزمایشگاهی</a>
                                     </div>
                                     <div style="float: right">
+<<<<<<< HEAD
+                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+=======
                                         <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -210,7 +263,10 @@
 
     <script>
         $(document).ready(function () {
+<<<<<<< HEAD
+=======
             $('#rasteTab').trigger('click');
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 
             // document.querySelectorAll('[rel="prev"]').innerHTML = "»";
             // document.querySelectorAll('[rel="next"]').innerHTML = "«";

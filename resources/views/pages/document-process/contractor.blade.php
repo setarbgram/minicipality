@@ -99,13 +99,13 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="contractDate">تاربخ
+                                        <label class="control-label label-position" for="contractDate">تاریخ
                                             قرارداد: </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="text" name="contractDate" id="contractDate">
+                                        <input class="form-control" type="text" name="contractDate" readonly id="contractDate">
 
                                     </div>
                                 </div>
@@ -129,13 +129,13 @@
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4 form-txt-align ">
-                                        <label class="control-label label-position" for="requestDate">تاربخ
+                                        <label class="control-label label-position" for="requestDate">تاریخ
                                             درخواست: </label>
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="text" name="requestDate" id="requestDate">
+                                        <input class="form-control" type="text" name="requestDate" id="requestDate" readonly>
 
                                     </div>
                                 </div>
@@ -451,11 +451,11 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-4  form-txt-align "><label
                                                 class="control-label label-position"
-                                                for="tavafohnameDate">تاریخ:</label>
+                                                for="tavafohnameDate">تاریخ :</label>
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="tavafohnameDate"
+                                        <input class="form-control" type="text" name="tavafohnameDate" readonly
                                                id="tavafohnameDate">
 
                                     </div>
@@ -487,7 +487,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="komesionMoamelatNumDate"
+                                        <input class="form-control" type="text" name="komesionMoamelatNumDate" readonly
                                                id="komesionMoamelatNumDate">
 
                                     </div>
@@ -519,7 +519,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="monagheseSessionNumberDate"
+                                        <input class="form-control" type="text" name="monagheseSessionNumberDate" readonly
                                                id="monagheseSessionNumberDate">
 
                                     </div>
@@ -551,7 +551,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="permissionNumberDate"
+                                        <input class="form-control" type="text" name="permissionNumberDate" readonly
                                                id="permissionNumberDate">
 
                                     </div>
@@ -654,6 +654,18 @@
             document.getElementById('komesionMoamelatNumRow').style.display='none';
             document.getElementById('monagheseSessionNumberRow').style.display='block';
             document.getElementById('permissionNumberRow').style.display='none';
+
+            $(function () {
+                $('#permissionNumberDate').persianDatepicker(/*{
+                    selectedBefore: !0
+                }*/);
+                $('#monagheseSessionNumberDate').persianDatepicker();
+                $('#komesionMoamelatNumDate').persianDatepicker();
+                $('#tavafohnameDate').persianDatepicker();
+                $('#contractDate').persianDatepicker();
+                $('#requestDate').persianDatepicker();
+            });
+
         });
 
         function displayItem(value) {
@@ -712,7 +724,7 @@
                             }
 
                         },
-                        dataType: 'json'
+                        dataType: 'json',
 
 
                     }

@@ -26,6 +26,8 @@ class Raste extends Model
         $raste = self::where('id', $rasteId)->first();
         return $raste;
     }
+<<<<<<< HEAD
+=======
 
 
     public function createRaste($request)
@@ -72,4 +74,5 @@ class Raste extends Model
         }
         raste::destroy($request['raste_check']); //users:name of checkbox
     }
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }
