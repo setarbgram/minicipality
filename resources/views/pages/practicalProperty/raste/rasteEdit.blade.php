@@ -32,6 +32,7 @@
                     </div>
                     <div class="ibox-content">
 
+                        <input type="hidden" name="rasteId" id="rasteId" value="{{$raste['id']}}" >
 
                         <div class="row">
 

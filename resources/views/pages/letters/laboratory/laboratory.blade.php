@@ -90,7 +90,7 @@
                                             تاریخ ابلاغ :</label>
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate"
+                                        <input class="form-control" type="text" name="communicationDate" readonly
                                                id="communicationDate">
                                     </div>
                                 </div>
@@ -152,6 +152,9 @@
     <script>
         $(document).ready(function () {
 
+            $(function () {
+                $('#communicationDate').persianDatepicker();
+            });
 
             $("#form").validate({
                 rules: {

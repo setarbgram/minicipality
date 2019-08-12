@@ -29,14 +29,19 @@ class Instructions extends Model
         return $order;
     }
 
+
+
+
     public function createWorkOrder($request)
     {
+
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
 
         $order = self::create([
             "contractID" => $request['contractID'],
             "instructionID" => $request['instructionID'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
         ]);
 
         if ($request->hasFile('file')) {
@@ -58,6 +63,60 @@ class Instructions extends Model
 
         $order->save();
         return $order;
+    }
+
+
+    public function updateWorkOrder($request)
+    {
+
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $orderId = $request['orderId'];
+        $order = self::where('id', $orderId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $order['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/workOrders") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/workOrders"), $fileName);
+
+
+            $order->file = $fileName;
+        }
+        else {
+            $fileName = $order->file;
+        }
+
+
+        $order->update(array(
+            "contractID" => $request['contractID'],
+            "instructionID" => $request['instructionID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+            "file" => $fileName,
+
+        ));
+
+        return $order;
+
+
+
     }
 
     public function removeOrder($request)

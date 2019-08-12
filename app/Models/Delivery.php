@@ -45,21 +45,46 @@ class Delivery extends Model
 
     public function createdelivery($request)
     {
+
+        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
+        $invitationDate = \App\Helper\shamsiToMiladi($request['invitationDate']);
+        $commissionDate = \App\Helper\shamsiToMiladi($request['commissionDate']);
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
         $hasEstimate=($request['dtype']==0)?-1:$request['dtype'];
         $delivery = self::create([
             "contractID" => $request['contractID'],
             "requestID" => $request['requestID'],
-            "requestDate" => $request['requestDate'],
+            "requestDate" => $requestDate,
             "invitationID" => $request['invitationID'],
-            "invitationDate" => $request['invitationDate'],
-            "commissionDate" => $request['commissionDate'],
-            "communicationDate" => $request['communicationDate'],
+            "invitationDate" => $invitationDate,
+            "commissionDate" => $commissionDate,
+            "communicationDate" => $communicationDate,
             "communicationID" => $request['communicationID'],
             "hasEstimate" => $hasEstimate,
             "deliveryType" => $request['deliveryType'],
             "type" => $request['dtype'],
 
         ]);
+
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file->move(public_path("/uploads/deliveryInfo"), $fileName);
+
+
+            $delivery->file1 = $fileName;
+
+        }
 
         if ($request->hasFile('file1')) {
             $file = $request->file('file1');
@@ -100,6 +125,130 @@ class Delivery extends Model
 
         $delivery->save();
         return $delivery;
+
+    }
+
+
+    public function updateDelivery($request)
+    {
+        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
+        $invitationDate = \App\Helper\shamsiToMiladi($request['invitationDate']);
+        $commissionDate = \App\Helper\shamsiToMiladi($request['commissionDate']);
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $hasEstimate=($request['dtype']==0)?-1:$request['dtype'];
+        $deliveryId = $request['deliveryId'];
+        $delivery = self::where('id', $deliveryId)->first();
+
+
+
+        $scannedFile = $request->file('file');
+        $file1 = $request->file('file1');
+        $file2 = $request->file('file2');
+
+
+        if ($request->hasFile('file1')) {
+
+            $file = $delivery['file1'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/deliveryInfo") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file1->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file1->move(public_path("/uploads/deliveryInfo"), $fileName);
+
+
+            $delivery->file1 = $fileName;
+        }
+        else {
+            $fileName = $delivery->file1;
+        }
+
+        if ($request->hasFile('file')) {
+
+            $file = $delivery['file1'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/deliveryInfo") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/deliveryInfo"), $fileName);
+
+
+            $delivery->file1 = $fileName;
+        }
+        else {
+            $fileName = $delivery->file1;
+        }
+
+
+        if ($request->hasFile('file2')) {
+
+            $file = $delivery['file2'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/deliveryInfo") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $file2->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $file2->move(public_path("/uploads/deliveryInfo"), $fileName);
+
+
+            $delivery->file2 = $fileName;
+        }
+        else {
+            $fileName = $delivery->file2;
+        }
+
+
+        $delivery->update(array(
+            "contractID" => $request['contractID'],
+            "requestID" => $request['requestID'],
+            "requestDate" => $requestDate,
+            "invitationID" => $request['invitationID'],
+            "invitationDate" => $invitationDate,
+            "commissionDate" => $commissionDate,
+            "communicationDate" => $communicationDate,
+            "communicationID" => $request['communicationID'],
+            "hasEstimate" => $hasEstimate,
+            "deliveryType" => $request['deliveryType'],
+            "type" => $delivery['type'],
+
+        ));
+
+        return $delivery;
+
+
+
 
     }
 }

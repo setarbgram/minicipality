@@ -31,18 +31,17 @@ class Sheet extends Model
         return $Sheet;
     }
 
-<<<<<<< HEAD
-=======
-
     public function createSheet($request)
     {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $patternAgeNO = ( $request['patternAgeNO']) ?  $request['patternAgeNO'] : 0;
         $sheet = self::create([
             "contractID" => $request['contractID'],
             "typeNO" => $request['typeNO'],
-            "patternAgeNO" => $request['patternAgeNO'],
+            "patternAgeNO" => $patternAgeNO,
             "patternID" => $request['patternID'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
 
         ]);
 
@@ -66,6 +65,58 @@ class Sheet extends Model
         return $sheet;
     }
 
+    public function updateSheet($request)
+    {
+
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $patternAgeNO = ( $request['patternAgeNO']) ?  $request['patternAgeNO'] : 0;
+        $sheetId = $request['sheetId'];
+        $sheet = self::where('id', $sheetId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $sheet['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/sheet") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/sheet"), $fileName);
+
+
+            $sheet->file = $fileName;
+        } else {
+            $fileName = $sheet->file;
+        }
+
+
+        $sheet->update(array(
+            "contractID" => $request['contractID'],
+            "typeNO" => $request['typeNO'],
+            "patternAgeNO" => $patternAgeNO,
+            "patternID" => $request['patternID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+            "file" => $fileName,
+        ));
+
+        return $sheet;
+
+
+    }
+
     public function removeSheet($request)
     {
         foreach ($request['sheet_check'] as $sheetId) {
@@ -84,5 +135,4 @@ class Sheet extends Model
         sheet::destroy($request['sheet_check']); //users:name of checkbox
     }
 
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }

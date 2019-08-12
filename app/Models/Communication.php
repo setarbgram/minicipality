@@ -32,11 +32,13 @@ class Communication extends Model
 
     public function createCommunication($request)
     {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
         $communication = self::create([
             "contractID" => $request['contractID'],
             "communicationType" => $request['communicationType'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
         ]);
 
         if ($request->hasFile('file')) {
@@ -57,6 +59,56 @@ class Communication extends Model
         }
 
         $communication->save();
+        return $communication;
+
+    }
+
+    public function updateCommunication($request)
+    {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $communicationId = $request['communicationId'];
+        $communication = self::where('id', $communicationId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $communication['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/communication") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/communication"), $fileName);
+
+
+            $communication->file = $fileName;
+        }
+        else {
+            $fileName = $communication->file;
+        }
+
+
+        $communication->update(array(
+            "contractID" => $request['contractID'],
+            "communicationType" => $request['communicationType'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+            "file" => $fileName,
+
+        ));
+
         return $communication;
 
     }

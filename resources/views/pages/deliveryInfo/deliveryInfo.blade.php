@@ -97,7 +97,7 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="requestDate"
+                                        <input class="form-control" type="text" name="requestDate" readonly
                                                id="requestDate">
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="invitationDate"
+                                        <input class="form-control" type="text" name="invitationDate" readonly
                                                id="invitationDate">
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate"
+                                        <input class="form-control" type="text" name="communicationDate" readonly
                                                id="communicationDate">
                                     </div>
                                 </div>
@@ -172,7 +172,7 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="commissionDate"
+                                        <input class="form-control" type="text" name="commissionDate" readonly
                                                id="commissionDate">
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="file" name="file1" id="file1"
+                                        <input class="form-control" type="file" name="file" id="file"
                                                accept="application/pdf">
 
                                     </div>
@@ -283,6 +283,16 @@
 
     <script>
         $(document).ready(function () {
+
+            $(function () {
+                $('#requestDate').persianDatepicker();
+                $('#commissionDate').persianDatepicker();
+                $('#communicationDate').persianDatepicker();
+                $('#invitationDate').persianDatepicker();
+            });
+
+
+
             var type='{{$dType}}';
             if(type==0){
                 document.getElementById('hasEstimateDiv').style.display='none';

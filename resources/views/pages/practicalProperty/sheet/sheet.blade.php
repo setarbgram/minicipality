@@ -135,7 +135,7 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="text" name="communicationDate"
+                                        <input class="form-control" type="text" name="communicationDate" readonly
                                                id="communicationDate">
                                     </div>
                                 </div>
@@ -197,6 +197,9 @@
 
     <script>
         $(document).ready(function () {
+            $(function () {
+                $('#communicationDate').persianDatepicker();
+            });
 
             document.getElementById("patternAgeNO").disabled = true;
             document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';

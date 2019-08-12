@@ -18,15 +18,12 @@
         }
 
 
-<<<<<<< HEAD
          /*.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {*/
              /*color: #495057;*/
              /*background-color: #fff;*/
              /*border-color: #dee2e6 #dee2e6 #fff;*/
          /*}*/
-=======
 
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 
     </style>
     @yield('styles')

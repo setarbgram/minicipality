@@ -20,7 +20,7 @@
     <form role="form" id="form" method="post" action="{{route('shenase.update',$shenase['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <input type="hidden" name="shenaseId" value="{{$shenase['id']}}" >
+        <input type="hidden" name="shenaseId" id="shenaseId" value="{{$shenase['id']}}" >
         <div class="row" style="margin-top: 30px;">
 
             <div class="col-lg-12">
@@ -722,10 +722,8 @@
                             shenaseId: function () {
                                 return $('#shenaseId').val();
                             }
-
-
                         },
-                        dataType: 'json',
+                        dataType: 'json'
 
 
                     }

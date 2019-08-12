@@ -16,8 +16,7 @@
 @endsection
 @section('contents')
 
-    <form role="form" id="form" method="post"
-          {{--action="{{route('workOrder-create')}}"--}} enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('communication-update',$communication['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
 
@@ -32,6 +31,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
+                        <input type="hidden" name="communicationId" id="communicationId" value="{{$communication['id']}}" >
 
 
                         <div class="row">
@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <select class="form-control" type="text" name="typeNO" id="typeNO">
+                                        <select class="form-control" type="text" name="communicationType" id="communicationType">
                                             @foreach($types as $type)
                                                 <option value="{{$type['typeNO']}}" {{($communication['communicationType']==$type['typeNO'])?"Selected":""}}>{{$type['type']}}</option>
                                             @endforeach
@@ -98,8 +98,8 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$communication['communicationDate']}}">
+                                        <input class="form-control" type="text" name="communicationDate" readonly
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($communication['communicationDate'])}}">
 
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="{{--form-group col-sm-offset-0--}}">
-                                    <button class="btn btn-primary main-btn" onclick="edit(this)" type="button"
+                                    <button class="btn btn-primary main-btn"  type="submit"
                                             id="submitBtn">
                                         ویرایش اطلاعات
                                     </button>
@@ -162,9 +162,13 @@
 
     <script>
         $(document).ready(function () {
-            function edit(inp) {
-                event.preventDefault();
-            }
+            $(function () {
+
+                $('#communicationDate').persianDatepicker();
+            });
+
+
+
 
             $("#form").validate({
                 rules: {

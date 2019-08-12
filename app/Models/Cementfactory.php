@@ -30,10 +30,12 @@ class Cementfactory extends Model
 
     public function createCementfactory($request)
     {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
         $cementfactory = self::create([
             "contractID" => $request['contractID'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
         ]);
 
         if ($request->hasFile('file')) {

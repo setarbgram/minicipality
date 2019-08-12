@@ -31,6 +31,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
+                        <input type="hidden" name="otherId" id="otherId" value="{{$others['id']}}" >
 
 
                         <div class="row">
@@ -76,8 +77,8 @@
                                             تاریخ ابلاغ :</label>
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$others['communicationID']}}">
+                                        <input class="form-control" type="text" name="communicationDate" readonly
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($others['communicationDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +135,9 @@
 
     <script>
         $(document).ready(function () {
-
+            $(function () {
+                $('#communicationDate').persianDatepicker();
+            });
 
             $("#form").validate({
                 rules: {

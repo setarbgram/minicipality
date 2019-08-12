@@ -85,6 +85,14 @@ class LettersController extends Controller
         return view('pages.letters.notifications.notificationsEdit', compact('notification','cotractNum'));
     }
 
+    public function updateNotifications(Request $request)
+    {
+        $notificationsObj = new Notifications();
+        $notificationsObj->updateNotifications($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'اخطار با موفقیت ویرایش شد!'));
+
+    }
+
 
     //    ---------------------------cementfactory----------------------------
 
@@ -111,6 +119,13 @@ class LettersController extends Controller
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
         return view('pages.letters.cementfactory.cementfactoryEdit', compact('cementfactory','cotractNum'));
+    }
+
+    public function updateCementfactory(Request $request)
+    {
+        $cementfactoryObj = new Cementfactory();
+        $cementfactoryObj->updateCementfactory($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'سیمان با موفقیت ویرایش شد!'));
     }
 
 
@@ -140,6 +155,13 @@ class LettersController extends Controller
         return view('pages.letters.driving.drivingEdit', compact('driving','cotractNum'));
     }
 
+    public function updateDriving(Request $request)
+    {
+        $drivingObj = new Driving();
+        $drivingObj->updateDriving($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'راهنمایی و رانندگی با موفقیت ویرایش شد!'));
+    }
+
     //    ---------------------------fuel----------------------------
     public function showFuel()
     {
@@ -163,6 +185,13 @@ class LettersController extends Controller
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
         return view('pages.letters.fuel.fuelEdit', compact('fuel','cotractNum'));
+    }
+
+    public function updateFuel(Request $request)
+    {
+        $fuelObj = new Fuel();
+        $fuelObj->updateFuel($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'سوخت با موفقیت ویرایش شد!'));
     }
 
     //    ---------------------------release----------------------------
@@ -192,6 +221,13 @@ class LettersController extends Controller
         $typesObj=new Releasetype();
         $types=$typesObj->getAllTypes();
         return view('pages.letters.release.releaseEdit', compact('release','cotractNum','types'));
+    }
+
+    public function updateRelease(Request $request)
+    {
+        $releaseObj = new Release();
+        $releaseObj->updateRelease($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'آزادسازی با موفقیت ویرایش شد!'));
     }
 
 
@@ -224,6 +260,13 @@ class LettersController extends Controller
         return view('pages.letters.insurance.insuranceEdit', compact('insurance','cotractNum','types'));
     }
 
+    public function updateInsurance(Request $request)
+    {
+        $insuranceObj = new Insurance();
+        $insuranceObj->updateInsurance($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'بیمه با موفقیت ویرایش شد!'));
+    }
+
 
     //    ---------------------------recertification----------------------------
     public function showRecertification()
@@ -250,6 +293,12 @@ class LettersController extends Controller
         return view('pages.letters.recertification.recertificationEdit', compact('recertification','cotractNum'));
     }
 
+    public function updateRecertification(Request $request)
+    {
+        $recertificationObj = new Recertification();
+        $recertificationObj->updateRecertification($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'اصلاحیه با موفقیت ویرایش شد!'));
+    }
 
 
     //    ---------------------------others----------------------------
@@ -277,6 +326,13 @@ class LettersController extends Controller
         return view('pages.letters.others.othersEdit', compact('others','cotractNum'));
     }
 
+    public function updateOthers(Request $request)
+    {
+        $othersObj = new Others();
+        $othersObj->updateOthers($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'متفرقه با موفقیت ویرایش شد!'));
+    }
+
     //    ---------------------------laboratory----------------------------
     public function showLaboratory()
     {
@@ -300,6 +356,13 @@ class LettersController extends Controller
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
         return view('pages.letters.laboratory.laboratoryEdit', compact('laboratory','cotractNum'));
+    }
+
+    public function updateLaboratory(Request $request)
+    {
+        $laboratoryObj = new Laboratory();
+        $laboratoryObj->updateLaboratory($request);
+        return Redirect(route('letters'))->with(Session::flash('flash_message', 'آزمایشگاه با موفقیت ویرایش شد!'));
     }
 
 }

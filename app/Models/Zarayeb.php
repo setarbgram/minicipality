@@ -34,8 +34,6 @@ class Zarayeb extends Model
         return $zarayeb;
     }
 
-<<<<<<< HEAD
-=======
 
     public function createZarayeb($request)
     {
@@ -73,6 +71,60 @@ class Zarayeb extends Model
         return $zarayeb;
     }
 
+    public function updateZarayeb($request)
+    {
+        $zarayebId = $request['zarayebId'];
+        $zarayeb = self::where('id', $zarayebId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $zarayeb['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/zarayeb") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/zarayeb"), $fileName);
+
+
+            $zarayeb->file = $fileName;
+        }
+        else {
+            $fileName = $zarayeb->file;
+        }
+
+
+        $zarayeb->update(array(
+            "contractID" => $request['contractID'],
+            "balasari" => $request['balasari'],
+            "tajhiz" => $request['tajhiz'],
+            "recommended" => $request['recommended'],
+            "shabkari" => $request['shabkari'],
+            "traffic" => $request['traffic'],
+            "floors" => $request['floors'],
+            "height" => $request['height'],
+            "zaribk" => $request['zaribk'],
+            "zaribt" => $request['zaribt'],
+            "file" => $fileName,
+        ));
+
+        return $zarayeb;
+
+    }
+
+
     public function removeZarayeb($request)
     {
         foreach ($request['zarayeb_check'] as $zarayebId) {
@@ -91,5 +143,4 @@ class Zarayeb extends Model
     }
 
 
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 }

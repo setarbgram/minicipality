@@ -42,6 +42,15 @@ class WorkOrderController extends Controller
         return view('pages.work-order.workOrderEdit', compact('order','cotractNum'));
     }
 
+    public function updateWorkOrder(Request $request)
+    {
+        $workOrderObj = new Instructions();
+        $workOrderObj->updateWorkOrder($request);
+
+        return Redirect(route('workOrder-list'))->with(Session::flash('flash_message', 'دستور کار با موفقیت ویرایش شد!'));
+
+    }
+
     public function destroy(Request $request)
     {
         if ($request['order_check']) {

@@ -37,6 +37,9 @@ class Adjustmentstate extends Model
 
     public function createAdjustmentstate($request)
     {
+
+        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+
         $adjustmentstate = self::create([
             "contractID" => $request['contractID'],
             "statementID" => $request['statementID'],
@@ -46,7 +49,7 @@ class Adjustmentstate extends Model
             "finalAmount" => $request['finalAmount'],
             "netAmount" => $request['netAmount'],
             "typeNO" => $request['typeNO'],
-            "secretariatDate" => $request['secretariatDate'],
+            "secretariatDate" => $secretariatDate,
             "secretariatID" => $request['secretariatID'],
 
         ]);
@@ -71,5 +74,65 @@ class Adjustmentstate extends Model
         return $adjustmentstate;
 
     }
+
+    public function updateAdjustmentstate($request)
+    {
+
+        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+
+        $adjustmentstateId = $request['adjustmentstateId'];
+        $adjustmentstate = self::where('id', $adjustmentstateId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $adjustmentstate['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/workStatus") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/workStatus"), $fileName);
+
+
+            $adjustmentstate->file = $fileName;
+        }
+        else {
+            $fileName = $adjustmentstate->file;
+        }
+
+
+        $adjustmentstate->update(array(
+            "contractID" => $request['contractID'],
+            "statementID" => $request['statementID'],
+            "contractorAmount" => $request['contractorAmount'],
+            "supervisorAmount" => $request['supervisorAmount'],
+            "technicalAmount" => $request['technicalAmount'],
+            "finalAmount" => $request['finalAmount'],
+            "netAmount" => $request['netAmount'],
+            "typeNO" => $request['typeNO'],
+            "secretariatDate" => $secretariatDate,
+            "secretariatID" => $request['secretariatID'],
+            "file" => $fileName,
+
+        ));
+
+        return $adjustmentstate;
+
+
+
+    }
+
 
 }

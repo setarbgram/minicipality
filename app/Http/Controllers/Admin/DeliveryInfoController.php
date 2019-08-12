@@ -57,8 +57,16 @@ class DeliveryInfoController extends Controller
         $deliveryTypeObj= new Deliverytype();
         $types=$deliveryTypeObj->getAllTypes();
         return view('pages.deliveryInfo.deliveryInfoEdit', compact('delivery','cotractNum','types'));
-    } 
-    
+    }
+
+    public function updateDelivery(Request $request)
+    {
+        $deliveryObj = new Delivery();
+        $deliveryObj->updateDelivery($request);
+
+        return Redirect(route('deliveryInfo'))->with(Session::flash('flash_message', 'تحویل با موفقیت ویرایش شد!'));
+
+    }
 
    
 

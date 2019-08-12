@@ -47,6 +47,14 @@ class SessionLetterController extends Controller
         return view('pages.session-letter.sessionLetterEdit', compact('session','cotractNum','types'));
     }
 
+    public function updateSessionLetter(Request $request){
+        $sessionLetterObj = new Records();
+        $sessionLetterObj->updateSessionLetter($request);
+
+        return Redirect(route('sessionLetter-List'))->with(Session::flash('flash_message', 'صورت جلسه با موفقیت ویرایش شد!'));
+
+    }
+
     public function destroy(Request $request)
     {
         if ($request['sessionLetter_check']) {

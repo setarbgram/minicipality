@@ -66,6 +66,14 @@ class WorkStatusController extends Controller
         return view('pages.workStatus.temporarystate.temporaryStateEdit', compact('temporarystate','cotractNum'));
     }
 
+    public function updateTemporarystate(Request $request)
+    {
+        $temporarystateObj = new Temporarystate();
+        $temporarystateObj->updateTemporarystate($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت موقت با موفقیت ویرایش شد!'));
+
+    }
+
     //    ---------------------------Adjustmentstate----------------------------
 
 
@@ -98,6 +106,12 @@ class WorkStatusController extends Controller
         return view('pages.workStatus.adjustmentstate.adjustmentStateEdit', compact('adjustmentstate','cotractNum','types'));
     }
 
+    public function updateAdjustmentstate(Request $request)
+    {
+        $adjustmentstateObj = new Adjustmentstate();
+        $adjustmentstateObj->updateAdjustmentstate($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت تعدیل با موفقیت ویرایش شد!'));
+    }
 
     //    ---------------------------Predefinitestate----------------------------
 
@@ -126,6 +140,13 @@ class WorkStatusController extends Controller
         return view('pages.workStatus.predefinitestate.predefiniteStateEdit', compact('predefinitestate','cotractNum'));
     }
 
+    public function updatePredefinitestate(Request $request)
+    {
+        $predefinitestateObj = new Predefinitestate();
+        $predefinitestateObj->updatePredefinitestate($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت ماقبل قطعی با موفقیت ویرایش شد!'));
+    }
+
     //    ---------------------------Definitestate----------------------------
 
     public function showDefinitestate()
@@ -151,6 +172,14 @@ class WorkStatusController extends Controller
         $cotractNum = $shenaseObj->getAllContractID();
         return view('pages.workStatus.definitestate.definiteStateEdit', compact('definitestate','cotractNum'));
     }
+
+    public function updateDefinitestate(Request $request)
+    {
+        $definitestateObj = new Definitestate();
+        $definitestateObj->updateDefinitestate($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'صورت وضعیت قطعی با موفقیت ویرایش شد!'));
+    }
+
 
 
     //    ---------------------------Contractextension----------------------------
@@ -179,5 +208,11 @@ class WorkStatusController extends Controller
         return view('pages.workStatus.contractextension.contractextensionEdit', compact('contractextension','cotractNum'));
     }
 
+    public function updateContractextension(Request $request)
+    {
+        $contractextensionObj = new Contractextension();
+        $contractextensionObj->updateContractextension($request);
+        return Redirect(route('workStatus'))->with(Session::flash('flash_message', 'تمدید قرارداد با موفقیت ویرایش شد!'));
+    }
 
 }

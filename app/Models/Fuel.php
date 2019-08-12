@@ -30,10 +30,12 @@ class Fuel extends Model
 
     public function createFuels($request)
     {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
         $fuel = self::create([
             "contractID" => $request['contractID'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
         ]);
 
         if ($request->hasFile('file')) {
@@ -53,6 +55,54 @@ class Fuel extends Model
         }
 
         $fuel->save();
+        return $fuel;
+
+    }
+
+    public function updateFuel($request)
+    {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $FuelId = $request['fuelId'];
+        $fuel = self::where('id', $FuelId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+            $file = $fuel['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/letters"), $fileName);
+
+
+            $fuel->file = $fileName;
+        }
+        else {
+            $fileName = $fuel->file;
+        }
+
+
+        $fuel->update(array(
+            "contractID" => $request['contractID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+            "file" => $fileName,
+
+        ));
+
         return $fuel;
 
     }

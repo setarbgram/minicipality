@@ -47,6 +47,16 @@ class CommunicationController extends Controller
         return view('pages.communication.communicationEdit', compact('communication','cotractNum','types'));
     }
 
+
+    public function updateCommunication(Request $request)
+    {
+        $communicationObj = new Communication();
+        $communicationObj->updateCommunication($request);
+
+        return Redirect(route('communication-List'))->with(Session::flash('flash_message', 'ابلاغیه با موفقیت ویرایش شد!'));
+
+    }
+
     public function destroy(Request $request)
     {
         if ($request['communication_check']) {

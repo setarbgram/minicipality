@@ -54,7 +54,7 @@ Route::group(['prefix' => '/panel', 'namespace' => 'Admin'], function () {
     Route::get('/work-order', ['middleware' => 'admin', 'uses' => 'WorkOrderController@show'])->name('workOrder');
     Route::post('/work-order', ['middleware' => 'admin', 'uses' => 'WorkOrderController@createWorkOrder'])->name('workOrder-create');
     Route::get('/work-order/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkOrderController@editWorkOrder'])->name('workOrder-edit');
-    Route::post('/work-order/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkOrderController@updateShenasnamePeiman'])->name('workOrder-update');
+    Route::post('/work-order/edit/{id}', ['middleware' => 'admin', 'uses' => 'WorkOrderController@updateWorkOrder'])->name('workOrder-update');
 
 
     /*----------------------صورت جلسه-----------------------*/

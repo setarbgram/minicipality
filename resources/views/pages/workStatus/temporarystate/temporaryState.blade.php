@@ -90,7 +90,7 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="secretariatDate"
+                                        <input class="form-control" type="text" name="secretariatDate" readonly
                                                id="secretariatDate">
                                     </div>
                                 </div>
@@ -261,7 +261,12 @@
 
     <script>
         $(document).ready(function () {
-                document.getElementById("prepaymentPercent").disabled = false;
+
+            $(function () {
+                $('#secretariatDate').persianDatepicker();
+            });
+
+            document.getElementById("prepaymentPercent").disabled = false;
                 document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
 
 

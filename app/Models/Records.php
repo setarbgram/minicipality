@@ -32,12 +32,15 @@ class Records extends Model
 
     public function createSessionLetter($request)
     {
+
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
         $session = self::create([
             "contractID" => $request['contractID'],
             "recordID" => $request['recordID'],
             "typeNO" => $request['typeNO'],
             "communicationID" => $request['communicationID'],
-            "communicationDate" => $request['communicationDate'],
+            "communicationDate" => $communicationDate,
         ]);
 
         if ($request->hasFile('file')) {
@@ -58,6 +61,58 @@ class Records extends Model
         }
 
         $session->save();
+        return $session;
+
+    }
+
+    public function updateSessionLetter($request)
+    {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $sessionId = $request['sessionId'];
+        $session = self::where('id', $sessionId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+
+            $file = $session['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/sessionLetters") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/sessionLetters"), $fileName);
+
+
+            $session->file = $fileName;
+        }
+        else {
+            $fileName = $session->file;
+        }
+
+
+
+        $session->update(array(
+            "contractID" => $request['contractID'],
+            "recordID" => $request['recordID'],
+            "typeNO" => $request['typeNO'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+            "file" => $fileName,
+
+        ));
+
         return $session;
 
     }

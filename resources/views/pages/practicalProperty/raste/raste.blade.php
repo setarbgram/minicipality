@@ -125,6 +125,10 @@
 
     <script>
         $(document).ready(function () {
+            $(function () {
+
+                $('#communicationDate').persianDatepicker();
+            });
 
 
             $("#form").validate({

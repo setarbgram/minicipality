@@ -34,87 +34,6 @@ class ShenasnamePeiman extends Model
 
     }
 
-//    public function createShenase($request)
-//    {
-//        $shenase = self::create([
-//            "contractTitle" => $request['contractTitle'],
-//            "docNumber" => $request['docNumber'],
-//            "contractNumber" => $request['contractNumber'],
-//            "contractDate" => $request['contractDate'],
-//            "requestNumber" => $request['requestNumber'],
-//            "requestDate" => $request['requestDate'],
-//            "commitmentNumber" => $request['commitmentNumber'],
-//            "projectId" => $request['projectId'],
-//            "insuranceId" => $request['insuranceId'],
-//            "rotbe" => $request['rotbe'],
-//            "managerName" => $request['managerName'],
-//            "companyName" => $request['companyName'],
-//            "companyPhone" => $request['companyPhone'],
-//            "companyAdd" => $request['companyAdd'],
-//            "workType" => $request['workType'],
-//            "observer" => $request['observer'],
-//            "projectManager" => $request['projectManager'],
-//            "firstPrice" => $request['firstPrice'],
-//            "tazminPeriod" => $request['tazminPeriod'],
-//            "contractPeriod" => $request['contractPeriod'],
-//            "paymentType" => $request['paymentType'],
-//            "gheireNaghdi" => $request['gheireNaghdi'],
-//            "naghdi" => $request['naghdi'],
-//            "peinmankarChoice" => $request['peinmankarChoice'],
-//            "kargozarName" => $request['kargozarName'],
-//            "tavafohname" => $request['tavafohname'],
-//            "tavafohnameDate" => $request['tavafohnameDate'],
-//            "komesionMoamelatNum" => $request['komesionMoamelatNum'],
-//            "komesionMoamelatNumDate" => $request['komesionMoamelatNumDate'],
-//            "monagheseSessionNumber" => $request['monagheseSessionNumber'],
-//            "monagheseSessionNumberDate" => $request['monagheseSessionNumberDate'],
-//            "permissionNumber" => $request['permissionNumber'],
-//            "permissionNumberDate" => $request['permissionNumberDate'],
-//            "contractTaraf" => $request['contractTaraf'],
-//
-//        ]);
-//
-//        if ($request->hasFile('scannedFile')) {
-//            $file = $request->file('scannedFile');
-//
-//            $date = date("h_i_sa");
-//            $fileNameHash = $file->hashName();
-//            $format = strtolower(strrchr($fileNameHash, '.'));
-//
-//            $info = pathinfo($fileNameHash);
-//            $file_name = basename($fileNameHash, '.' . $info['extension']);
-//            $fileName = "$file_name" . "_" . "$date" . "$format";
-//
-//            $file->move(public_path("/uploads/shenaseh"), $fileName);
-//
-//
-//            $shenase->scannedFile = $fileName;
-//
-//        }
-//
-//        if ($request->hasFile('privacyFile')) {
-//            $file = $request->file('privacyFile');
-//
-//            $date = date("h_i_sa");
-//            $fileNameHash = $file->hashName();
-//            $format = strtolower(strrchr($fileNameHash, '.'));
-//
-//            $info = pathinfo($fileNameHash);
-//            $file_name = basename($fileNameHash, '.' . $info['extension']);
-//            $fileName = "$file_name" . "_" . "$date" . "$format";
-//
-//            $file->move(public_path("/uploads/shenaseh"), $fileName);
-//
-//
-//            $shenase->privacyFile = $fileName;
-//
-//        }
-//
-//
-//        $shenase->save();
-//        return $shenase;
-//
-//    }
 
     public function findShenase($shenaseId)
     {
@@ -223,8 +142,75 @@ class ShenasnamePeiman extends Model
         $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
         $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
 
-        $stationId = $request['shenaseId'];
-        $shenase = self::where('id', $stationId)->first();
+        $shenaseId = $request['shenaseId'];
+        $shenase = self::where('id', $shenaseId)->first();
+
+        $scannedFile = $request->file('scannedFile');
+        $privacyFile = $request->file('privacyFile');
+
+        if ($request->hasFile('scannedFile')) {
+
+            $file = $shenase['scannedFile'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/shenaseh") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/shenaseh"), $fileName);
+
+
+            $shenase->scannedFile = $fileName;
+
+
+        }
+        else {
+                $fileName = $shenase->scannedFile;
+            }
+
+
+
+        if ($request->hasFile('privacyFile')) {
+
+            $file = $shenase['privacyFile'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/shenaseh") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+
+            $date = date("h_i_sa");
+            $fileNameHash = $privacyFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $privacyFileName = "$file_name" . "_" . "$date" . "$format";
+
+            $privacyFile->move(public_path("/uploads/shenaseh"), $privacyFileName);
+
+
+            $shenase->privacyFile = $privacyFileName;
+
+
+        }
+        else {
+            $privacyFileName = $shenase->privacyFile;
+        }
+
+
         $shenase->update(array(
             "contractTitle" => $request['contractTitle'],
             "docNumber" => $request['docNumber'],
@@ -260,38 +246,10 @@ class ShenasnamePeiman extends Model
             "permissionNumber" => $request['permissionNumber'],
             "permissionNumberDate" => $permissionNumberDate,
             "contractTaraf" => $request['contractTaraf'],
+            "scannedFile" =>$fileName,
+            "privacyFile" =>$privacyFileName,
         ));
 
-
-        if ($request->hasfile('scannedFile')) {
-
-            $file = $request->file('scannedFile');
-            $path = $file->store('/uploads/shenaseh', 'public');
-            $fileName = File::basename($path);
-
-            $oldName = self::where('id',$stationId )->value('scannedFile');
-            File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
-
-            $shenase->update(array(
-                "scannedFile" => $fileName,
-            ));
-
-        }
-
-        if ($request->hasfile('privacyFile')) {
-
-            $file = $request->file('privacyFile');
-            $path = $file->store('/uploads/shenaseh', 'public');
-            $fileName = File::basename($path);
-
-            $oldName = self::where('id', $stationId)->value('privacyFile');
-            File::delete(public_path() . '/uploads/shenaseh/' . $oldName);
-
-            $shenase->update(array(
-                "privacyFile" => $fileName,
-            ));
-
-        }
 
         return $shenase;
 
@@ -328,11 +286,14 @@ class ShenasnamePeiman extends Model
     {
         $contractNumber = $request['contractNumber'];
         $shenaseId = $request['shenaseId'];
+
         if ($shenaseId) {
             $duplicateUsername = self::where('contractNumber', $contractNumber)->first();
+
             if ($duplicateUsername) {
                 $currentuser = self::where('id', $shenaseId)->
                 where('contractNumber', $contractNumber)->first();
+
                 if ($currentuser) {
                     return true;
                 } else {

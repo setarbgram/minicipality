@@ -20,7 +20,7 @@
     <form role="form" id="form" method="post" action="{{route('deliveryInfo-update',$delivery['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
-            {{--<input type="hidden" id="dtype" name="dtype" value="{{$delivery['type']}}">--}}
+            <input type="hidden" id="deliveryId" name="deliveryId" value="{{$delivery['id']}}">
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -97,8 +97,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="requestDate"
-                                               id="requestDate" value="{{$delivery['requestDate']}}">
+                                        <input class="form-control" type="text" name="requestDate" readonly
+                                               id="requestDate" value="{{\App\Helper\toPersianDate($delivery['requestDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -126,8 +126,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="invitationDate"
-                                               id="invitationDate" value="{{$delivery['invitationDate']}}">
+                                        <input class="form-control" type="text" name="invitationDate" readonly
+                                               id="invitationDate" value="{{\App\Helper\toPersianDate($delivery['invitationDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -155,8 +155,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$delivery['communicationDate']}}">
+                                        <input class="form-control" type="text" name="communicationDate" readonly
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($delivery['communicationDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -172,8 +172,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="commissionDate"
-                                               id="commissionDate" value="{{$delivery['commissionDate']}}">
+                                        <input class="form-control" type="text" name="commissionDate" readonly
+                                               id="commissionDate" value="{{\App\Helper\toPersianDate($delivery['commissionDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +206,7 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="file" name="file1" id="file1"
+                                        <input class="form-control" type="file" name="file" id="file"
                                                accept="application/pdf">
 
                                     </div>
@@ -283,6 +283,16 @@
 
     <script>
         $(document).ready(function () {
+
+
+            $(function () {
+                $('#requestDate').persianDatepicker();
+                $('#commissionDate').persianDatepicker();
+                $('#communicationDate').persianDatepicker();
+                $('#invitationDate').persianDatepicker();
+            });
+
+
             var type='{{$delivery['type']}}';
             if(type==0){
                 document.getElementById('hasEstimateDiv').style.display='none';

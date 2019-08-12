@@ -91,7 +91,7 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="secretariatDate"
-                                               id="secretariatDate">
+                                               id="secretariatDate" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -213,8 +213,10 @@
 
     <script>
         $(document).ready(function () {
-            document.getElementById("prepaymentPercent").disabled = false;
-            document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
+            $(function () {
+                $('#secretariatDate').persianDatepicker();
+            });
+
 
 
             $("#form").validate({
@@ -229,17 +231,6 @@
             })
         });
 
-        function displayItem(value) {
-            if (value == 0) {
-                document.getElementById("prepaymentPercent").disabled = true;
-                document.getElementById("prepaymentPercentLabel").style.color = '#d4d4d4';
 
-
-            } else {
-                document.getElementById("prepaymentPercent").disabled = false;
-                document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
-
-            }
-        }
     </script>
 @endsection

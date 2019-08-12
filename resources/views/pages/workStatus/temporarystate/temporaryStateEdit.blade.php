@@ -32,6 +32,7 @@
                     </div>
                     <div class="ibox-content">
 
+                        <input type="hidden" name="temporarystateId" id="temporarystateId" value="{{$temporarystate['id']}}" >
 
                         <div class="row">
 
@@ -90,8 +91,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="secretariatDate"
-                                               id="secretariatDate" value="{{$temporarystate['secretariatDate']}}">
+                                        <input class="form-control" type="text" name="secretariatDate" readonly
+                                               id="secretariatDate" value="{{\App\Helper\toPersianDate($temporarystate['secretariatDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -261,6 +262,10 @@
 
     <script>
         $(document).ready(function () {
+            $(function () {
+                $('#secretariatDate').persianDatepicker();
+            });
+
             document.getElementById("prepaymentPercent").disabled = false;
             document.getElementById("prepaymentPercentLabel").style.color = '#676a6c';
             displayItem('{{$temporarystate['prepayment']}}');

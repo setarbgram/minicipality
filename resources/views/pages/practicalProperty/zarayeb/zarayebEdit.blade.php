@@ -32,6 +32,7 @@
                     </div>
                     <div class="ibox-content">
 
+                        <input type="hidden" name="zarayebId" id="zarayebId" value="{{$zarayeb['id']}}" >
 
                         <div class="row">
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">

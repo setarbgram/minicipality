@@ -32,7 +32,7 @@
                     </div>
                     <div class="ibox-content">
 
-
+                        <input type="hidden" name="sheetId" id="sheetId" value="{{$sheet['id']}}" >
                         <div class="row">
 
                             <div class=" col-lg-6 col-sm-12 col-xs-12  ">
@@ -136,8 +136,8 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
 
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$sheet['communicationDate']}}">
+                                        <input class="form-control" type="text" name="communicationDate" readonly
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($sheet['communicationDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,9 @@
     <script>
         $(document).ready(function () {
 
-
+            $(function () {
+                $('#communicationDate').persianDatepicker();
+            });
 
             document.getElementById("patternAgeNO").disabled = true;
             document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';

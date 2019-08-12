@@ -32,6 +32,7 @@
                     </div>
                     <div class="ibox-content">
 
+                        <input type="hidden" name="adjustmentstateId" id="adjustmentstateId" value="{{$adjustmentstate['id']}}" >
 
                         <div class="row">
 
@@ -90,8 +91,8 @@
                                     </div>
 
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="secretariatDate"
-                                               id="secretariatDate" value="{{$adjustmentstate['secretariatDate']}}">
+                                        <input class="form-control" type="text" name="secretariatDate" readonly
+                                               id="secretariatDate" value="{{\App\Helper\toPersianDate($adjustmentstate['secretariatDate'])}}">
                                     </div>
                                 </div>
                             </div>
@@ -249,7 +250,9 @@
 
     <script>
         $(document).ready(function () {
-
+            $(function () {
+                $('#secretariatDate').persianDatepicker();
+            });
             $("#form").validate({
                 rules: {
                     contractID: {

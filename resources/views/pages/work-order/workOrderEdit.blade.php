@@ -16,9 +16,10 @@
 @endsection
 @section('contents')
 
-    <form role="form" id="form" method="post" {{--action="{{route('workOrder-create')}}"--}} enctype="multipart/form-data">
+    <form role="form" id="form" method="post" action="{{route('workOrder-update',$order['id'])}}" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="row" style="margin-top: 30px;">
+            <input type="hidden" name="orderId" id="orderId" value="{{$order['id']}}" >
 
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
@@ -92,8 +93,8 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
-                                        <input class="form-control" type="text" name="communicationDate"
-                                               id="communicationDate" value="{{$order['communicationDate']}}">
+                                        <input class="form-control" type="text" name="communicationDate" readonly
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($order['communicationDate'])}}">
 
                                     </div>
                                 </div>
@@ -133,7 +134,7 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="{{--form-group col-sm-offset-0--}}">
-                                    <button class="btn btn-primary main-btn" onclick="edit(this)"  type="button" id="submitBtn">
+                                    <button class="btn btn-primary main-btn"   type="submit" id="submitBtn">
                                         ویرایش اطلاعات
                                     </button>
                                 </div>
@@ -154,9 +155,11 @@
 
     <script>
         $(document).ready(function () {
-            function edit (inp) {
-                event.preventDefault();
-            }
+
+            $(function () {
+                $('#communicationDate').persianDatepicker();
+            });
+
 
             $("#form").validate({
                 rules: {

@@ -30,7 +30,6 @@ function miladiToShamsi($time, $hour = null)
         $miiladi = $miladi[0];
         $fMiladi = explode('-', $miiladi);
     }
-
     $fMiladiii = \Morilog\Jalali\CalendarUtils::toJalali($fMiladi[0], $fMiladi[1], $fMiladi[2]);
     if ($fMiladiii[1] < 10) {
         $fMiladiii[1] = '0' . $fMiladiii[1];
