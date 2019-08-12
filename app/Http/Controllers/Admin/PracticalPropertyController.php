@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+<<<<<<< HEAD
+use App\Models\Raste;
+use App\Models\Rastetype;
+use App\Models\Sheet;
+=======
 use App\Models\Patternagetype;
 use App\Models\Raste;
 use App\Models\Rastetype;
 use App\Models\Sheet;
 use App\Models\Sheettype;
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 use App\Models\ShenasnamePeiman;
 use App\Models\Zarayeb;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Facades\Session;
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 
 class PracticalPropertyController extends Controller
 {
@@ -32,12 +41,51 @@ class PracticalPropertyController extends Controller
 
 
 //    ---------------------------raste----------------------------
+<<<<<<< HEAD
+    public function show()
+=======
     public function showRaste()
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     {
         $shenaseObj = new ShenasnamePeiman();
         $rasteTypeObj=new Rastetype();
         $types=$rasteTypeObj->getAllTypes();
         $cotractNum = $shenaseObj->getAllContractID();
+<<<<<<< HEAD
+        return view('pages.communication.communication',compact('cotractNum','types'));
+    }
+
+    public function createCommunication(Request $request)
+    {
+        $communicationObj = new Communication();
+        $communication = $communicationObj->createCommunication($request);
+        return Redirect(route('communication-List'))->with(Session::flash('flash_message', 'ابلاغیه با موفقیت ثبت شد!'));
+    }
+
+    public function editCommunication($communicationId)
+    {
+        $communicationObj = new Communication();
+        $communication = $communicationObj->findCommunication($communicationId);
+        $shenaseObj = new ShenasnamePeiman();
+        $cotractNum = $shenaseObj->getAllContractID();
+        $communicationTypeObj=new Communicationtype();
+        $types=$communicationTypeObj->getAllTypes();
+
+        return view('pages.communication.communicationEdit', compact('communication','cotractNum','types'));
+    }
+
+    public function destroy(Request $request)
+    {
+        if ($request['communication_check']) {
+            $communicationObj = new Communication();
+            $communicationObj->removeCommunication($request);
+
+
+            return back()->with(Session::flash('flash_message', 'ابلاغیه  با موفقیت حذف شد!'));
+        } else {
+            return back()->with(Session::flash('flash_d_message', 'انتخاب یک ابلاغیه الزامی است!'));
+        }
+=======
         return view('pages.practicalProperty.raste.raste',compact('cotractNum','types'));
     }
 
@@ -129,6 +177,7 @@ class PracticalPropertyController extends Controller
         $sheet = $sheetObj->createSheet($request);
         return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'شیت آزمایشگاهی با موفقیت ثبت شد!'));
 
+>>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     }
 
 

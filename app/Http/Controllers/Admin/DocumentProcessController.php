@@ -44,6 +44,14 @@ class DocumentProcessController extends Controller
         return view('pages.document-process.documentEdit', compact('shenase','cotractTypes'));
     }
 
+    public function updateShenasnamePeiman(Request $request)
+    {
+        $shenaseObj = new ShenasnamePeiman();
+        $shenaseObj->updateShenase($request);
+
+        return Redirect(route('contractor-list'))->with(Session::flash('flash_message', 'شناسه پیمان با موفقیت ویرایش شد!'));
+    }
+
     public function destroy(Request $request)
     {
         if ($request['shenase_check']) {

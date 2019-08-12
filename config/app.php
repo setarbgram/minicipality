@@ -168,7 +168,7 @@ return [
         /*
          * Package Service Providers...
          */
-//        Morilog\Jalali\JalaliServiceProvider::class,
+        Morilog\Jalali\JalaliServiceProvider::class,
         /*
          * Application Service Providers...
          */
