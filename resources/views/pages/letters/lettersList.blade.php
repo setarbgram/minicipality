@@ -79,8 +79,9 @@
                     <div class="tab-content">
                         <div id="notifications" class="container tab-pane active" style="min-height: 200px"><br>
                             <form id="notificationsForm" method="post" action="">
-                                {{method_field('DELETE')}}
+{{--                                {{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="notificationsForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -107,7 +108,7 @@
                                             تعریف اخطار</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="notifications_delete" id="notifications_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -124,8 +125,8 @@
 
                         <div id="cementfactory" class="container tab-pane fade"><br>
                             <form id="cementfactoryForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="cementfactoryForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -152,7 +153,7 @@
                                             تعریف سیمان</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="ceman_delete" id="ceman_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -168,8 +169,9 @@
                         {{-------------------------------------finish cementfactory--------------------------------------}}
                         <div id="driving" class="container tab-pane fade"><br>
                             <form id="drivingForm" method="post" action="">
-                                {{method_field('DELETE')}}
+
                                 {{ csrf_field() }}
+                                <input type="hidden" value="drivingForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -196,7 +198,7 @@
                                             تعریف راهنمایی و رانندگی</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="driving_delete" id="driving_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -214,8 +216,9 @@
 
                         <div id="fuel" class="container tab-pane fade"><br>
                                 <form id="fuelsForm" method="post" action="">
-                                    {{method_field('DELETE')}}
+
                                     {{ csrf_field() }}
+                                    <input type="hidden" value="fuelsForm" name="formType">
                                     <div class="table-responsive">
                                         <table class="table table-striped">
                                             <thead>
@@ -242,7 +245,7 @@
                                                 تعریف سوخت </a>
                                         </div>
                                         <div style="float: right">
-                                            <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                            <button class="btn btn-primary" name="fuel_delete" id="fuel_delete">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                 حذف</button>
                                         </div>
@@ -259,8 +262,8 @@
                         <div id="release" class="container tab-pane fade"><br>
 
                             <form id="releaseForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="releaseForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -285,7 +288,7 @@
                                             تعریف آزادسازی </a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="release_delete" id="release_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -301,8 +304,8 @@
                         {{-------------------------------------finish release--------------------------------------}}
                         <div id="insurance" class="container tab-pane fade"><br>
                             <form id="insuranceForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="insuranceForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -327,7 +330,7 @@
                                             تعریف بیمه </a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="insurance_delete" id="insurance_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -342,8 +345,8 @@
 
                         <div id="recertification" class="container tab-pane fade"><br>
                             <form id="recertificationForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="recertificationForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -368,7 +371,7 @@
                                             تعریف اصلاحیه </a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="recertification_delete" id="recertification_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -382,8 +385,9 @@
                         {{-------------------------------------finish recertification--------------------------------------}}
                         <div id="others" class="container tab-pane fade"><br>
                             <form id="otherForm" method="post" action="">
-                                {{method_field('DELETE')}}
+{{--                                {{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="otherForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -408,7 +412,7 @@
                                             تعریف متفرقه </a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="others_delete" id="others_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -423,8 +427,9 @@
                         {{-------------------------------------finish others--------------------------------------}}
                         <div id="laboratory" class="container tab-pane fade"><br>
                             <form id="laboratoryForm" method="post" action="">
-                                {{method_field('DELETE')}}
+{{--                                {{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="laboratoryForm" name="formType">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -449,7 +454,7 @@
                                             تعریف آزمایشگاه </a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary" name="laboratory_delete" id="laboratory_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -490,6 +495,79 @@
 
 
         });
+
+
+        document.getElementById("notifications_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('notificationsForm');
+        });
+        document.getElementById("ceman_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('cementfactoryForm');
+        });
+        document.getElementById("driving_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('drivingForm');
+        });
+        document.getElementById("fuel_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('fuelsForm');
+        });
+        document.getElementById("release_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('releaseForm');
+        });
+        document.getElementById("insurance_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('insuranceForm');
+        });
+        document.getElementById("recertification_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('recertificationForm');
+        });
+        document.getElementById("others_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('otherForm');
+        });
+        document.getElementById("laboratory_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('laboratoryForm');
+        });
+
+
+        var archiveActivity = function (formID) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/services/archiveActivity/"+formID,
+                type: "post",
+                dataType: "json",
+                data: $('#'+formID).serialize()
+            }).done(function (res) {
+
+                if (res == '0') {
+                    toastr.warning('ابتدا موارد مورد نظر را انتخاب کنید.');
+                }
+                else {
+                    location.reload();
+                    toastr.success('مورد / موارد موردنظر با موفقیت حذف شد!');
+                }
+
+            }).fail(function (e) {
+                if (e.status == 500) {
+                    toastr.warning("خطا. زمان شما جهت ورود منقضی شده. مجددا وارد سیسیتم شوید.");
+                    window.location.href = '/logout';
+                } else if (e.status == 400) {
+                    toastr.warning("خطا در برقراری ارتباط با سرور. لطفا مجددا تلاش کنید.");
+                } else {
+                    toastr.warning("خطا در برقراری ارتباط با سرور. لطفا مجددا تلاش کنید.");
+                }
+
+            });
+
+        };
+
     </script>
 
 @endsection

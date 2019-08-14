@@ -226,6 +226,7 @@ Route::group(['prefix' => '/web-service', 'namespace' => 'Service'], function ()
 });
 
 
+Route::post('/services/archiveActivity/{formId}', ['middleware' => 'admin', 'uses' =>  'Admin\AdminController@archiveActivity']);
 /*___________________VALIDATION___________________*/
 Route::post('/validation/username', 'validationController@validateUserName');
 Route::post('/validation/contractNumber', 'validationController@contractNumber');

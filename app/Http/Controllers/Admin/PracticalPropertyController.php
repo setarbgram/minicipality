@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-<<<<<<< HEAD
 use App\Models\Raste;
 use App\Models\Rastetype;
 use App\Models\Sheet;
-=======
 use App\Models\Patternagetype;
-use App\Models\Raste;
-use App\Models\Rastetype;
-use App\Models\Sheet;
+
 use App\Models\Sheettype;
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 use App\Models\ShenasnamePeiman;
 use App\Models\Zarayeb;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Session;
-
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
 
 class PracticalPropertyController extends Controller
 {
@@ -30,67 +21,27 @@ class PracticalPropertyController extends Controller
         $rasteObj = new Raste();
         $rastes = $rasteObj->getAllRaste();
 
-        $zarayebObj=new Zarayeb();
-        $zarayebs=$zarayebObj->getAllZarayeb();
+        $zarayebObj = new Zarayeb();
+        $zarayebs = $zarayebObj->getAllZarayeb();
 
-        $sheetObj=new Sheet();
-        $sheets=$sheetObj->getAllSheet();
+        $sheetObj = new Sheet();
+        $sheets = $sheetObj->getAllSheet();
 
-        return view('pages.practicalProperty.practicalPropertyList',compact('rastes','zarayebs','sheets'));
+        return view('pages.practicalProperty.practicalPropertyList', compact('rastes', 'zarayebs', 'sheets'));
     }
 
 
 //    ---------------------------raste----------------------------
-<<<<<<< HEAD
-    public function show()
-=======
+
     public function showRaste()
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     {
         $shenaseObj = new ShenasnamePeiman();
-        $rasteTypeObj=new Rastetype();
-        $types=$rasteTypeObj->getAllTypes();
+        $rasteTypeObj = new Rastetype();
+        $types = $rasteTypeObj->getAllTypes();
         $cotractNum = $shenaseObj->getAllContractID();
-<<<<<<< HEAD
-        return view('pages.communication.communication',compact('cotractNum','types'));
+        return view('pages.practicalProperty.raste.raste', compact('cotractNum', 'types'));
     }
 
-    public function createCommunication(Request $request)
-    {
-        $communicationObj = new Communication();
-        $communication = $communicationObj->createCommunication($request);
-        return Redirect(route('communication-List'))->with(Session::flash('flash_message', 'ابلاغیه با موفقیت ثبت شد!'));
-    }
-
-    public function editCommunication($communicationId)
-    {
-        $communicationObj = new Communication();
-        $communication = $communicationObj->findCommunication($communicationId);
-        $shenaseObj = new ShenasnamePeiman();
-        $cotractNum = $shenaseObj->getAllContractID();
-        $communicationTypeObj=new Communicationtype();
-        $types=$communicationTypeObj->getAllTypes();
-
-        return view('pages.communication.communicationEdit', compact('communication','cotractNum','types'));
-    }
-
-    public function destroy(Request $request)
-    {
-        if ($request['communication_check']) {
-            $communicationObj = new Communication();
-            $communicationObj->removeCommunication($request);
-
-
-            return back()->with(Session::flash('flash_message', 'ابلاغیه  با موفقیت حذف شد!'));
-        } else {
-            return back()->with(Session::flash('flash_d_message', 'انتخاب یک ابلاغیه الزامی است!'));
-        }
-=======
-        return view('pages.practicalProperty.raste.raste',compact('cotractNum','types'));
-    }
-
-
-    
 
     public function createRaste(Request $request)
     {
@@ -106,10 +57,19 @@ class PracticalPropertyController extends Controller
         $raste = $rasteObj->findRaste($rasteId);
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
-        $rasteTypeObj=new Rastetype();
-        $types=$rasteTypeObj->getAllTypes();
+        $rasteTypeObj = new Rastetype();
+        $types = $rasteTypeObj->getAllTypes();
 
-        return view('pages.practicalProperty.raste.rasteEdit', compact('raste','cotractNum','types'));
+        return view('pages.practicalProperty.raste.rasteEdit', compact('raste', 'cotractNum', 'types'));
+    }
+
+    public function updateRaste(Request $request)
+    {
+        $rasteObj = new Raste();
+        $rasteObj->updateRaste($request);
+
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'رسته ی نوع برآورد با موفقیت ویرایش شد!'));
+
     }
 
     public function destroyRaste(Request $request)
@@ -131,17 +91,15 @@ class PracticalPropertyController extends Controller
     {
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
-        return view('pages.practicalProperty.zarayeb.zarayeb',compact('cotractNum'));
+        return view('pages.practicalProperty.zarayeb.zarayeb', compact('cotractNum'));
     }
-
-
 
 
     public function createZarayeb(Request $request)
     {
         $zarayebObj = new Zarayeb();
         $zarayeb = $zarayebObj->createZarayeb($request);
-        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'ضرایب متعلقه با موفقیت ثبت شد!'));
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'ضریب متعلقه با موفقیت ثبت شد!'));
 
     }
 
@@ -152,23 +110,29 @@ class PracticalPropertyController extends Controller
         $zarayeb = $zarayebObj->findZarayeb($zarayebId);
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
-        return view('pages.practicalProperty.zarayeb.zarayebEdit', compact('zarayeb','cotractNum'));
+        return view('pages.practicalProperty.zarayeb.zarayebEdit', compact('zarayeb', 'cotractNum'));
     }
+
+    public function updateZarayeb(Request $request)
+    {
+        $zarayebObj = new Zarayeb();
+        $zarayebObj->updateZarayeb($request);
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'ضریب متعلقه با موفقیت ویرایش شد!'));
+    }
+
 
     //    ---------------------------sheet----------------------------
 
     public function showSheet()
     {
         $shenaseObj = new ShenasnamePeiman();
-        $sheetTypeObj=new Sheettype();
-        $types=$sheetTypeObj->getAllTypes();
-        $patternObj=new Patternagetype();
-        $patterns=$patternObj->getAllTypes();
+        $sheetTypeObj = new Sheettype();
+        $types = $sheetTypeObj->getAllTypes();
+        $patternObj = new Patternagetype();
+        $patterns = $patternObj->getAllTypes();
         $cotractNum = $shenaseObj->getAllContractID();
-        return view('pages.practicalProperty.sheet.sheet',compact('cotractNum','types','patterns'));
+        return view('pages.practicalProperty.sheet.sheet', compact('cotractNum', 'types', 'patterns'));
     }
-
-
 
 
     public function createsheet(Request $request)
@@ -176,8 +140,6 @@ class PracticalPropertyController extends Controller
         $sheetObj = new Sheet();
         $sheet = $sheetObj->createSheet($request);
         return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'شیت آزمایشگاهی با موفقیت ثبت شد!'));
-
->>>>>>> 61db029abb854631eb250e082096bf8cae25f61f
     }
 
 
@@ -187,11 +149,19 @@ class PracticalPropertyController extends Controller
         $sheet = $sheetObj->findSheet($sheetId);
         $shenaseObj = new ShenasnamePeiman();
         $cotractNum = $shenaseObj->getAllContractID();
-        $sheetTypeObj=new Sheettype();
-        $types=$sheetTypeObj->getAllTypes();
-        $patternObj=new Patternagetype();
-        $patterns=$patternObj->getAllTypes();
-        return view('pages.practicalProperty.sheet.sheetEdit', compact('sheet','cotractNum','types','patterns'));
+        $sheetTypeObj = new Sheettype();
+        $types = $sheetTypeObj->getAllTypes();
+        $patternObj = new Patternagetype();
+        $patterns = $patternObj->getAllTypes();
+        return view('pages.practicalProperty.sheet.sheetEdit', compact('sheet', 'cotractNum', 'types', 'patterns'));
+    }
+
+
+    public function updateSheet(Request $request)
+    {
+        $sheetObj = new Sheet();
+        $sheetObj->updateSheet($request);
+        return Redirect(route('practicalProperty-List'))->with(Session::flash('flash_message', 'شیت آزمایشگاهی با موفقیت ویرایش شد!'));
     }
 
 }
