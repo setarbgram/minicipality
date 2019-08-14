@@ -107,4 +107,13 @@ class Driving extends Model
     }
 
 
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::find($id);
+            $activity->delete();
+        }
+        return 'true';
+    }
+
 }

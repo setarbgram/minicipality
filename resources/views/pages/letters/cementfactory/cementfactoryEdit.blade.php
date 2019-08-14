@@ -46,7 +46,7 @@
 
                                         <select class="form-control" type="text" name="contractID" id="contractID">
                                             @foreach($cotractNum as $num)
-                                                <option value="{{$num}}" {{($raste['contractID']==$num)?"Selected":""}}>{{$num}}</option>
+                                                <option value="{{$num}}" {{($cementfactory['contractID']==$num)?"Selected":""}}>{{$num}}</option>
                                             @endforeach
                                         </select>
 
@@ -78,7 +78,7 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate" value="{{\App\Helper\toPersianDate($cementfactory['communicationID'])}}">
+                                               id="communicationDate" value="{{\App\Helper\toPersianDate($cementfactory['communicationDate'])}}">
                                     </div>
                                 </div>
                             </div>

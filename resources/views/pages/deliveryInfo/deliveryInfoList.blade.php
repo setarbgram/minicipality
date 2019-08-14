@@ -91,7 +91,7 @@
                                             تعریف تحویل موقت</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -143,7 +143,7 @@
                                             تعریف تحویل قطعی</a>
                                     </div>
                                     <div style="float: right">
-                                        <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>

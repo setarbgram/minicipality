@@ -59,4 +59,58 @@ class Cementfactory extends Model
 
     }
 
+    public function updateCementfactory($request)
+    {
+        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $cementfactoryId = $request['cementfactoryId'];
+        $cementfactory = self::where('id', $cementfactoryId)->first();
+
+        $scannedFile = $request->file('file');
+
+        if ($request->hasFile('file')) {
+            $file = $cementfactory['file'];
+            if (strlen($file)) {
+                $path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+
+            $date = date("h_i_sa");
+            $fileNameHash = $scannedFile->hashName();
+            $format = strtolower(strrchr($fileNameHash, '.'));
+
+            $info = pathinfo($fileNameHash);
+            $file_name = basename($fileNameHash, '.' . $info['extension']);
+            $fileName = "$file_name" . "_" . "$date" . "$format";
+
+            $scannedFile->move(public_path("/uploads/letters"), $fileName);
+
+
+            $cementfactory->file = $fileName;
+        }
+        else {
+            $fileName = $cementfactory->file;
+        }
+
+
+        $cementfactory->update(array(
+            "contractID" => $request['contractID'],
+            "communicationID" => $request['communicationID'],
+            "communicationDate" => $communicationDate,
+
+        ));
+
+        return $cementfactory;
+    }
+
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::find($id);
+            $activity->delete();
+        }
+        return 'true';
+    }
 }
