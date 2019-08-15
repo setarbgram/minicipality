@@ -32,7 +32,7 @@ class Release extends Model
 
     public function createRelease($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $release = self::create([
             "contractID" => $request['contractID'],
@@ -64,7 +64,7 @@ class Release extends Model
 
     public function updateRelease($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $releaseId = $request['releaseId'];
         $release = self::where('id', $releaseId)->first();
@@ -113,10 +113,16 @@ class Release extends Model
     public function archive($activitiesID)
     {
         foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
         }
-        return 'true';
+        self::destroy($activitiesID); //users:name of checkbox
     }
 
 

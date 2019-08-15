@@ -72,19 +72,6 @@ class PracticalPropertyController extends Controller
 
     }
 
-    public function destroyRaste(Request $request)
-    {
-        if ($request['raste_check']) {
-            $rasteObj = new raste();
-            $rasteObj->removeRaste($request);
-
-            return redirect('/panel/practical-property/list')->with(Session::flash('flash_message', 'رسته ی نوع برآورد با موفقیت حذف شد!'));
-        } else {
-            return redirect('/panel/practical-property/list')->with(Session::flash('flash_d_message', 'انتخاب یک رسته ی نوع برآورد الزامی است!'));
-        }
-
-    }
-
     //    ---------------------------zarayeb----------------------------
 
     public function showZarayeb()

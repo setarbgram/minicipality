@@ -46,10 +46,11 @@ class Delivery extends Model
     public function createdelivery($request)
     {
 
-        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
-        $invitationDate = \App\Helper\shamsiToMiladi($request['invitationDate']);
-        $commissionDate = \App\Helper\shamsiToMiladi($request['commissionDate']);
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $requestDate =($request['requestDate'])?\App\Helper\shamsiToMiladi($request['requestDate']):null;
+        $invitationDate =($request['invitationDate'])?\App\Helper\shamsiToMiladi($request['invitationDate']):null;
+        $commissionDate =($request['commissionDate'])?\App\Helper\shamsiToMiladi($request['commissionDate']):null;
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
+
 
         $hasEstimate=($request['dtype']==0)?-1:$request['dtype'];
         $delivery = self::create([
@@ -131,10 +132,11 @@ class Delivery extends Model
 
     public function updateDelivery($request)
     {
-        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
-        $invitationDate = \App\Helper\shamsiToMiladi($request['invitationDate']);
-        $commissionDate = \App\Helper\shamsiToMiladi($request['commissionDate']);
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+
+        $requestDate =($request['requestDate'])?\App\Helper\shamsiToMiladi($request['requestDate']):null;
+        $invitationDate =($request['invitationDate'])?\App\Helper\shamsiToMiladi($request['invitationDate']):null;
+        $commissionDate =($request['commissionDate'])?\App\Helper\shamsiToMiladi($request['commissionDate']):null;
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $hasEstimate=($request['dtype']==0)?-1:$request['dtype'];
         $deliveryId = $request['deliveryId'];
@@ -248,7 +250,29 @@ class Delivery extends Model
         return $delivery;
 
 
+    }
+
+    public function archive($deliveriesID)
+    {
+        foreach ($deliveriesID as $id) {
+            $delivery= self::where('id', $id)->first();
+            $file1 = $delivery['file1'];
+            $file2 = $delivery['file2'];
+            if (strlen($file1)) {
+                $img_path = public_path("/uploads/deliveryInfo") . '/' . $file1;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
 
 
+            if (strlen($file2)) {
+                $img_path = public_path("/uploads/deliveryInfo") . '/' . $file2;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($deliveriesID); //users:name of checkbox
     }
 }

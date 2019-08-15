@@ -113,7 +113,7 @@
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="contractDate" id="contractDate"
-                                               readonly value="{{\App\Helper\toPersianDate($shenase['contractDate'])}}">
+                                               readonly value="{{($shenase['contractDate'])?\App\Helper\toPersianDate($shenase['contractDate']):''}}">
 
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="requestDate" id="requestDate"
-                                               readonly value="{{\App\Helper\toPersianDate($shenase['requestDate'])}}">
+                                           readonly value="{{($shenase['requestDate'])?\App\Helper\toPersianDate($shenase['requestDate']):''}}">
 
                                     </div>
                                 </div>
@@ -482,7 +482,8 @@
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
                                         <input class="form-control" type="text" name="tavafohnameDate" readonly
-                                               id="tavafohnameDate" value="{{\App\Helper\toPersianDate($shenase['tavafohnameDate'])}}">
+                                               id="tavafohnameDate"  value="{{($shenase['tavafohnameDate'])?\App\Helper\toPersianDate($shenase['tavafohnameDate']):''}}">
+
 
                                     </div>
                                 </div>
@@ -515,8 +516,7 @@
 
                                         <input class="form-control" type="text" name="komesionMoamelatNumDate"
                                                id="komesionMoamelatNumDate" readonly
-                                               value="{{\App\Helper\toPersianDate($shenase['komesionMoamelatNumDate'])}}">
-
+                                               value="{{($shenase['komesionMoamelatNumDate'])?\App\Helper\toPersianDate($shenase['komesionMoamelatNumDate']):''}}">
                                     </div>
                                 </div>
                             </div>
@@ -549,7 +549,7 @@
 
                                         <input class="form-control" type="text" name="monagheseSessionNumberDate"
                                                id="monagheseSessionNumberDate" readonly
-                                               value="{{\App\Helper\toPersianDate($shenase['monagheseSessionNumberDate'])}}">
+                                               value="{{($shenase['monagheseSessionNumberDate'])?\App\Helper\toPersianDate($shenase['monagheseSessionNumberDate']):''}}">
 
                                     </div>
                                 </div>
@@ -581,7 +581,8 @@
                                     <div class="col-lg-7 col-sm-8 form-group ">
 
                                         <input class="form-control" type="text" name="permissionNumberDate" readonly
-                                               id="permissionNumberDate" value="{{\App\Helper\toPersianDate($shenase['permissionNumberDate'])}}">
+                                               id="permissionNumberDate"
+                                               value="{{($shenase['permissionNumberDate'])?\App\Helper\toPersianDate($shenase['permissionNumberDate']):''}}">
 
                                     </div>
                                 </div>

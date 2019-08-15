@@ -31,7 +31,7 @@ class Recertification extends Model
 
     public function createRecertification($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $recertification = self::create([
             "contractID" => $request['contractID'],
@@ -62,7 +62,7 @@ class Recertification extends Model
 
     public function updateRecertification($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $recertificationId = $request['recertificationId'];
         $recertification = self::where('id', $recertificationId)->first();
@@ -110,9 +110,15 @@ class Recertification extends Model
     public function archive($activitiesID)
     {
         foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
         }
-        return 'true';
+        self::destroy($activitiesID); //users:name of checkbox
     }
 }

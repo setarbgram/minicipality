@@ -98,7 +98,9 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="requestDate" readonly
-                                               id="requestDate" value="{{\App\Helper\toPersianDate($delivery['requestDate'])}}">
+                                               id="requestDate"
+                                               value="{{($delivery['requestDate'])?\App\Helper\toPersianDate($delivery['requestDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +129,9 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="invitationDate" readonly
-                                               id="invitationDate" value="{{\App\Helper\toPersianDate($delivery['invitationDate'])}}">
+                                               id="invitationDate"
+                                                value="{{($delivery['invitationDate'])?\App\Helper\toPersianDate($delivery['invitationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +160,8 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate" value="{{\App\Helper\toPersianDate($delivery['communicationDate'])}}">
+                                               id="communicationDate" value="{{($delivery['communicationDate'])?\App\Helper\toPersianDate($delivery['communicationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +178,9 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="commissionDate" readonly
-                                               id="commissionDate" value="{{\App\Helper\toPersianDate($delivery['commissionDate'])}}">
+                                               id="commissionDate"
+                                               value="{{($delivery['commissionDate'])?\App\Helper\toPersianDate($delivery['commissionDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

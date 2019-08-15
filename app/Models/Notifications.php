@@ -32,7 +32,7 @@ class Notifications extends Model
 
     public function createNotifications($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $notification = self::create([
             "contractID" => $request['contractID'],
@@ -64,7 +64,7 @@ class Notifications extends Model
 
     public function updateNotifications($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $notificationId = $request['notificationId'];
         $notification = self::where('id', $notificationId)->first();
@@ -113,10 +113,16 @@ class Notifications extends Model
     public function archive($activitiesID)
     {
         foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
         }
-        return 'true';
+        self::destroy($activitiesID); //users:name of checkbox
     }
 
 

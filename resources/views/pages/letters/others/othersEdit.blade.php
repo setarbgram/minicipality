@@ -78,7 +78,9 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate" value="{{\App\Helper\toPersianDate($others['communicationDate'])}}">
+                                               id="communicationDate"
+                                               value="{{($others['communicationDate'])?\App\Helper\toPersianDate($others['communicationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

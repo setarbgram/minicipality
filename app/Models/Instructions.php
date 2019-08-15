@@ -35,7 +35,7 @@ class Instructions extends Model
     public function createWorkOrder($request)
     {
 
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $order = self::create([
             "contractID" => $request['contractID'],
@@ -69,7 +69,7 @@ class Instructions extends Model
     public function updateWorkOrder($request)
     {
 
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $orderId = $request['orderId'];
         $order = self::where('id', $orderId)->first();

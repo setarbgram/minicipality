@@ -91,7 +91,9 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="secretariatDate" readonly
-                                               id="secretariatDate" value="{{\App\Helper\toPersianDate($predefinitestate['secretariatDate'])}}">
+                                               id="secretariatDate"
+                                               value="{{($predefinitestate['secretariatDate'])?\App\Helper\toPersianDate($predefinitestate['secretariatDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

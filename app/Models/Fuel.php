@@ -30,7 +30,7 @@ class Fuel extends Model
 
     public function createFuels($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $fuel = self::create([
             "contractID" => $request['contractID'],
@@ -61,7 +61,7 @@ class Fuel extends Model
 
     public function updateFuel($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $FuelId = $request['fuelId'];
         $fuel = self::where('id', $FuelId)->first();
@@ -110,10 +110,16 @@ class Fuel extends Model
     public function archive($activitiesID)
     {
         foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
         }
-        return 'true';
+        self::destroy($activitiesID); //users:name of checkbox
     }
 
 }

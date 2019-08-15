@@ -124,23 +124,23 @@ class Zarayeb extends Model
 
     }
 
+    
 
-    public function removeZarayeb($request)
+    public function archive($activitiesID)
     {
-        foreach ($request['zarayeb_check'] as $zarayebId) {
-            $zarayeb = self::where('id', $zarayebId)->first();
+        foreach ($activitiesID as $id) {
+            $zarayeb = self::where('id', $id)->first();
             $file = $zarayeb['file'];
-
             if (strlen($file)) {
                 $img_path = public_path("/uploads/zarayeb") . '/' . $file;
                 if (file_exists($img_path)) {
                     unlink($img_path);
                 }
             }
-            
         }
-        zarayeb::destroy($request['zarayeb_check']); //users:name of checkbox
+        self::destroy($activitiesID); //users:name of checkbox
     }
+
 
 
 }

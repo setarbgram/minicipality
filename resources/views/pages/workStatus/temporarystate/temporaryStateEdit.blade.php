@@ -92,7 +92,9 @@
 
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="secretariatDate" readonly
-                                               id="secretariatDate" value="{{\App\Helper\toPersianDate($temporarystate['secretariatDate'])}}">
+                                               id="secretariatDate"
+                                              value="{{($temporarystate['secretariatDate'])?\App\Helper\toPersianDate($temporarystate['secretariatDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

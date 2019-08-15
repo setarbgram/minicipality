@@ -137,7 +137,9 @@
                                     <div class="col-lg-7 col-sm-8 form-group">
 
                                         <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate" value="{{\App\Helper\toPersianDate($sheet['communicationDate'])}}">
+                                                id="communicationDate"
+                                                value="{{($sheet['communicationDate'])?\App\Helper\toPersianDate($sheet['communicationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>
@@ -197,14 +199,16 @@
 @section('scripts')
 
     <script>
+        $(function () {
+            $('#communicationDate').persianDatepicker();
+        });
+
         $(document).ready(function () {
 
-            $(function () {
-                $('#communicationDate').persianDatepicker();
-            });
 
-            document.getElementById("patternAgeNO").disabled = true;
-            document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';
+
+            // document.getElementById("patternAgeNO").disabled = true;
+            // document.getElementById("patternAgeNOLabel").style.color = '#d4d4d4';
             displayItem('{{$sheet['typeNO']}}');
         });
 

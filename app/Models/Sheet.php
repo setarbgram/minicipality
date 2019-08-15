@@ -33,7 +33,8 @@ class Sheet extends Model
 
     public function createSheet($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
+
         $patternAgeNO = ( $request['patternAgeNO']) ?  $request['patternAgeNO'] : 0;
         $sheet = self::create([
             "contractID" => $request['contractID'],
@@ -68,7 +69,8 @@ class Sheet extends Model
     public function updateSheet($request)
     {
 
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
+
         $patternAgeNO = ( $request['patternAgeNO']) ?  $request['patternAgeNO'] : 0;
         $sheetId = $request['sheetId'];
         $sheet = self::where('id', $sheetId)->first();
@@ -117,22 +119,19 @@ class Sheet extends Model
 
     }
 
-    public function removeSheet($request)
+    public function archive($activitiesID)
     {
-        foreach ($request['sheet_check'] as $sheetId) {
-            $sheet = self::where('id', $sheetId)->first();
+        foreach ($activitiesID as $id) {
+            $sheet = self::where('id', $id)->first();
             $file = $sheet['file'];
-
             if (strlen($file)) {
                 $img_path = public_path("/uploads/sheet") . '/' . $file;
                 if (file_exists($img_path)) {
                     unlink($img_path);
                 }
             }
-
-
         }
-        sheet::destroy($request['sheet_check']); //users:name of checkbox
+        self::destroy($activitiesID); //users:name of checkbox
     }
 
 }

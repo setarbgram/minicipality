@@ -62,6 +62,8 @@
                             <form id="rasteForm" name="rasteForm" method="post" action="">
                                 {{--{{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="rasteForm" name="formType">
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -76,6 +78,8 @@
                                                            name="raste_check[]" value="{{$raste['id']}}"> <a
                                                             href="{{route('raste-edit',$raste['id'])}}">{{$raste['contractID']}}</a>
                                                 </td>
+
+
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -91,8 +95,8 @@
                                     </div>
                                     <div style="float: right">
 
-                                        <button onclick="event.preventDefault();" class="btn btn-primary"
-                                                name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary"
+                                                name="raste_delete" id="raste_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف
                                         </button>
@@ -113,6 +117,8 @@
 
                                 {{-- {{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="zarayebForm" name="formType">
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -142,8 +148,8 @@
                                     </div>
                                     <div style="float: right">
 
-                                        <button onclick="event.preventDefault();" class="btn btn-primary"
-                                                name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary"
+                                                name="zarayeb_delete" id="zarayeb_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف
                                         </button>
@@ -162,6 +168,8 @@
                             <form id="sheetForm" method="post" action="">
                                 {{--{{method_field('DELETE')}}--}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="sheetForm" name="formType">
+
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -192,8 +200,8 @@
                                             تعریف شیت آزمایشگاهی</a>
                                     </div>
                                     <div style="float: right">
-                                        <button onclick="event.preventDefault();" class="btn btn-primary"
-                                                name="bulk_delete" id="bulk_delete">
+                                        <button class="btn btn-primary"
+                                                name="sheet_delete" id="sheet_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف
                                         </button>
@@ -234,6 +242,57 @@
 
 
         });
+
+
+        document.getElementById("sheet_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('sheetForm');
+        });
+
+        document.getElementById("zarayeb_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('zarayebForm');
+         });
+
+        document.getElementById("raste_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('rasteForm');
+        });
+
+
+        var archiveActivity = function (formID) {
+
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/services/archiveProperty/"+formID,
+                type: "post",
+                dataType: "json",
+                data: $('#'+formID).serialize()
+            }).done(function (res) {
+                if (res == '0') {
+                    toastr.warning('انتخاب یک مورد الزامی است!');
+                }
+                else {
+                    location.reload();
+                    toastr.success('مورد / موارد موردنظر با موفقیت حذف شد!');
+                }
+
+            }).fail(function (e) {
+                if (e.status == 500) {
+                    toastr.warning("خطا در برقراری ارتباط با سرور. لطفا مجددا تلاش کنید.");
+                    window.location.href = '/logout';
+                } else if (e.status == 400) {
+                    toastr.warning("انتخاب یک مورد الزامی است!");
+                } else {
+                    toastr.warning("انتخاب یک مورد الزامی است!");
+                }
+
+            });
+
+        };
     </script>
 
 @endsection

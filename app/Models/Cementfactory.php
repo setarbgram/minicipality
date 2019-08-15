@@ -30,7 +30,7 @@ class Cementfactory extends Model
 
     public function createCementfactory($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $cementfactory = self::create([
             "contractID" => $request['contractID'],
@@ -61,7 +61,7 @@ class Cementfactory extends Model
 
     public function updateCementfactory($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $cementfactoryId = $request['cementfactoryId'];
         $cementfactory = self::where('id', $cementfactoryId)->first();
@@ -108,9 +108,15 @@ class Cementfactory extends Model
     public function archive($activitiesID)
     {
         foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
         }
-        return 'true';
+        self::destroy($activitiesID); //users:name of checkbox
     }
 }

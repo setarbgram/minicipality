@@ -38,7 +38,7 @@ class Adjustmentstate extends Model
     public function createAdjustmentstate($request)
     {
 
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $adjustmentstate = self::create([
             "contractID" => $request['contractID'],
@@ -78,7 +78,7 @@ class Adjustmentstate extends Model
     public function updateAdjustmentstate($request)
     {
 
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $adjustmentstateId = $request['adjustmentstateId'];
         $adjustmentstate = self::where('id', $adjustmentstateId)->first();
@@ -134,5 +134,21 @@ class Adjustmentstate extends Model
 
     }
 
+
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/workStatus") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($activitiesID); //users:name of checkbox
+
+    }
 
 }

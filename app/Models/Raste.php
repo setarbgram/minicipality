@@ -100,21 +100,19 @@ class Raste extends Model
 
     }
 
-    public function removeRaste($request)
+    public function archive($activitiesID)
     {
-        foreach ($request['raste_check'] as $rasteId) {
-            $raste = self::where('id', $rasteId)->first();
+        foreach ($activitiesID as $id) {
+            $raste = self::where('id', $id)->first();
             $file = $raste['file'];
-
             if (strlen($file)) {
                 $img_path = public_path("/uploads/raste") . '/' . $file;
                 if (file_exists($img_path)) {
                     unlink($img_path);
                 }
             }
-
-
         }
-        raste::destroy($request['raste_check']); //users:name of checkbox
+        self::destroy($activitiesID); //users:name of checkbox
     }
+
 }

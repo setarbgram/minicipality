@@ -35,7 +35,7 @@ class Definitestate extends Model
     public function createDefinitestate($request)
     {
 
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $definitestate = self::create([
             "contractID" => $request['contractID'],
@@ -73,7 +73,7 @@ class Definitestate extends Model
     public function updateDefinitestate($request)
     {
 
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $definitestateId = $request['definitestateId'];
         $definitestate = self::where('id', $definitestateId)->first();
@@ -127,5 +127,18 @@ class Definitestate extends Model
     }
 
 
-
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/workStatus") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($activitiesID); //users:name of checkbox
+    }
 }

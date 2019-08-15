@@ -80,7 +80,9 @@
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
                                         <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate"  value="{{\App\Helper\toPersianDate($driving['communicationDate'])}}">
+                                               id="communicationDate"
+                                               value="{{($driving['communicationDate'])?\App\Helper\toPersianDate($driving['communicationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

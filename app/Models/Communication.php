@@ -32,7 +32,7 @@ class Communication extends Model
 
     public function createCommunication($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $communication = self::create([
             "contractID" => $request['contractID'],
@@ -65,7 +65,7 @@ class Communication extends Model
 
     public function updateCommunication($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $communicationId = $request['communicationId'];
         $communication = self::where('id', $communicationId)->first();

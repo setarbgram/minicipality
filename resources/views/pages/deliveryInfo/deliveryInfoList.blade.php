@@ -58,8 +58,8 @@
                     <div class="tab-content">
                         <div id="temporaryDelivery" class="container tab-pane active" style="min-height: 200px"><br>
                             <form id="temporaryDeliveryForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="temporaryDeliveryForm" name="formType">
 
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -74,8 +74,8 @@
                                         @foreach($temporaryDeliveries as $temporaryDelivery)
                                             <tr>
                                                 <td><input type="checkbox" class="i-checks shenase_check" name="temporaryDelivery_check[]" value="{{$temporaryDelivery['id']}}">  <a href="{{route('deliveryInfo-edit',$temporaryDelivery['id'])}}">{{$temporaryDelivery['contractID']}}</a></td>
-                                                <td>{{\App\Helper\toPersianDate($temporaryDelivery['requestDate'])}}</td>
-                                                <td>{{\App\Helper\toPersianDate($temporaryDelivery['invitationDate'])}}</td>
+                                                <td>{{($temporaryDelivery['requestDate'])?\App\Helper\toPersianDate($temporaryDelivery['requestDate']):''}}</td>
+                                                <td>{{($temporaryDelivery['invitationDate'])?\App\Helper\toPersianDate($temporaryDelivery['invitationDate']):''}}</td>
                                             </tr>
 
                                         @endforeach
@@ -91,7 +91,7 @@
                                             تعریف تحویل موقت</a>
                                     </div>
                                     <div style="float: right">
-                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button  class="btn btn-primary" name="temporaryDelivery_delete" id="temporaryDelivery_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -108,8 +108,8 @@
 
                         <div id="definiteDelivery" class="container tab-pane fade"><br>
                             <form id="definiteDeliveryForm" method="post" action="">
-                                {{method_field('DELETE')}}
                                 {{ csrf_field() }}
+                                <input type="hidden" value="definiteDeliveryForm" name="formType">
 
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -124,8 +124,8 @@
                                         @foreach($definiteDeliveries as $definiteDelivery)
                                             <tr>
                                                 <td><input type="checkbox" class="i-checks shenase_check" name="definiteDelivery_check[]" value="{{$definiteDelivery['id']}}">  <a href="{{route('deliveryInfo-edit',$definiteDelivery['id'])}}">{{$definiteDelivery['contractID']}}</a></td>
-                                                <td>{{\App\Helper\toPersianDate($definiteDelivery['requestDate'])}}</td>
-                                                <td>{{\App\Helper\toPersianDate($definiteDelivery['invitationDate'])}}</td>
+                                                <td>{{($definiteDelivery['requestDate'])?\App\Helper\toPersianDate($definiteDelivery['requestDate']):''}}</td>
+                                                <td>{{($definiteDelivery['invitationDate'])?\App\Helper\toPersianDate($definiteDelivery['invitationDate']):''}}</td>
 
 
                                             </tr>
@@ -143,7 +143,7 @@
                                             تعریف تحویل قطعی</a>
                                     </div>
                                     <div style="float: right">
-                                        <button onclick="event.preventDefault();" class="btn btn-primary" name="bulk_delete" id="bulk_delete">
+                                        <button  class="btn btn-primary" name="definiteDelivery_delete" id="definiteDelivery_delete">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                             حذف</button>
                                     </div>
@@ -186,6 +186,50 @@
 
 
         });
+
+        document.getElementById("definiteDelivery_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('definiteDeliveryForm');
+        });
+        document.getElementById("temporaryDelivery_delete").addEventListener("click", function (event) {
+            event.preventDefault();
+            archiveActivity('temporaryDeliveryForm');
+        });
+
+
+        var archiveActivity = function (formID) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/services/archiveDelivery/"+formID,
+                type: "post",
+                dataType: "json",
+                data: $('#'+formID).serialize()
+            }).done(function (res) {
+
+                if (res == '0') {
+                    toastr.warning('انتخاب یک مورد الزامی است!');
+                }
+                else {
+                    location.reload();
+                    toastr.success('مورد / موارد موردنظر با موفقیت حذف شد!');
+                }
+
+            }).fail(function (e) {
+                if (e.status == 500) {
+                    toastr.warning("خطا در برقراری ارتباط با سرور. لطفا مجددا تلاش کنید.");
+                    window.location.href = '/logout';
+                } else if (e.status == 400) {
+                    toastr.warning("انتخاب یک مورد الزامی است!");
+                } else {
+                    toastr.warning("انتخاب یک مورد الزامی است!");
+                }
+
+            });
+
+        };
+
     </script>
 
 @endsection

@@ -33,7 +33,7 @@ class Records extends Model
     public function createSessionLetter($request)
     {
 
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate = ($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $session = self::create([
             "contractID" => $request['contractID'],
@@ -67,7 +67,7 @@ class Records extends Model
 
     public function updateSessionLetter($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate = ($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $sessionId = $request['sessionId'];
         $session = self::where('id', $sessionId)->first();

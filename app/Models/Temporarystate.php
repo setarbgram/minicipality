@@ -38,7 +38,7 @@ class Temporarystate extends Model
     }
     public function createTemporarystate($request)
     {
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $temporarystate = self::create([
             "contractID" => $request['contractID'],
@@ -76,11 +76,27 @@ class Temporarystate extends Model
 
     }
 
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/workStatus") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($activitiesID); //users:name of checkbox
+
+    }
+
 
     public function updateTemporarystate($request)
     {
 
-        $secretariatDate = \App\Helper\shamsiToMiladi($request['secretariatDate']);
+        $secretariatDate =($request['secretariatDate'])?\App\Helper\shamsiToMiladi($request['secretariatDate']):null;
 
         $temporarystateId = $request['temporarystateId'];
         $temporarystate = self::where('id', $temporarystateId)->first();

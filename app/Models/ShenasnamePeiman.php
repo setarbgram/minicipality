@@ -45,12 +45,12 @@ class ShenasnamePeiman extends Model
 
     public function createShenase($request)
     {
-        $contractDate = \App\Helper\shamsiToMiladi($request['contractDate']);
-        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
-        $tavafohnameDate = \App\Helper\shamsiToMiladi($request['tavafohnameDate']);
-        $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
-        $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
-        $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+        $contractDate =($request['contractDate'])?\App\Helper\shamsiToMiladi($request['contractDate']):null;
+        $requestDate = ($request['requestDate'])?\App\Helper\shamsiToMiladi($request['requestDate']):null;
+        $tavafohnameDate = ($request['tavafohnameDate'])?\App\Helper\shamsiToMiladi($request['tavafohnameDate']):null;
+        $komesionMoamelatNumDate = ($request['komesionMoamelatNumDate'])?\App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']):null;
+        $monagheseSessionNumberDate = ($request['monagheseSessionNumberDate'])?\App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']):null;
+        $permissionNumberDate = ($request['permissionNumberDate'])?\App\Helper\shamsiToMiladi($request['permissionNumberDate']):null;
 
 
         $shenase = self::create([
@@ -135,12 +135,13 @@ class ShenasnamePeiman extends Model
 
     public function updateShenase($request)
     {
-        $contractDate = \App\Helper\shamsiToMiladi($request['contractDate']);
-        $requestDate = \App\Helper\shamsiToMiladi($request['requestDate']);
-        $tavafohnameDate = \App\Helper\shamsiToMiladi($request['tavafohnameDate']);
-        $komesionMoamelatNumDate = \App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']);
-        $monagheseSessionNumberDate = \App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']);
-        $permissionNumberDate = \App\Helper\shamsiToMiladi($request['permissionNumberDate']);
+        $contractDate =($request['contractDate'])?\App\Helper\shamsiToMiladi($request['contractDate']):null;
+        $requestDate = ($request['requestDate'])?\App\Helper\shamsiToMiladi($request['requestDate']):null;
+        $tavafohnameDate = ($request['tavafohnameDate'])?\App\Helper\shamsiToMiladi($request['tavafohnameDate']):null;
+        $komesionMoamelatNumDate = ($request['komesionMoamelatNumDate'])?\App\Helper\shamsiToMiladi($request['komesionMoamelatNumDate']):null;
+        $monagheseSessionNumberDate = ($request['monagheseSessionNumberDate'])?\App\Helper\shamsiToMiladi($request['monagheseSessionNumberDate']):null;
+        $permissionNumberDate = ($request['permissionNumberDate'])?\App\Helper\shamsiToMiladi($request['permissionNumberDate']):null;
+
 
         $shenaseId = $request['shenaseId'];
         $shenase = self::where('id', $shenaseId)->first();

@@ -26,7 +26,7 @@ class Contractextension extends Model
     }
     public function createContractextension($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $contractextension = self::create([
             "contractID" => $request['contractID'],
@@ -52,7 +52,7 @@ class Contractextension extends Model
     public function updateContractextension($request)
     {
 
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $contractextensionId = $request['contractextensionId'];
         $contractextension = self::where('id', $contractextensionId)->first();
@@ -97,8 +97,20 @@ class Contractextension extends Model
 
         return $contractextension;
 
-
-
     }
 
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/workStatus") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($activitiesID); //users:name of checkbox
+    }
 }

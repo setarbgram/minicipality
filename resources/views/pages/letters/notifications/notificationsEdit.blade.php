@@ -90,8 +90,9 @@
                                             تاریخ ابلاغ :</label>
                                     </div>
                                     <div class="col-lg-7 col-sm-8 form-group">
-                                        <input class="form-control" type="text" name="communicationDate" readonly
-                                               id="communicationDate"  value="{{\App\Helper\toPersianDate($notification['communicationDate'])}}">
+                                        <input class="form-control" type="text" id="communicationDate" name="communicationDate" readonly
+                                        value="{{($notification['communicationDate'])?\App\Helper\toPersianDate($notification['communicationDate']):''}}">
+
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@ class Others extends Model
 
     public function createOthers($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $other = self::create([
             "contractID" => $request['contractID'],
@@ -63,19 +63,12 @@ class Others extends Model
 
     }
 
-    public function archive($activitiesID)
-    {
-        foreach ($activitiesID as $id) {
-            $activity = self::find($id);
-            $activity->delete();
-        }
-        return 'true';
-    }
+
 
 
     public function updateOthers($request)
     {
-        $communicationDate = \App\Helper\shamsiToMiladi($request['communicationDate']);
+        $communicationDate =($request['communicationDate'])?\App\Helper\shamsiToMiladi($request['communicationDate']):null;
 
         $otherId = $request['otherId'];
         $other = self::where('id', $otherId)->first();
@@ -119,5 +112,18 @@ class Others extends Model
 
     }
 
-
+    public function archive($activitiesID)
+    {
+        foreach ($activitiesID as $id) {
+            $activity = self::where('id', $id)->first();
+            $file = $activity['file'];
+            if (strlen($file)) {
+                $img_path = public_path("/uploads/letters") . '/' . $file;
+                if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+            }
+        }
+        self::destroy($activitiesID); //users:name of checkbox
+    }
 }
