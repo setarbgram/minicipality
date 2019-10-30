@@ -12,10 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/admin/base_css_admin/admin_base_css.css">
 </head>
-<body>
+<body style="font-family: IRANSans">
     <div id="app">
-        <nav class="navbar navbar-static-top">
+        {{--<nav class="navbar navbar-static-top">--}}
         {{--<nav class="navbar navbar-default navbar-static-top">--}}
             <div class="container">
                 <div class="navbar-header">
@@ -70,12 +71,29 @@
                     {{--</ul>--}}
                 </div>
             </div>
-        </nav>
+        {{--</nav>--}}
 
         @yield('content')
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="/js/app/base_js/base_admin_js.js"></script>
+    <script src="/js/app/plugin/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/js/app/plugin/validate/jquery.validate.min.js"></script>
+
+    <script src="/js/app/plugin/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/js/app/plugin/select2/select2.full.min.js"></script>
+
+    <script src="/js/app/main.js"></script>
+
+    <!-- iCheck -->
+    <script src="/js/app/plugin/iCheck/icheck.min.js"></script>
+    <script src="/js/app/plugin/toastr/toastr.min.js"></script>
+
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+
+    @yield('scripts')
+
 </body>
 </html>

@@ -10,8 +10,25 @@
     <link rel="stylesheet" href="/css/app/plugin/iCheck/custom.css">
     <link rel="stylesheet" href="/css/app/plugin/toastr/toastr.min.css">
     <link rel="stylesheet" href="/css/app/plugin/select2/select2.min.css">
+    <link rel="stylesheet" href="/css/app/plugin/calendar/persianDatepicker-default.css">
 
+    <style>
+        .paginate{
+            display: flex;align-self: center;justify-content: center
+        }
+
+
+         /*.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {*/
+             /*color: #495057;*/
+             /*background-color: #fff;*/
+             /*border-color: #dee2e6 #dee2e6 #fff;*/
+         /*}*/
+
+
+    </style>
     @yield('styles')
+
+
     {{--<style>--}}
         {{--.metismenu .fa.arrow:before {--}}
             {{--content: "\f105";--}}
@@ -43,10 +60,11 @@
     </div>
 </div>
 
-
 <script src="/js/app/base_js/base_admin_js.js"></script>
+
 <script src="/js/app/plugin/metisMenu/jquery.metisMenu.js"></script>
 <script src="/js/app/plugin/validate/jquery.validate.min.js"></script>
+
 <script src="/js/app/plugin/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/js/app/plugin/select2/select2.full.min.js"></script>
 
@@ -55,28 +73,38 @@
 <!-- iCheck -->
 <script src="/js/app/plugin/iCheck/icheck.min.js"></script>
 <script src="/js/app/plugin/toastr/toastr.min.js"></script>
+<script src="/js/app/plugin/calendar/persianDatepicker.min.js"></script>
 
 <script>
     $(document).ready(function(){
+
+        // document.querySelectorAll('[rel="prev"]')[0].innerHTML = "»";
+        // document.querySelectorAll('[rel="next"]')[0].innerHTML = "«";
+
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green',
+            radioClass: 'iradio_square-green'
         });
 
         toastr.options = {
-            "closeButton": true,
-            "progressBar": true,
+            "hideDuration": "1000"
+            // "closeButton": true,
+            // "progressBar": true,
         };
 
-
-        @if(session()->has('flash_message'))
-                       toastr.success("{{ @session('flash_message') }}");
-
+        @if((session()->has('flash_message')))
+            toastr.success("{{ @session('flash_message') }}");
+           i=0;
         @endif
+
         @if(session()->has('flash_d_message'))
-                toastr.warning("{{ @session('flash_d_message') }}");
-
+            toastr.warning("{{ @session('flash_d_message') }}");
         @endif
+
+
+
+
+
 
     });
 </script>

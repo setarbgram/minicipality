@@ -8,7 +8,8 @@
 
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->first_name.' '.Auth::user()->last_name}}</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                            class="font-bold">{{ Auth::user()->first_name.' '.Auth::user()->last_name}}</strong>
                              </span>
                                 <span class="text-muted text-xs block"> <b class="caret"></b></span>
                             </span> </a>
@@ -24,93 +25,142 @@
             </li>
 
 
-
-
             <li class="users">
                 <a href="#">
                     <i class="fa fa-users"></i>
-                    <span class="nav-label">کاربر</span>
+                    <span class="nav-label">مدیریت کاربران</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse users_sub">
-                    <li class="user_list">
-                        <a href="{{route('users')}}"><span class="nav-label">لیست کاربران</span></a>
-                    </li>
 
                     <li class="user_add">
                         <a href="{{route('user.add')}}">
-                            <span class="nav-label">تعریف کاربر</span>
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            <span class="nav-label">ثبت کاربر جدید</span>
                         </a>
                     </li>
+
+                    <li class="user_list">
+                        <a href="{{route('users')}}">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <span class="nav-label">جستجوی کاربران</span>
+                        </a>
+                    </li>
+
 
                     <li class="navbar_loginLogs">
                         <a>
                             <i class="fa fa-history" aria-hidden="true"></i>
-                            <span class="nav-label">گزارش ورود</span></a>
+                            <span class="nav-label">Eventlog</span></a>
                     </li>
 
                 </ul>
             </li>
 
 
-
             <li class="documents">
                 <a href="#">
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>
-                    <span class="nav-label">مراحل تشکیل پرونده</span>
+                    <i class="fa fa-folder-open"></i>
+                    <span class="nav-label">تشکیل پرونده</span>
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level collapse users_sub">
+                <ul class="nav nav-second-level collapse document_sub">
                     <li class="contractor">
-                        <a href="{{route('contractor-list')}}"><span class="nav-label">شناسنامه پیمان</span></a>
+                        <a href="{{route('contractor-list')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <span class="nav-label">شناسنامه پیمان</span></a>
                     </li>
 
                     <li class="work-order">
-                        <a href="{{--{{route('work.order')}}--}}">
+                        <a href="{{route('workOrder-list')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">دستور کار</span>
                         </a>
                     </li>
 
-                    <li class="navbar_loginLogs">
-                        <a>
-                            <i class="fa fa-history" aria-hidden="true"></i>
-                            <span class="nav-label">گزارش ورود</span></a>
-                    </li>
+
                     <li class="session">
-                        <a href="{{--{{route('session.letter')}}--}}"><span class="nav-label">صورت جلسه</span></a>
+                        <a href="{{route('sessionLetter-List')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <span class="nav-label">صورت جلسه</span>
+                        </a>
                     </li>
 
                     <li class="practical.property">
-                        <a href="{{--{{route('practical.property')}}--}}">
+                        <a href="{{route('practicalProperty-List')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات فنی</span>
                         </a>
                     </li>
 
                     <li class="letters">
-                        <a href="{{--{{route('letters')}}--}}"><span class="nav-label">مکاتبات</span></a>
+                        <a href="{{route('letters')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <span class="nav-label">مکاتبات</span>
+                        </a>
                     </li>
 
                     <li class="work-status">
-                        <a href="{{--{{route('work.status')}}--}}">
+                        <a href="{{route('workStatus')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">صورت وضعیت</span>
                         </a>
                     </li>
 
                     <li class="delivery-info">
-                        <a href="{{--{{route('delivery.info')}}--}}">
-                            <i class="fa fa-history" aria-hidden="true"></i>
+                        <a href="{{route('deliveryInfo')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">مشخصات تحویل</span></a>
                     </li>
 
                     <li class="announcement-info">
-                        <a href="{{--{{route('announcement.info')}}--}}">
-                            <i class="fa fa-history" aria-hidden="true"></i>
+                        <a href="{{route('communication-List')}}">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
                             <span class="nav-label">ابلاغیه</span></a>
                     </li>
 
                 </ul>
             </li>
 
+            <li class="searchDocument">
+                <a href="#">
+                    <i class="fa fa-search"></i>
+                    <span class="nav-label">جستجوی پرونده</span>
+                    <span class="fa arrow"></span>
+                </a>
+            </li>
+
+            <li class="messages">
+                <a href="#">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="nav-label">مدیریت پیام ها‍‍</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse messages_sub">
+
+                    <li class="user_add">
+                        <a href="{{route('user.add')}}">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <span class="nav-label">ارسال پیام جدید</span>
+                        </a>
+                    </li>
+
+                    <li class="user_list">
+                        <a href="{{route('users')}}">
+                            <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                            <span class="nav-label">صندوق ورودی </span>
+                        </a>
+                    </li>
+
+
+                    <li class="navbar_loginLogs">
+                        <a>
+                            <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                            <span class="nav-label">صندوق ارسالی</span></a>
+                    </li>
+
+                </ul>
+            </li>
 
 
 

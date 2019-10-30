@@ -1,6 +1,6 @@
 @extends('layout.admin.index')
 @section('title')
-    لیست  رایانه ها
+    لیست شناسه های پیمان
 @endsection
 @section('styles')
     <style>
@@ -11,7 +11,7 @@
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2> لیست  رایانه ها</h2>
+            <h2> لیست شناسه های پیمان</h2>
             <ol class="breadcrumb">
                 <li>
                     <a href="/panel">خانه</a>
@@ -20,7 +20,7 @@
                 {{--<a>client</a>--}}
                 {{--</li>--}}
                 <li class="active">
-                    <strong> لیست  رایانه ها</strong>
+                    <strong> لیست شناسه های پیمان</strong>
                 </li>
             </ol>
         </div>
@@ -34,7 +34,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>
-                        لیست  شناسه های پیمان
+                        لیست شناسه های پیمان
                     </h5>
 
                 </div>
@@ -48,17 +48,20 @@
                                 <thead>
                                 <tr>
 
-                                    <th>موضوع قرارداد </th>
+                                    <th>شماره قرارداد</th>
+                                    <th>شماره ی پرونده:</th>
                                     <th>نام شرکت</th>
-                                    <th>طرف قرارداد</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($shenases as $shenase)
                                     <tr>
-                                        <td><input type="checkbox" class="i-checks shenase_check" name="shenase_check[]" value="{{$shenase['id']}}">  <a href="{{route('shenase.edit',$shenase['id'])}}">{{$shenase['contractTitle']}}</a></td>
+                                        <td><input type="checkbox" class="i-checks shenase_check" name="shenase_check[]"
+                                                   value="{{$shenase['id']}}"> <a
+                                                    href="{{route('shenase.edit',$shenase['id'])}}">{{$shenase['contractNumber']}}</a>
+                                        </td>
+                                        <td>{{$shenase['docNumber']}}</td>
                                         <td>{{$shenase['companyName']}}</td>
-                                        <td>{{$shenase['contractTaraf']}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -74,8 +77,12 @@
                             <div style="float: right">
                                 <button class="btn btn-primary" name="bulk_delete" id="bulk_delete">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                    حذف</button>
+                                    حذف
+                                </button>
                             </div>
+                        </div>
+                        <div class="col-12 paginate">
+                            {{$shenases->links()}}
                         </div>
                     </form>
                 </div>
@@ -90,9 +97,9 @@
 @section('scripts')
 
     <script>
-        $(document).ready(function(){
-
-
+        $(document).ready(function () {
+            // document.querySelectorAll('[rel="prev"]')[0].innerHTML = "»";
+            // document.querySelectorAll('[rel="next"]')[0].innerHTML = "«";
         });
     </script>
 

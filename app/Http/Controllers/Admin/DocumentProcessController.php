@@ -44,16 +44,25 @@ class DocumentProcessController extends Controller
         return view('pages.document-process.documentEdit', compact('shenase','cotractTypes'));
     }
 
+    public function updateShenasnamePeiman(Request $request)
+    {
+        $shenaseObj = new ShenasnamePeiman();
+        $shenaseObj->updateShenase($request);
+
+        return Redirect(route('contractor-list'))->with(Session::flash('flash_message', 'شناسه پیمان با موفقیت ویرایش شد!'));
+    }
+
     public function destroy(Request $request)
     {
-        if (count($request['shenase_check'])) {
+        if ($request['shenase_check']) {
             $shenaseObj = new ShenasnamePeiman();
+            $shenaseObj->removeShenase($request);
 
-            foreach ($request['shenase_check'] as $shenaseId) {
-                $shenase = $shenaseObj->findShenase($shenaseId);
-            }
-            ShenasnamePeiman::destroy($request['shenase_check']); //users:name of checkbox
-            return back()->with(Session::flash('flash_d_message', 'شناسه پیمان با موفقیت حذف شد!'));
+//            foreach ($request['shenase_check'] as $shenaseId) {
+//                $shenase = $shenaseObj->findShenase($shenaseId);
+//            }
+//            ShenasnamePeiman::destroy($request['shenase_check']); //users:name of checkbox
+            return back()->with(Session::flash('flash_message', 'شناسه پیمان با موفقیت حذف شد!'));
         } else {
             return back()->with(Session::flash('flash_d_message', 'انتخاب یک شناسه پیمان الزامی است!'));
         }

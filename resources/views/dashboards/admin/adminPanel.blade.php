@@ -137,33 +137,33 @@
                                 userId: function () {
                                     console.log($("#userId").val());
                                     return $("#userId").val();
-                                },
+                                }
 
                             },
-                            dataType: 'json',
+                            dataType: 'json'
 
 
                         }
                     },
                     fName: {
-                        required: true,
+                        required: true
                     },
                     lName: {
-                        required: true,
+                        required: true
                     },
                     email: {
                         required: true,
-                        email: true,
+                        email: true
                     },
                     password: {
                         required: true,
-                        minlength: 6,
+                        minlength: 6
                     },
                     passwordConfirmation: {
                         required: true,
                         minlength: 6,
                         equalTo: "#password"
-                    },
+                    }
                 }
             });
 

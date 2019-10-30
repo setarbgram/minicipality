@@ -22,7 +22,7 @@ class AccountController extends Controller
         $user = new User();
         $user->updateUser($request);
 
-        return Redirect('/panel')->with(Session::flash('flash_message', 'Your information is edited!'));
+        return Redirect('/panel')->with(Session::flash('flash_message', 'اطلاعات شما با موفقیت ویرایش شد.'));
 
 
     }
@@ -46,9 +46,9 @@ class AccountController extends Controller
             $user->update(array(
                 'password' => bcrypt($request['newPassword'])
             ));
-            return Redirect('/panel')->with(Session::flash('flash_message', 'Password Is Changed Successfully!'));
+            return Redirect('/panel')->with(Session::flash('flash_message', 'رمزعبور با موفقیت تغییر کرد.'));
         } else {
-            return Redirect('/panel/change-password')->with(Session::flash('flash_d_message', 'Current Password Is not Correct.'));
+            return Redirect('/panel/change-password')->with(Session::flash('flash_d_message', 'رمزعبور فعلی نادرست می باشد.'));
         }
     }
 
